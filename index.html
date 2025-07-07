@@ -1,699 +1,403 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yu Shen | Robotics & Automation Engineer</title>
-    
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary-color: #0a0a1a;
-            --secondary-color: #00f7ff;
-            --accent-color: #ff00aa;
-            --text-color: #e6e6e6;
-            --card-bg: #1e1e3a;
-            --neon-glow: 0 0 10px rgba(0, 247, 255, 0.8);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--primary-color);
-            color: var(--text-color);
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-        
-        /* Animated Particle Background */
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-color: var(--primary-color);
-        }
-        
-        /* Header with Animation */
-        header {
-            padding: 8rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .title-container {
-            margin-bottom: 3rem;
-        }
-        
-        .name-title {
-            font-size: 3.5rem;
-            margin-bottom: 0.5rem;
-            font-family: 'Orbitron', sans-serif;
-            color: var(--text-color);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s 0.3s forwards;
-        }
-        
-        .job-title {
-            font-size: 1.8rem;
-            font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: 2px;
-            margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s 0.5s forwards;
-        }
-        
-        .robot-image {
-            width: 300px;
-            height: auto;
-            margin-bottom: 2rem;
-            filter: drop-shadow(0 0 15px rgba(0, 247, 255, 0.6));
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s 0.7s forwards;
-            transition: all 0.5s ease;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yu Shen | Robotics & Automation Engineer</title>
 
-        .robot-image:hover {
-            transform: translateY(-10px) rotate(5deg);
-            filter: drop-shadow(0 0 20px rgba(0, 247, 255, 0.8));
-            animation: float 3s ease-in-out infinite;
-        }
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-        @keyframes float {
-            0%, 100% { transform: translateY(-10px) rotate(5deg); }
-            50% { transform: translateY(-20px) rotate(0deg); }
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Enhanced Scroll Down Animation */
-        .scroll-down {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            color: var(--secondary-color);
-            opacity: 0;
-            animation: fadeIn 1s 2s forwards;
-        }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-        .mouse {
-            width: 25px;
-            height: 40px;
-            border: 2px solid var(--secondary-color);
-            border-radius: 12px;
-            position: relative;
-            margin-bottom: 8px;
-        }
+  <style>
+    :root {
+      --primary-color: #0a0a1a;
+      --secondary-color: #00f7ff;
+      --accent-color: #ff00aa;
+      --text-color: #e6e6e6;
+      --card-bg: #1e1e3a;
+      --neon-glow: 0 0 10px rgba(0, 247, 255, 0.8);
+    }
 
-        .scroller {
-            width: 4px;
-            height: 8px;
-            background: var(--secondary-color);
-            border-radius: 2px;
-            position: absolute;
-            top: 5px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: scrollDown 2s infinite;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .scroll-down span {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            margin-top: 5px;
-        }
+    html, body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--primary-color);
+      color: var(--text-color);
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      height: 100%;
+    }
 
-        @keyframes scrollDown {
-            0% { top: 5px; opacity: 1; }
-            50% { top: 15px; opacity: 0.5; }
-            100% { top: 5px; opacity: 1; }
-        }
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-color: var(--primary-color);
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px) translateX(-50%); }
-            to { opacity: 1; transform: translateY(0) translateX(-50%); }
-        }
-        
-        /* Animated Cards */
-        .card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 2.5rem;
-            margin: 2rem auto;
-            max-width: 900px;
-            border: 1px solid rgba(0, 247, 255, 0.2);
-            transition: all 0.5s ease;
-            transform: translateY(50px);
-            opacity: 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .card.visible {
-            animation: fadeInUp 0.8s forwards;
-        }
-        
-        .card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 247, 255, 0.2);
-            border-color: var(--secondary-color);
-        }
-        
-        h2 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--secondary-color);
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--accent-color);
-            border-radius: 3px;
-        }
-        
-        h3 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--text-color);
-            margin: 1.5rem 0 0.5rem;
-            font-size: 1.3rem;
-        }
-        
-        p {
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-        
-        /* Neon Button */
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background: transparent;
-            color: var(--secondary-color);
-            border: 2px solid var(--secondary-color);
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            margin: 1rem 0.5rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Orbitron', sans-serif;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn:hover {
-            background: var(--secondary-color);
-            color: var(--primary-color);
-            box-shadow: var(--neon-glow);
-            transform: translateY(-3px);
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 247, 255, 0.4), transparent);
-            transition: all 0.5s ease;
-        }
-        
-        .btn:hover::before {
-            left: 100%;
-        }
-        
-        /* Skills Section */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        
-        .skill {
-            background: rgba(0, 247, 255, 0.1);
-            padding: 0.5rem 1.2rem;
-            border-radius: 20px;
-            border: 1px solid var(--secondary-color);
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            opacity: 0;
-        }
-        
-        .skill:hover {
-            background: rgba(0, 247, 255, 0.3);
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 247, 255, 0.2);
-        }
-        
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 7px;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: var(--secondary-color);
-        }
-        
-        .timeline-item {
-            position: relative;
-            padding-bottom: 2rem;
-            padding-left: 1.5rem;
-            opacity: 0;
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2px;
-            top: 0;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(255, 0, 170, 0.3);
-        }
-        
-        .timeline-date {
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Project Gallery */
-        .project-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .project-card {
-            background: rgba(30, 30, 58, 0.7);
-            border-radius: 10px;
-            padding: 1.5rem;
-            border: 1px solid rgba(0, 247, 255, 0.1);
-            transition: all 0.3s ease;
-            opacity: 0;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px) rotate(1deg);
-            border-color: var(--secondary-color);
-            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.1);
-        }
+    header {
+      height: 100vh;
+      padding: 8rem 2rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      scroll-snap-align: start;
+    }
 
-        /* Enhanced Social Icon Animations */
-        .contact-icons a {
-            display: inline-block;
-            position: relative;
-            transition: all 0.3s ease;
-            transform-style: preserve-3d;
-        }
+    .title-container {
+      margin-bottom: 3rem;
+    }
 
-        .contact-icons a i {
-            transition: all 0.3s ease;
-        }
+    .name-title {
+      font-size: 3.5rem;
+      font-family: 'Orbitron', sans-serif;
+      color: var(--text-color);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
+      animation: fadeInUp 1s 0.3s forwards;
+    }
 
-        .contact-icons a:hover {
-            transform: translateY(-5px) scale(1.1);
-        }
+    .job-title {
+      font-size: 1.8rem;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 2px;
+      animation: fadeInUp 1s 0.5s forwards;
+    }
 
-        .contact-icons a:hover i {
-            color: var(--accent-color);
-            text-shadow: 0 0 10px var(--accent-color);
-        }
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: transparent;
+      color: var(--secondary-color);
+      border: 2px solid var(--secondary-color);
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 1rem 0.5rem;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Orbitron', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
 
-        /* Specific icon animations */
-        .contact-icons a:hover .fa-envelope {
-            animation: shake 0.5s ease;
-        }
+    .btn:hover {
+      background: var(--secondary-color);
+      color: var(--primary-color);
+      box-shadow: var(--neon-glow);
+      transform: translateY(-3px);
+    }
 
-        .contact-icons a:hover .fa-linkedin {
-            animation: pulse 0.5s ease;
-        }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 247, 255, 0.4), transparent);
+      transition: all 0.5s ease;
+    }
 
-        .contact-icons a:hover .fa-github {
-            animation: spin 0.5s ease;
-        }
+    .btn:hover::before {
+      left: 100%;
+    }
 
-        .contact-icons a:hover .fa-phone {
-            animation: ring 0.5s ease;
-        }
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--secondary-color);
+      animation: fadeIn 1s 2s forwards;
+      cursor: pointer;
+    }
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-3px); }
-            75% { transform: translateX(3px); }
-        }
+    .mouse {
+      width: 25px;
+      height: 40px;
+      border: 2px solid var(--secondary-color);
+      border-radius: 12px;
+      position: relative;
+      margin-bottom: 8px;
+    }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
+    .scroller {
+      width: 4px;
+      height: 8px;
+      background: var(--secondary-color);
+      border-radius: 2px;
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: scrollDown 2s infinite;
+    }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+    .scroll-down span {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+    }
 
-        @keyframes ring {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(15deg); }
-            75% { transform: rotate(-15deg); }
-        }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        @keyframes bounceIn {
-            0% { transform: scale(0.8); opacity: 0; }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); opacity: 1; }
-        }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px) translateX(-50%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) translateX(-50%);
+      }
+    }
 
-        @keyframes flipInX {
-            from { 
-                transform: perspective(400px) rotateX(90deg);
-                opacity: 0;
-            }
-            to { 
-                transform: perspective(400px) rotateX(0);
-                opacity: 1;
-            }
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .name-title {
-                font-size: 2.5rem;
-            }
-            
-            .job-title {
-                font-size: 1.4rem;
-            }
-            
-            .robot-image {
-                width: 200px;
-            }
-            
-            .card {
-                padding: 1.5rem;
-            }
-            
-            .project-gallery {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    @keyframes scrollDown {
+      0% { top: 5px; opacity: 1; }
+      50% { top: 15px; opacity: 0.5; }
+      100% { top: 5px; opacity: 1; }
+    }
+
+    main > section.card {
+      scroll-snap-align: start;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      border: 1px solid rgba(0, 247, 255, 0.2);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--secondary-color);
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+
+    h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--text-color);
+      margin: 1.5rem 0 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .skill {
+      background: rgba(0, 247, 255, 0.1);
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      border: 1px solid var(--secondary-color);
+      font-size: 0.9rem;
+    }
+
+    .timeline {
+      padding-left: 2rem;
+    }
+
+    .timeline-item {
+      margin-bottom: 2rem;
+    }
+
+    .timeline-date {
+      font-size: 0.9rem;
+      color: var(--secondary-color);
+    }
+
+    .project-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: rgba(30, 30, 58, 0.7);
+      border-radius: 10px;
+      padding: 1.5rem;
+      border: 1px solid rgba(0, 247, 255, 0.1);
+    }
+
+    .contact-icons a {
+      display: inline-block;
+      margin-right: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .name-title { font-size: 2.5rem; }
+      .job-title { font-size: 1.4rem; }
+      .project-gallery { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Particle Background -->
-    <div id="particles-js"></div>
-    
-    <header>
-        <div class="title-container">
-            <h1 class="name-title">YU SHEN</h1>
-            <h2 class="job-title">ROBOTICS & AUTOMATION ENGINEER</h2>
-        </div>
-        
-        <img src="https://cdn.jsdelivr.net/gh/Shenyu1111111/yushen.github.io/industrial-robot.png" alt="Robot" class="robot-image">
-        
-        <a href="#about" class="btn">EXPLORE MY WORK</a>
-        <div class="scroll-down" onclick="document.querySelector('#about').scrollIntoView({ behavior: 'smooth' })">
-            <div class="mouse">
-                <div class="scroller"></div>
-            </div>
-            <span>Scroll Down</span>
-        </div>
-    </header>
-    
-    <main style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
-        <section id="about" class="card">
-            <h2>About Me</h2>
-            <p>Innovative robotics engineer with 5+ years of experience designing automated systems and intelligent machines. Passionate about pushing the boundaries of what robots can do to improve human lives and transform industries through cutting-edge automation solutions.</p>
-            <p>My expertise spans robotic system design, computer vision, machine learning, and industrial automation. I thrive on solving complex problems at the intersection of hardware and software.</p>
-            <div style="margin-top: 1.5rem;">
-                <a href="#" class="btn"><i class="fas fa-download"></i> Download CV</a>
-                <a href="#contact" class="btn"><i class="fas fa-paper-plane"></i> Contact Me</a>
-            </div>
-        </section>
-        
-        <section class="card">
-            <h2>Technical Skills</h2>
-            <div class="skills-container">
-                <div class="skill">ROS (Robot Operating System)</div>
-                <div class="skill">Computer Vision</div>
-                <div class="skill">Machine Learning</div>
-                <div class="skill">Python</div>
-                <div class="skill">C++</div>
-                <div class="skill">Embedded Systems</div>
-                <div class="skill">PLC Programming</div>
-                <div class="skill">CAD Design</div>
-                <div class="skill">Motion Planning</div>
-                <div class="skill">Industrial Automation</div>
-                <div class="skill">IoT Integration</div>
-                <div class="skill">3D Printing</div>
-            </div>
-        </section>
-        
-        <section class="card">
-            <h2>Professional Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">2020 - Present</div>
-                    <h3>Senior Robotics Engineer | TechRobotics Inc.</h3>
-                    <p>Led a team developing autonomous mobile robots for warehouse automation. Implemented advanced path planning algorithms that improved navigation efficiency by 35%.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2017 - 2020</div>
-                    <h3>Automation Engineer | AutoSys Solutions</h3>
-                    <p>Designed and deployed robotic workcells for automotive manufacturing, reducing production time by 22% while maintaining 99.9% quality standards.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2015 - 2017</div>
-                    <h3>Robotics Research Assistant | MIT Robotics Lab</h3>
-                    <p>Conducted research on soft robotics and human-robot interaction, published 3 papers in top-tier robotics conferences.</p>
-                </div>
-            </div>
-        </section>
-        
-        <section class="card">
-            <h2>Featured Projects</h2>
-            <div class="project-gallery">
-                <div class="project-card">
-                    <h3>Autonomous Delivery Robot</h3>
-                    <p>Designed a self-navigating robot for last-mile delivery with 99.8% obstacle avoidance accuracy using LiDAR and stereo vision.</p>
-                    <a href="#" class="btn" style="margin: 0.5rem 0 0; padding: 0.5rem 1rem; font-size: 0.8rem;">View Details</a>
-                </div>
-                <div class="project-card">
-                    <h3>Industrial Robotic Arm</h3>
-                    <p>Developed a 6-axis robotic arm with machine vision for precision manufacturing, achieving ±0.02mm repeatability.</p>
-                    <a href="#" class="btn" style="margin: 0.5rem 0 0; padding: 0.5rem 1rem; font-size: 0.8rem;">View Details</a>
-                </div>
-                <div class="project-card">
-                    <h3>AI-Powered Sorting System</h3>
-                    <p>Created a high-speed sorting system using deep learning that processes 1200 items/minute with 99.5% accuracy.</p>
-                    <a href="#" class="btn" style="margin: 0.5rem 0 0; padding: 0.5rem 1rem; font-size: 0.8rem;">View Details</a>
-                </div>
-            </div>
-        </section>
-        
-        <section class="card">
-            <h2>Education</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">2013 - 2015</div>
-                    <h3>M.S. in Robotics Engineering | Carnegie Mellon University</h3>
-                    <p>Specialized in autonomous systems and computer vision. Thesis on "Deep Learning for Robotic Grasping in Unstructured Environments."</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2009 - 2013</div>
-                    <h3>B.S. in Mechanical Engineering | University of Michigan</h3>
-                    <p>Focus on mechatronics and control systems. Minor in Computer Science.</p>
-                </div>
-            </div>
-        </section>
-        
-        <section id="contact" class="card">
-            <h2>Get In Touch</h2>
-            <p>Interested in collaborating or learning more about my work? Feel free to reach out!</p>
-            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;" class="contact-icons">
-                <a href="mailto:shenyu121212@gmail.com" class="btn"><i class="fas fa-envelope"></i> Email</a>
-                <a href="https://www.linkedin.com/in/yu-shen-7337b32ab/" target="_blank" class="btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/Shenyu1111111" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
-                <a href="tel:+12269989889" class="btn"><i class="fas fa-phone"></i> Phone</a>
-            </div>
-        </section>
-    </main>
-    
-    <footer style="text-align: center; padding: 3rem 2rem; margin-top: 2rem;">
-        <p>© 2025 Yu Shen. All rights reserved.</p>
-        <div style="margin-top: 1rem;">
-            <a href="#" style="color: var(--secondary-color); margin: 0 0.5rem;"><i class="fab fa-twitter"></i></a>
-            <a href="#" style="color: var(--secondary-color); margin: 0 0.5rem;"><i class="fab fa-youtube"></i></a>
-            <a href="#" style="color: var(--secondary-color); margin: 0 0.5rem;"><i class="fas fa-blog"></i></a>
-        </div>
-    </footer>
-    
-    <!-- Particle.js Library -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
-    <script>
-        // Initialize particle background
-        document.addEventListener('DOMContentLoaded', function() {
-            particlesJS('particles-js', {
-                "particles": {
-                    "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                    "color": { "value": "#00f7ff" },
-                    "shape": { "type": "circle" },
-                    "opacity": { "value": 0.5, "random": true },
-                    "size": { "value": 3, "random": true },
-                    "line_linked": { "enable": true, "distance": 150, "color": "#00f7ff", "opacity": 0.4, "width": 1 },
-                    "move": { 
-                        "enable": true, 
-                        "speed": 3, 
-                        "direction": "none", 
-                        "random": true, 
-                        "straight": false, 
-                        "out_mode": "out",
-                        "bounce": true,
-                        "attract": {
-                            "enable": true,
-                            "rotateX": 600,
-                            "rotateY": 1200
-                        }
-                    }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": { 
-                            "enable": true, 
-                            "mode": "bubble" 
-                        },
-                        "onclick": { 
-                            "enable": true, 
-                            "mode": "repulse" 
-                        }
-                    },
-                    "modes": {
-                        "bubble": {
-                            "distance": 200,
-                            "size": 6,
-                            "duration": 2,
-                            "opacity": 0.8,
-                            "speed": 3
-                        },
-                        "repulse": {
-                            "distance": 100,
-                            "duration": 0.4
-                        }
-                    }
-                }
-            });
-            
-            // Enhanced Scroll Animations
-            const animateOnScroll = () => {
-                const elements = document.querySelectorAll('.card, .skill, .project-card, .timeline-item');
-                const windowHeight = window.innerHeight;
-                
-                elements.forEach((el, index) => {
-                    const elementPosition = el.getBoundingClientRect().top;
-                    const animationDelay = index * 0.1;
-                    
-                    if(elementPosition < windowHeight - 100) {
-                        // Add different animations based on element type
-                        if(el.classList.contains('skill')) {
-                            el.style.animation = `bounceIn 0.6s ${animationDelay}s forwards`;
-                        } 
-                        else if(el.classList.contains('project-card')) {
-                            el.style.animation = `flipInX 0.8s ${animationDelay}s forwards`;
-                        }
-                        else if(el.classList.contains('timeline-item')) {
-                            el.style.animation = `fadeInRight 0.8s ${animationDelay}s forwards`;
-                        }
-                        else {
-                            el.style.animation = `fadeInUp 0.8s ${animationDelay}s forwards`;
-                        }
-                        el.classList.add('visible');
-                    }
-                });
-            };
+  <div id="particles-js"></div>
 
-            // Run once on load
-            animateOnScroll();
-            
-            // Then on scroll
-            window.addEventListener('scroll', animateOnScroll);
-            
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
+  <header>
+    <div class="title-container">
+      <h1 class="name-title">YU SHEN</h1>
+      <h2 class="job-title">ROBOTICS & AUTOMATION ENGINEER</h2>
+    </div>
+    <a href="#about" class="btn">EXPLORE MY WORK</a>
+    <div class="scroll-down" onclick="document.querySelector('#about').scrollIntoView({ behavior: 'smooth' })">
+      <div class="mouse">
+        <div class="scroller"></div>
+      </div>
+      <span>Scroll Down</span>
+    </div>
+  </header>
 
-            // Add animation for timeline items
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            timelineItems.forEach((item, index) => {
-                item.style.animationDelay = `${index * 0.2}s`;
-            });
-        });
-    </script>
+  <main>
+    <section id="about" class="card">
+      <h2>About Me</h2>
+      <p>Innovative robotics engineer with 5+ years of experience designing automated systems and intelligent machines...</p>
+    </section>
+
+    <section class="card">
+      <h2>Technical Skills</h2>
+      <div class="skills-container">
+        <div class="skill">ROS</div><div class="skill">Computer Vision</div><div class="skill">Python</div>
+        <div class="skill">PLC</div><div class="skill">Embedded</div><div class="skill">C++</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Professional Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2020 - Present</div>
+          <h3>Senior Robotics Engineer</h3>
+          <p>Led a team developing autonomous mobile robots...</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Featured Projects</h2>
+      <div class="project-gallery">
+        <div class="project-card">
+          <h3>Delivery Robot</h3>
+          <p>Designed a self-navigating robot...</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Education</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2013 - 2015</div>
+          <h3>Carnegie Mellon University</h3>
+          <p>M.S. in Robotics</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="card">
+      <h2>Get In Touch</h2>
+      <p>Feel free to reach out!</p>
+      <div class="contact-icons">
+        <a href="mailto:shenyu121212@gmail.com" class="btn"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://www.linkedin.com/in/yu-shen-7337b32ab/" target="_blank" class="btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="https://github.com/Shenyu1111111" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Yu Shen. All rights reserved.</p>
+  </footer>
+
+  <!-- Particle.js Library -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS('particles-js', {
+      "particles": {
+        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#00f7ff" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5, "random": true },
+        "size": { "value": 3, "random": true },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#00f7ff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 3,
+          "direction": "none",
+          "random": true,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": true
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "bubble" },
+          "onclick": { "enable": true, "mode": "repulse" }
+        },
+        "modes": {
+          "bubble": { "distance": 200, "size": 6, "duration": 2, "opacity": 0.8 },
+          "repulse": { "distance": 100, "duration": 0.4 }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
