@@ -57,19 +57,49 @@
             align-items: center;
         }
         
-        h1 {
+        .title-container {
+            margin-bottom: 3rem;
+        }
+        
+        .name-title {
             font-size: 3.5rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
             font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: var(--text-color);
             text-transform: uppercase;
             letter-spacing: 3px;
             text-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
         }
         
+        .job-title {
+            font-size: 1.8rem;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+        }
+        
+        .robot-image {
+            width: 300px;
+            height: auto;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 15px rgba(0, 247, 255, 0.6));
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s 0.5s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Rest of your existing CSS remains the same */
         .subtitle {
             font-size: 1.5rem;
             margin-bottom: 2rem;
@@ -117,13 +147,6 @@
         
         .card.visible {
             animation: fadeInUp 0.8s forwards;
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
         
         .card:hover {
@@ -310,12 +333,16 @@
         
         /* Responsive Design */
         @media (max-width: 768px) {
-            h1 {
+            .name-title {
                 font-size: 2.5rem;
             }
             
-            .subtitle {
-                font-size: 1.2rem;
+            .job-title {
+                font-size: 1.4rem;
+            }
+            
+            .robot-image {
+                width: 200px;
             }
             
             .card {
@@ -333,14 +360,20 @@
     <div id="particles-js"></div>
     
     <header>
-        <h1><span class="typewriter">YU SHEN</span></h1>
-        <p class="subtitle">Robotics & Automation Engineer</p>
-        <a href="#about" class="btn">Explore My Work</a>
+        <div class="title-container">
+            <h1 class="name-title">YU SHEN</h1>
+            <h2 class="job-title">ROBOTICS & AUTOMATION ENGINEER</h2>
+        </div>
+        
+        <img src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png" alt="Robot" class="robot-image">
+        
+        <a href="#about" class="btn">EXPLORE MY WORK</a>
         <div class="scroll-down" onclick="document.querySelector('#about').scrollIntoView({ behavior: 'smooth' })">
             <i class="fas fa-chevron-down"></i>
         </div>
     </header>
     
+    <!-- Rest of your existing HTML remains the same -->
     <main style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
         <section id="about" class="card">
             <h2>About Me</h2>
