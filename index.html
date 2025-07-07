@@ -33,8 +33,6 @@
             color: var(--text-color);
             overflow-x: hidden;
             min-height: 100vh;
-            scroll-snap-type: y mandatory;
-            scroll-behavior: smooth;
         }
         
         /* Animated Particle Background */
@@ -46,29 +44,17 @@
             background-color: var(--primary-color);
         }
         
-        /* Full-page sections */
-        .fullpage-section {
-            min-height: 100vh;
-            width: 100%;
-            padding: 4rem 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            scroll-snap-align: start;
-            position: relative;
-            overflow: hidden;
-        }
-        
         /* Header with Animation */
         header {
+            padding: 8rem 2rem;
             text-align: center;
             position: relative;
+            overflow: hidden;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            scroll-snap-align: start;
         }
         
         .title-container {
@@ -100,6 +86,35 @@
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 1s 0.5s forwards;
+        }
+        
+        .robot-image {
+            width: 300px;
+            height: auto;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 15px rgba(0, 247, 255, 0.6));
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s 0.7s forwards;
+            transition: all 0.5s ease;
+        }
+
+        .robot-image:hover {
+            transform: translateY(-10px) rotate(5deg);
+            filter: drop-shadow(0 0 20px rgba(0, 247, 255, 0.8));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(-10px) rotate(5deg); }
+            50% { transform: translateY(-20px) rotate(0deg); }
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         /* Enhanced Scroll Down Animation */
@@ -156,19 +171,28 @@
             to { opacity: 1; transform: translateY(0) translateX(-50%); }
         }
         
-        /* Section Content */
-        .section-content {
+        /* Animated Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin: 2rem auto;
             max-width: 900px;
-            margin: 0 auto;
-            width: 100%;
-            opacity: 0;
+            border: 1px solid rgba(0, 247, 255, 0.2);
+            transition: all 0.5s ease;
             transform: translateY(50px);
-            transition: all 0.8s ease;
+            opacity: 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
-        .section-content.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .card.visible {
+            animation: fadeInUp 0.8s forwards;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 247, 255, 0.2);
+            border-color: var(--secondary-color);
         }
         
         h2 {
@@ -260,11 +284,6 @@
             font-size: 0.9rem;
             transition: all 0.3s ease;
             opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .skill.visible {
-            animation: bounceIn 0.6s forwards;
         }
         
         .skill:hover {
@@ -295,11 +314,6 @@
             padding-bottom: 2rem;
             padding-left: 1.5rem;
             opacity: 0;
-            transform: translateX(-20px);
-        }
-        
-        .timeline-item.visible {
-            animation: fadeInRight 0.8s forwards;
         }
         
         .timeline-item::before {
@@ -335,11 +349,6 @@
             border: 1px solid rgba(0, 247, 255, 0.1);
             transition: all 0.3s ease;
             opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .project-card.visible {
-            animation: flipInX 0.8s forwards;
         }
         
         .project-card:hover {
@@ -369,36 +378,21 @@
             text-shadow: 0 0 10px var(--accent-color);
         }
 
-        /* Animation Keyframes */
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInRight {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes bounceIn {
-            0% { transform: scale(0.8); opacity: 0; }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); opacity: 1; }
+        /* Specific icon animations */
+        .contact-icons a:hover .fa-envelope {
+            animation: shake 0.5s ease;
         }
 
-        @keyframes flipInX {
-            from { 
-                transform: perspective(400px) rotateX(90deg);
-                opacity: 0;
-            }
-            to { 
-                transform: perspective(400px) rotateX(0);
-                opacity: 1;
-            }
+        .contact-icons a:hover .fa-linkedin {
+            animation: pulse 0.5s ease;
+        }
+
+        .contact-icons a:hover .fa-github {
+            animation: spin 0.5s ease;
+        }
+
+        .contact-icons a:hover .fa-phone {
+            animation: ring 0.5s ease;
         }
 
         @keyframes shake {
@@ -422,6 +416,23 @@
             25% { transform: rotate(15deg); }
             75% { transform: rotate(-15deg); }
         }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes flipInX {
+            from { 
+                transform: perspective(400px) rotateX(90deg);
+                opacity: 0;
+            }
+            to { 
+                transform: perspective(400px) rotateX(0);
+                opacity: 1;
+            }
+        }
         
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -433,12 +444,16 @@
                 font-size: 1.4rem;
             }
             
-            .project-gallery {
-                grid-template-columns: 1fr;
+            .robot-image {
+                width: 200px;
             }
             
-            .fullpage-section {
-                padding: 2rem 1rem;
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .project-gallery {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -447,11 +462,13 @@
     <!-- Particle Background -->
     <div id="particles-js"></div>
     
-    <header class="fullpage-section">
+    <header>
         <div class="title-container">
             <h1 class="name-title">YU SHEN</h1>
             <h2 class="job-title">ROBOTICS & AUTOMATION ENGINEER</h2>
         </div>
+        
+        <img src="https://cdn.jsdelivr.net/gh/Shenyu1111111/yushen.github.io/industrial-robot.png" alt="Robot" class="robot-image">
         
         <a href="#about" class="btn">EXPLORE MY WORK</a>
         <div class="scroll-down" onclick="document.querySelector('#about').scrollIntoView({ behavior: 'smooth' })">
@@ -462,8 +479,8 @@
         </div>
     </header>
     
-    <section id="about" class="fullpage-section">
-        <div class="section-content">
+    <main style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
+        <section id="about" class="card">
             <h2>About Me</h2>
             <p>Innovative robotics engineer with 5+ years of experience designing automated systems and intelligent machines. Passionate about pushing the boundaries of what robots can do to improve human lives and transform industries through cutting-edge automation solutions.</p>
             <p>My expertise spans robotic system design, computer vision, machine learning, and industrial automation. I thrive on solving complex problems at the intersection of hardware and software.</p>
@@ -471,11 +488,9 @@
                 <a href="#" class="btn"><i class="fas fa-download"></i> Download CV</a>
                 <a href="#contact" class="btn"><i class="fas fa-paper-plane"></i> Contact Me</a>
             </div>
-        </div>
-    </section>
-    
-    <section class="fullpage-section">
-        <div class="section-content">
+        </section>
+        
+        <section class="card">
             <h2>Technical Skills</h2>
             <div class="skills-container">
                 <div class="skill">ROS (Robot Operating System)</div>
@@ -491,11 +506,9 @@
                 <div class="skill">IoT Integration</div>
                 <div class="skill">3D Printing</div>
             </div>
-        </div>
-    </section>
-    
-    <section class="fullpage-section">
-        <div class="section-content">
+        </section>
+        
+        <section class="card">
             <h2>Professional Experience</h2>
             <div class="timeline">
                 <div class="timeline-item">
@@ -514,11 +527,9 @@
                     <p>Conducted research on soft robotics and human-robot interaction, published 3 papers in top-tier robotics conferences.</p>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <section class="fullpage-section">
-        <div class="section-content">
+        </section>
+        
+        <section class="card">
             <h2>Featured Projects</h2>
             <div class="project-gallery">
                 <div class="project-card">
@@ -537,11 +548,9 @@
                     <a href="#" class="btn" style="margin: 0.5rem 0 0; padding: 0.5rem 1rem; font-size: 0.8rem;">View Details</a>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <section class="fullpage-section">
-        <div class="section-content">
+        </section>
+        
+        <section class="card">
             <h2>Education</h2>
             <div class="timeline">
                 <div class="timeline-item">
@@ -555,11 +564,9 @@
                     <p>Focus on mechatronics and control systems. Minor in Computer Science.</p>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <section id="contact" class="fullpage-section">
-        <div class="section-content">
+        </section>
+        
+        <section id="contact" class="card">
             <h2>Get In Touch</h2>
             <p>Interested in collaborating or learning more about my work? Feel free to reach out!</p>
             <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;" class="contact-icons">
@@ -568,10 +575,10 @@
                 <a href="https://github.com/Shenyu1111111" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
                 <a href="tel:+12269989889" class="btn"><i class="fas fa-phone"></i> Phone</a>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
     
-    <footer style="text-align: center; padding: 3rem 2rem; margin-top: 2rem; scroll-snap-align: start;">
+    <footer style="text-align: center; padding: 3rem 2rem; margin-top: 2rem;">
         <p>© 2025 Yu Shen. All rights reserved.</p>
         <div style="margin-top: 1rem;">
             <a href="#" style="color: var(--secondary-color); margin: 0 0.5rem;"><i class="fab fa-twitter"></i></a>
@@ -639,48 +646,28 @@
             
             // Enhanced Scroll Animations
             const animateOnScroll = () => {
-                const sections = document.querySelectorAll('.fullpage-section');
+                const elements = document.querySelectorAll('.card, .skill, .project-card, .timeline-item');
+                const windowHeight = window.innerHeight;
                 
-                sections.forEach(section => {
-                    const sectionTop = section.getBoundingClientRect().top;
-                    const sectionHeight = section.offsetHeight;
-                    const windowHeight = window.innerHeight;
+                elements.forEach((el, index) => {
+                    const elementPosition = el.getBoundingClientRect().top;
+                    const animationDelay = index * 0.1;
                     
-                    // Check if section is in view
-                    if(sectionTop < windowHeight * 0.75 && sectionTop > -sectionHeight * 0.25) {
-                        const content = section.querySelector('.section-content');
-                        if(content && !content.classList.contains('visible')) {
-                            content.classList.add('visible');
-                            
-                            // Animate child elements with delays
-                            const skills = section.querySelectorAll('.skill');
-                            const projects = section.querySelectorAll('.project-card');
-                            const timelineItems = section.querySelectorAll('.timeline-item');
-                            
-                            if(skills.length > 0) {
-                                skills.forEach((skill, index) => {
-                                    setTimeout(() => {
-                                        skill.classList.add('visible');
-                                    }, index * 100);
-                                });
-                            }
-                            
-                            if(projects.length > 0) {
-                                projects.forEach((project, index) => {
-                                    setTimeout(() => {
-                                        project.classList.add('visible');
-                                    }, index * 200);
-                                });
-                            }
-                            
-                            if(timelineItems.length > 0) {
-                                timelineItems.forEach((item, index) => {
-                                    setTimeout(() => {
-                                        item.classList.add('visible');
-                                    }, index * 300);
-                                });
-                            }
+                    if(elementPosition < windowHeight - 100) {
+                        // Add different animations based on element type
+                        if(el.classList.contains('skill')) {
+                            el.style.animation = `bounceIn 0.6s ${animationDelay}s forwards`;
+                        } 
+                        else if(el.classList.contains('project-card')) {
+                            el.style.animation = `flipInX 0.8s ${animationDelay}s forwards`;
                         }
+                        else if(el.classList.contains('timeline-item')) {
+                            el.style.animation = `fadeInRight 0.8s ${animationDelay}s forwards`;
+                        }
+                        else {
+                            el.style.animation = `fadeInUp 0.8s ${animationDelay}s forwards`;
+                        }
+                        el.classList.add('visible');
                     }
                 });
             };
@@ -699,6 +686,12 @@
                         behavior: 'smooth'
                     });
                 });
+            });
+
+            // Add animation for timeline items
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.2}s`;
             });
         });
     </script>
