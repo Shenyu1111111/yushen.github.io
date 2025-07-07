@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
+            --card-bg-rgb: 30, 30, 58; 
             --primary-color: #0a0a1a;
             --secondary-color: #00f7ff;
             --accent-color: #ff00aa;
@@ -290,7 +291,8 @@
         
         /* Animated Cards */
         .card {
-            background: var(--card-bg);
+            background: rgba(var(--card-bg-rgb), 0.5); /* 0.8 = 80% opacity */
+            backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 2.5rem;
             margin: 2rem auto;
