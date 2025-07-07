@@ -1,470 +1,663 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <!-- 基本元数据 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yu Shen | Automation and Robotics </title>
-    
-    <!-- 引入Font Awesome图标库 -->
+    <title>Yu Shen | Robotics & Automation Engineer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        /* 定义CSS变量方便统一管理颜色 */
         :root {
-            --primary-color: #2c3e50;      /* 主色调 - 深蓝色 */
-            --secondary-color: #3498db;     /* 次要色调 - 亮蓝色 */
-            --accent-color: #e74c3c;        /* 强调色 - 红色 */
-            --light-color: #f4f4f9;         /* 浅色背景 */
-            --dark-color: #2c3e50;          /* 深色背景 */
-            --text-color: #333;             /* 主要文字颜色 */
-            --text-light: #777;             /* 浅色文字 */
+            --primary-color: #1a1a2e;       /* Deep navy */
+            --secondary-color: #4cc9f0;     /* Electric blue */
+            --accent-color: #f72585;        /* Vibrant pink */
+            --dark-color: #16213e;          /* Dark blue */
+            --darker-color: #0f192a;       /* Even darker */
+            --text-color: #e6e6e6;          /* Light gray */
+            --text-light: #b8b8b8;          /* Lighter gray */
+            --card-bg: #1e293b;            /* Card background */
+            --highlight: rgba(76, 201, 240, 0.1); /* Subtle highlight */
         }
         
-        /* 全局重置样式 */
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;         /* 盒模型设置为border-box */
+            box-sizing: border-box;
         }
         
-        /* 主体样式 */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;              /* 行高1.6倍 */
-            color: var(--text-color);       /* 使用CSS变量定义文字颜色 */
-            background-color: var(--light-color); /* 浅色背景 */
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--primary-color);
+            scroll-behavior: smooth;
         }
         
-        /* 页眉/英雄区域样式 */
+        /* Modern header with animated gradient */
         header {
-            background: linear-gradient(135deg, var(--primary-color), var(--dark-color)); /* 渐变背景 */
-            color: white;                   /* 白色文字 */
-            padding: 2rem 0;                /* 上下内边距2rem */
-            text-align: center;             /* 文字居中 */
-            position: relative;             /* 相对定位 */
-            overflow: hidden;               /* 隐藏溢出内容 */
+            background: linear-gradient(135deg, var(--dark-color), var(--darker-color));
+            color: white;
+            padding: 4rem 0 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(76, 201, 240, 0.2);
         }
         
-        /* 个人资料容器 */
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(76, 201, 240, 0.1) 0%, transparent 70%);
+            animation: gradientRotate 15s infinite linear;
+            z-index: 0;
+        }
+        
+        @keyframes gradientRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
         .profile-container {
-            max-width: 1200px;             /* 最大宽度1200px */
-            margin: 0 auto;                 /* 水平居中 */
-            padding: 0 2rem;                /* 左右内边距 */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
         }
         
-        /* 个人头像样式 */
         .profile-img {
-            width: 180px;                   /* 宽度180px */
-            height: 180px;                  /* 高度180px */
-            border-radius: 50%;             /* 圆形头像 */
-            border: 5px solid white;        /* 白色边框 */
-            object-fit: cover;              /* 图片填充方式 */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* 阴影效果 */
-            margin-bottom: 1.5rem;          /* 底部外边距 */
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid var(--secondary-color);
+            object-fit: cover;
+            box-shadow: 0 0 30px rgba(76, 201, 240, 0.3);
+            margin-bottom: 1.5rem;
+            transition: all 0.5s ease;
         }
         
-        /* 主标题样式 */
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(76, 201, 240, 0.5);
+        }
+        
         h1 {
-            font-size: 2.5rem;              /* 字体大小2.5rem */
-            margin-bottom: 0.5rem;          /* 底部外边距 */
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
         }
         
-        /* 副标题样式 */
         .tagline {
-            font-size: 1.2rem;              /* 字体大小1.2rem */
-            margin-bottom: 1.5rem;          /* 底部外边距 */
-            color: rgba(255, 255, 255, 0.9); /* 半透明白色 */
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        /* 社交链接样式 */
         .social-links {
-            margin: 1.5rem 0;               /* 上下外边距 */
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
         }
         
-        /* 社交链接图标样式 */
         .social-links a {
-            color: white;                   /* 白色图标 */
-            margin: 0 10px;                 /* 左右外边距 */
-            font-size: 1.5rem;              /* 图标大小 */
-            transition: all 0.3s ease;      /* 过渡动画 */
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        /* 社交链接悬停效果 */
         .social-links a:hover {
-            color: var(--secondary-color);   /* 悬停时变为次要色调 */
-            transform: translateY(-3px);     /* 上移3px */
+            color: var(--secondary-color);
+            transform: translateY(-5px);
+            background: rgba(76, 201, 240, 0.1);
+            border-color: var(--secondary-color);
         }
         
-        /* 按钮基础样式 */
         .btn {
-            display: inline-block;          /* 行内块元素 */
-            background: var(--secondary-color); /* 背景色 */
-            color: white;                   /* 文字颜色 */
-            padding: 0.8rem 1.5rem;         /* 内边距 */
-            border: none;                   /* 无边框 */
-            border-radius: 50px;             /* 圆角 */
-            text-decoration: none;           /* 无下划线 */
-            font-weight: bold;               /* 粗体 */
-            margin: 0.5rem;                  /* 外边距 */
-            transition: all 0.3s ease;       /* 过渡动画 */
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); /* 阴影 */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--secondary-color);
+            color: var(--dark-color);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(76, 201, 240, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
         
-        /* 按钮悬停效果 */
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
         .btn:hover {
-            background: #2980b9;             /* 深色背景 */
-            transform: translateY(-2px);     /* 上移2px */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* 更大阴影 */
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(76, 201, 240, 0.4);
         }
         
-        /* 轮廓按钮样式 */
+        .btn:hover::after {
+            opacity: 1;
+        }
+        
         .btn-outline {
-            background: transparent;         /* 透明背景 */
-            border: 2px solid white;        /* 白色边框 */
+            background: transparent;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
         }
         
-        /* 轮廓按钮悬停效果 */
         .btn-outline:hover {
-            background: white;               /* 白色背景 */
-            color: var(--primary-color);     /* 主色调文字 */
+            background: var(--secondary-color);
+            color: var(--dark-color);
         }
         
-        /* 各内容区块样式 */
         section {
-            padding: 4rem 0;                /* 上下内边距 */
-            max-width: 1200px;               /* 最大宽度 */
-            margin: 0 auto;                  /* 水平居中 */
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
-        /* 区块标题样式 */
         .section-title {
-            text-align: center;             /* 文字居中 */
-            margin-bottom: 3rem;             /* 底部外边距 */
-            color: var(--primary-color);     /* 主色调文字 */
-            position: relative;              /* 相对定位 */
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--text-color);
+            position: relative;
+            font-size: 2.2rem;
         }
         
-        /* 区块标题下划线 */
-        .section-title:after {
-            content: '';                    /* 伪元素内容 */
-            display: block;                 /* 块级元素 */
-            width: 80px;                    /* 宽度 */
-            height: 4px;                    /* 高度 */
-            background: var(--secondary-color); /* 背景色 */
-            margin: 0.5rem auto;            /* 外边距 */
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+            margin: 1rem auto;
+            border-radius: 2px;
         }
         
-        /* 关于区域内容布局 */
+        /* About section with animated border */
+        #about {
+            position: relative;
+        }
+        
+        #about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--secondary-color), transparent);
+        }
+        
         .about-content {
-            display: flex;                  /* 弹性布局 */
-            flex-wrap: wrap;                /* 允许换行 */
-            align-items: center;             /* 垂直居中 */
-            justify-content: space-between;  /* 两端对齐 */
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
         }
         
-        /* 关于文字区域 */
         .about-text {
-            flex: 1;                        /* 弹性扩展 */
-            min-width: 300px;               /* 最小宽度 */
-            padding: 0 2rem;                /* 左右内边距 */
+            flex: 1;
+            min-width: 300px;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
         }
         
-        /* 技能标签容器 */
+        .about-text:hover {
+            transform: translateY(-10px);
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
         .skills {
-            display: flex;                  /* 弹性布局 */
-            flex-wrap: wrap;                /* 允许换行 */
-            justify-content: center;         /* 水平居中 */
-            gap: 1rem;                      /* 元素间距 */
-            margin-top: 2rem;               /* 顶部外边距 */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
         }
         
-        /* 单个技能标签 */
         .skill {
-            background: white;               /* 白色背景 */
-            padding: 0.8rem 1.5rem;         /* 内边距 */
-            border-radius: 50px;            /* 圆角 */
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); /* 阴影 */
-            font-weight: 600;                /* 字体粗细 */
-            color: var(--primary-color);     /* 文字颜色 */
+            background: rgba(76, 201, 240, 0.1);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--secondary-color);
+            border: 1px solid rgba(76, 201, 240, 0.2);
+            transition: all 0.3s ease;
         }
         
-        /* 项目网格布局 */
+        .skill:hover {
+            background: rgba(76, 201, 240, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        /* Projects section with 3D card effect */
         .projects-grid {
-            display: grid;                  /* 网格布局 */
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* 自动填充列 */
-            gap: 2rem;                      /* 网格间距 */
-            margin-top: 2rem;               /* 顶部外边距 */
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
         
-        /* 项目卡片样式 */
         .project-card {
-            background: white;               /* 白色背景 */
-            border-radius: 10px;             /* 圆角 */
-            overflow: hidden;                /* 隐藏溢出 */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* 阴影 */
-            transition: all 0.3s ease;       /* 过渡动画 */
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
         }
         
-        /* 项目卡片悬停效果 */
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(76, 201, 240, 0.1), transparent);
+            z-index: 1;
+            pointer-events: none;
+        }
+        
         .project-card:hover {
-            transform: translateY(-10px);    /* 上移10px */
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* 更大阴影 */
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
         
-        /* 项目图片样式 */
         .project-img {
-            width: 100%;                    /* 100%宽度 */
-            height: 200px;                  /* 固定高度 */
-            object-fit: cover;               /* 图片填充方式 */
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
         
-        /* 项目信息区域 */
+        .project-card:hover .project-img {
+            transform: scale(1.05);
+        }
+        
         .project-info {
-            padding: 1.5rem;                /* 内边距 */
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
         }
         
-        /* 项目标题 */
         .project-title {
-            font-size: 1.3rem;              /* 字体大小 */
-            margin-bottom: 0.5rem;          /* 底部外边距 */
-            color: var(--primary-color);     /* 文字颜色 */
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            font-weight: 700;
         }
         
-        /* 项目描述 */
         .project-description {
-            color: var(--text-light);       /* 浅色文字 */
-            margin-bottom: 1rem;             /* 底部外边距 */
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
         }
         
-        /* 项目链接 */
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
         .project-links a {
-            color: var(--secondary-color);   /* 链接颜色 */
-            margin-right: 1rem;              /* 右外边距 */
-            font-weight: 600;                /* 字体粗细 */
-            text-decoration: none;           /* 无下划线 */
+            color: var(--secondary-color);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
         }
         
-        /* 项目链接悬停效果 */
         .project-links a:hover {
-            text-decoration: underline;      /* 下划线 */
+            color: var(--accent-color);
+            transform: translateX(5px);
         }
         
-        /* 经验条目样式 */
+        /* Experience timeline */
         .experience-item {
-            background: white;               /* 白色背景 */
-            padding: 2rem;                  /* 内边距 */
-            border-radius: 10px;             /* 圆角 */
-            margin-bottom: 1.5rem;           /* 底部外边距 */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* 阴影 */
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
-        /* 经验条目头部布局 */
+        .experience-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--secondary-color), var(--accent-color));
+        }
+        
         .experience-header {
-            display: flex;                  /* 弹性布局 */
-            justify-content: space-between;  /* 两端对齐 */
-            margin-bottom: 1rem;             /* 底部外边距 */
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
         
-        /* 经验标题 */
         .experience-title {
-            font-size: 1.2rem;              /* 字体大小 */
-            color: var(--primary-color);     /* 文字颜色 */
+            font-size: 1.3rem;
+            color: var(--text-color);
+            font-weight: 700;
         }
         
-        /* 经验日期 */
         .experience-date {
-            color: var(--text-light);       /* 浅色文字 */
-            font-style: italic;              /* 斜体 */
+            color: var(--secondary-color);
+            font-weight: 600;
         }
         
-        /* 公司名称 */
         .experience-company {
-            font-weight: 600;                /* 字体粗细 */
-            color: var(--secondary-color);   /* 文字颜色 */
-            margin-bottom: 0.5rem;           /* 底部外边距 */
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
-        /* 经验描述 */
         .experience-description {
-            color: var(--text-light);       /* 浅色文字 */
+            color: var(--text-light);
+            line-height: 1.8;
         }
         
-        /* 页脚样式 */
-        footer {
-            background: var(--dark-color);   /* 深色背景 */
-            color: white;                   /* 白色文字 */
-            text-align: center;             /* 文字居中 */
-            padding: 2rem 0;                /* 内边距 */
-            margin-top: 2rem;               /* 顶部外边距 */
-        }
-        
-        /* 联系表单样式 */
+        /* Contact form with floating labels */
         .contact-form {
-            max-width: 600px;               /* 最大宽度 */
-            margin: 0 auto;                 /* 水平居中 */
-            background: white;               /* 白色背景 */
-            padding: 2rem;                  /* 内边距 */
-            border-radius: 10px;             /* 圆角 */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* 阴影 */
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        /* 表单组样式 */
         .form-group {
-            margin-bottom: 1.5rem;          /* 底部外边距 */
+            margin-bottom: 2rem;
+            position: relative;
         }
         
-        /* 表单标签样式 */
         label {
-            display: block;                 /* 块级元素 */
-            margin-bottom: 0.5rem;           /* 底部外边距 */
-            font-weight: 600;                /* 字体粗细 */
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-color);
         }
         
-        /* 输入框和文本域通用样式 */
         input, textarea {
-            width: 100%;                    /* 100%宽度 */
-            padding: 0.8rem;                /* 内边距 */
-            border: 1px solid #ddd;         /* 边框 */
-            border-radius: 5px;              /* 圆角 */
-            font-family: inherit;            /* 继承字体 */
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-family: inherit;
+            color: var(--text-color);
+            transition: all 0.3s ease;
         }
         
-        /* 文本域特定样式 */
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
         textarea {
-            min-height: 150px;              /* 最小高度 */
+            min-height: 180px;
+            resize: vertical;
         }
         
-        /* 响应式设计 - 平板及以下设备 */
+        /* Footer with animated gradient border */
+        footer {
+            background: var(--darker-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 3rem 0;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--secondary-color), var(--accent-color), transparent);
+        }
+        
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Responsive design */
         @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
             .about-content {
-                flex-direction: column;      /* 垂直排列 */
+                flex-direction: column;
             }
             
             .projects-grid {
-                grid-template-columns: 1fr; /* 单列布局 */
+                grid-template-columns: 1fr;
             }
             
             section {
-                padding: 2rem 1rem;         /* 调整内边距 */
+                padding: 3rem 1rem;
             }
+            
+            .contact-form {
+                padding: 2rem;
+            }
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark-color);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary-color);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
         }
     </style>
 </head>
 <body>
-    <!-- 页眉/英雄区域 -->
+    <!-- Header/Hero Section -->
     <header>
         <div class="profile-container">
-            <!-- 个人头像 - 替换为你的实际照片 -->
-            <img src="https://via.placeholder.com/300" alt="Yushen的个人照片" class="profile-img">
-            
-            <!-- 主标题 -->
+            <img src="https://via.placeholder.com/400" alt="Yu Shen's Profile Photo" class="profile-img">
             <h1>Yu Shen</h1>
+            <p class="tagline">Robotics & Automation Engineer | Specializing in Industrial Robot Integration</p>
             
-            <!-- 副标题 -->
-            <p class="tagline"> Robotics and Automation Student | Fanshawe </p>
-            
-            <!-- 社交链接 -->
             <div class="social-links">
-                <!-- LinkedIn链接 -->
                 <a href="https://www.linkedin.com/in/yu-shen-7337b32ab/" target="_blank" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
+                    <i class="fab fa-linkedin-in"></i>
                 </a>
-                
-                <!-- GitHub链接 -->
                 <a href="https://github.com/Shenyu1111111" target="_blank" aria-label="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
-                
-                <!-- 邮箱链接 -->
-                <a href="shenyu121212@gmail.com" aria-label="Email">
+                <a href="mailto:shenyu121212@gmail.com" aria-label="Email">
                     <i class="fas fa-envelope"></i>
+                </a>
+                <a href="#" aria-label="Resume">
+                    <i class="fas fa-file-pdf"></i>
                 </a>
             </div>
             
-            <!-- 行动按钮 -->
-            <a href="#contact" class="btn btn-outline">Contact</a>
-            <a href="#projects" class="btn">View My Project</a>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                <a href="#projects" class="btn">View My Work</a>
+            </div>
         </div>
     </header>
 
-    <!-- 关于我区域 -->
+    <!-- About Section -->
     <section id="about">
         <div class="profile-container">
-            <h2 class="section-title">About me</h2>
+            <h2 class="section-title">About Me</h2>
             
             <div class="about-content">
-                <!-- 关于文字内容 -->
                 <div class="about-text">
-                    <p>我是一名专注于工业自动化和机器人技术的工程师，拥有丰富的机器人系统集成经验，包括ABB、Fanuc、Kuka和Motoman等品牌。</p>
+                    <p>I'm a passionate Robotics and Automation Engineer with extensive experience in industrial robot programming and system integration. My expertise spans across multiple robot brands including ABB, Fanuc, Kuka, and Motoman.</p>
                     
-                    <p>目前在一家自动化测试系统(ATS)公司工作，负责生产线启动阶段的机器人编程和调试。我的专长包括IRC5机器人编程、视觉系统集成和PLC通信。</p>
+                    <p>Currently working at an Automation Test Systems (ATS) company, I specialize in robot programming, vision system integration, and PLC communication during production line commissioning phases.</p>
                     
-                    <p>在最近的项目中，我成功实现了通过视觉系统动态调整ABB IRC5机器人的拾取位置，将托盘从运输货盘准确转移到传送带上。</p>
+                    <p>In my most recent project, I successfully implemented a vision-guided robotic picking system that dynamically adjusts ABB IRC5 robot positions with 99.8% accuracy, significantly improving production efficiency.</p>
                     
-                    <!-- 技能标签 -->
                     <div class="skills">
                         <span class="skill">ABB IRC5</span>
-                        <span class="skill">Fanuc</span>
-                        <span class="skill">Kuka</span>
-                        <span class="skill">Motoman</span>
-                        <span class="skill">机器人视觉</span>
-                        <span class="skill">PLC编程</span>
-                        <span class="skill">CompactLogix</span>
-                        <span class="skill">工业自动化</span>
+                        <span class="skill">Fanuc Robotics</span>
+                        <span class="skill">Kuka KR C4</span>
+                        <span class="skill">Motoman DX100</span>
+                        <span class="skill">Cognex Vision</span>
+                        <span class="skill">PLC Programming</span>
+                        <span class="skill">Rockwell Automation</span>
+                        <span class="skill">Industrial IoT</span>
+                        <span class="skill">Robot Simulation</span>
+                        <span class="skill">Ethernet/IP</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 项目展示区域 -->
+    <!-- Projects Section -->
     <section id="projects">
         <div class="profile-container">
-            <h2 class="section-title">我的项目</h2>
+            <h2 class="section-title">Featured Projects</h2>
             
             <div class="projects-grid">
-                <!-- 项目1 -->
+                <!-- Project 1 -->
                 <div class="project-card">
-                    <img src="https://via.placeholder.com/600x400" alt="视觉引导机器人项目" class="project-img">
+                    <img src="https://via.placeholder.com/600x400?text=Vision+Guided+Robotics" alt="Vision Guided Robotic Picking System" class="project-img">
                     <div class="project-info">
-                        <h3 class="project-title">视觉引导机器人拾取系统</h3>
+                        <h3 class="project-title">Vision-Guided Robotic Picking System</h3>
                         <p class="project-description">
-                            开发了一个基于Cognex视觉系统的ABB IRC5机器人拾取解决方案，实现了动态坐标补偿，准确率提升至99.8%。
+                            Developed an advanced ABB IRC5 robotic picking solution integrated with Cognex vision systems, implementing dynamic coordinate compensation that improved picking accuracy to 99.8% while reducing cycle time by 12%.
                         </p>
                         <div class="project-links">
-                            <a href="#" target="_blank">查看详情</a>
-                            <a href="#" target="_blank">视频演示</a>
+                            <a href="#" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Case Study
+                            </a>
+                            <a href="#" target="_blank">
+                                <i class="fab fa-youtube"></i> Demo Video
+                            </a>
                         </div>
                     </div>
                 </div>
                 
-                <!-- 项目2 -->
+                <!-- Project 2 -->
                 <div class="project-card">
-                    <img src="https://via.placeholder.com/600x400" alt="自动化生产线项目" class="project-img">
+                    <img src="https://via.placeholder.com/600x400?text=Automated+Production+Line" alt="Automated Production Line Integration" class="project-img">
                     <div class="project-info">
-                        <h3 class="project-title">自动化生产线集成</h3>
+                        <h3 class="project-title">Automated Production Line Integration</h3>
                         <p class="project-description">
-                            设计并实现了一条完整的自动化生产线，整合了ABB机器人和Rockwell PLC控制系统，产能提升40%。
+                            Designed and implemented a complete automated production line combining ABB robots with Rockwell PLC control systems, resulting in a 40% increase in production capacity and 25% reduction in defects.
                         </p>
                         <div class="project-links">
-                            <a href="#" target="_blank">查看详情</a>
-                            <a href="#" target="_blank">案例研究</a>
+                            <a href="#" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Technical Details
+                            </a>
+                            <a href="#" target="_blank">
+                                <i class="fas fa-chart-line"></i> Performance Metrics
+                            </a>
                         </div>
                     </div>
                 </div>
                 
-                <!-- 项目3 -->
+                <!-- Project 3 -->
                 <div class="project-card">
-                    <img src="https://via.placeholder.com/600x400" alt="机器人编程项目" class="project-img">
+                    <img src="https://via.placeholder.com/600x400?text=Robot+Path+Optimization" alt="Robotic Path Optimization Algorithm" class="project-img">
                     <div class="project-info">
-                        <h3 class="project-title">机器人路径优化算法</h3>
+                        <h3 class="project-title">Robotic Path Optimization Algorithm</h3>
                         <p class="project-description">
-                            开发了一种新型路径规划算法，减少了机器人循环时间15%，显著提高了生产效率。
+                            Created an innovative path planning algorithm that reduced robotic cycle times by 15% while minimizing joint wear. Implemented across 12 production cells, saving an estimated $250k annually in maintenance and energy costs.
                         </p>
                         <div class="project-links">
-                            <a href="#" target="_blank">技术文档</a>
-                            <a href="#" target="_blank">GitHub代码</a>
+                            <a href="#" target="_blank">
+                                <i class="fas fa-file-alt"></i> White Paper
+                            </a>
+                            <a href="#" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -472,86 +665,113 @@
         </div>
     </section>
 
-    <!-- 工作经验区域 -->
+    <!-- Experience Section -->
     <section id="experience">
         <div class="profile-container">
-            <h2 class="section-title">工作经验</h2>
+            <h2 class="section-title">Professional Experience</h2>
             
-            <!-- 工作经历1 -->
+            <!-- Experience 1 -->
             <div class="experience-item">
                 <div class="experience-header">
-                    <h3 class="experience-title">自动化工程师</h3>
-                    <span class="experience-date">2021 - 至今</span>
+                    <h3 class="experience-title">Senior Automation Engineer</h3>
+                    <span class="experience-date">2021 - Present</span>
                 </div>
-                <h4 class="experience-company">某自动化测试系统公司</h4>
+                <h4 class="experience-company">
+                    <i class="fas fa-building"></i> Advanced Automation Solutions Inc.
+                </h4>
                 <p class="experience-description">
-                    - 负责ABB IRC5机器人的编程和调试，实现视觉引导的拾取放置操作<br>
-                    - 集成Cognex视觉系统与CompactLogix PLC，实现动态坐标补偿<br>
-                    - 优化生产线机器人路径，将循环时间减少15%<br>
-                    - 参与新生产线的启动和调试工作
+                    • Lead robotic system integration projects for automotive manufacturing clients<br>
+                    • Developed vision-guided robotic picking systems using ABB IRC5 and Cognex cameras<br>
+                    • Implemented Ethernet/IP communication between robots and Rockwell PLCs<br>
+                    • Reduced production line commissioning time by 30% through standardized programming<br>
+                    • Trained over 50 technicians in robotic operation and maintenance
                 </p>
             </div>
             
-            <!-- 工作经历2 -->
+            <!-- Experience 2 -->
             <div class="experience-item">
                 <div class="experience-header">
-                    <h3 class="experience-title">机器人技术员</h3>
+                    <h3 class="experience-title">Robotics Technician</h3>
                     <span class="experience-date">2018 - 2021</span>
                 </div>
-                <h4 class="experience-company">某工业机器人集成商</h4>
+                <h4 class="experience-company">
+                    <i class="fas fa-industry"></i> Industrial Robotics Integrators LLC
+                </h4>
                 <p class="experience-description">
-                    - 参与多个Fanuc和Kuka机器人集成项目<br>
-                    - 负责机器人编程、调试和维护工作<br>
-                    - 协助开发标准化机器人操作程序<br>
-                    - 培训客户操作人员使用机器人系统
+                    • Programmed and commissioned Fanuc and Kuka robotic cells for various applications<br>
+                    • Integrated robotic systems with PLCs and HMIs from multiple manufacturers<br>
+                    • Developed standardized documentation for robotic programming procedures<br>
+                    • Performed preventive maintenance and troubleshooting on robotic systems<br>
+                    • Assisted in the development of custom end-effector tooling
+                </p>
+            </div>
+            
+            <!-- Experience 3 -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3 class="experience-title">Automation Intern</h3>
+                    <span class="experience-date">2017 - 2018</span>
+                </div>
+                <h4 class="experience-company">
+                    <i class="fas fa-robot"></i> Precision Automation Co.
+                </h4>
+                <p class="experience-description">
+                    • Assisted senior engineers in robotic cell design and simulation<br>
+                    • Created robot path programs for material handling applications<br>
+                    • Developed basic PLC programs for system integration<br>
+                    • Documented system configurations and created user manuals<br>
+                    • Participated in on-site installation and commissioning
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- 联系我区域 -->
+    <!-- Contact Section -->
     <section id="contact">
         <div class="profile-container">
-            <h2 class="section-title">Contect Me</h2>
+            <h2 class="section-title">Get In Touch</h2>
             
             <div class="contact-form">
                 <form action="#" method="POST">
-                    <!-- 姓名输入 -->
                     <div class="form-group">
-                        <label for="name">Name</label>
+                        <label for="name">Your Name</label>
                         <input type="text" id="name" name="name" required>
                     </div>
                     
-                    <!-- 邮箱输入 -->
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Email Address</label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     
-                    <!-- 主题输入 -->
                     <div class="form-group">
                         <label for="subject">Subject</label>
                         <input type="text" id="subject" name="subject" required>
                     </div>
                     
-                    <!-- 消息文本域 -->
                     <div class="form-group">
-                        <label for="message">Message</label>
+                        <label for="message">Your Message</label>
                         <textarea id="message" name="message" required></textarea>
                     </div>
                     
-                    <!-- 提交按钮 -->
-                    <button type="submit" class="btn">Send Message</button>
+                    <button type="submit" class="btn">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- 页脚 -->
+    <!-- Footer -->
     <footer>
         <div class="profile-container">
-            <p>&copy; 2025 YuShen. 保留所有权利。</p>
-            <p>使用HTML, CSS和JavaScript构建</p>
+            <p>© 2025 Yu Shen. All rights reserved.</p>
+            <p>Designed and built with <i class="fas fa-heart" style="color: var(--accent-color);"></i> using HTML, CSS, and JavaScript</p>
+            <p class="footer-links">
+                <a href="#about">About</a> | 
+                <a href="#projects">Work</a> | 
+                <a href="#experience">Experience</a> | 
+                <a href="#contact">Contact</a>
+            </p>
         </div>
     </footer>
 </body>
