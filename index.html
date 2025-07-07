@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">  <!--  -->
     <title>Yu Shen | Robotics & Automation Engineer</title>
     
     <!-- Font Awesome for icons -->
@@ -290,19 +291,49 @@
         }
         
         /* Animated Cards */
-        .card {
-            background: rgba(var(--card-bg-rgb), 0.5); /* 0.8 = 80% opacity */
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2.5rem;
-            margin: 2rem auto;
-            max-width: 900px;
-            border: 1px solid rgba(0, 247, 255, 0.2);
-            transition: all 0.3s ease;
-            transform: translateY(50px);
-            opacity: 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
+        /* 卡片基础样式 */
+/* 修改后的卡片透明度相关CSS */
+.card {
+    background: rgba(var(--card-bg-rgb), 0.85); /* 回退透明度提高到85% */
+    border-radius: 15px;
+    padding: 2.5rem;
+    margin: 2rem auto;
+    max-width: 900px;
+    border: 1px solid rgba(0, 247, 255, 0.2);
+    transition: all 0.3s ease, backdrop-filter 0.5s ease;
+    transform: translateY(50px);
+    opacity: 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.project-card {
+    background: rgba(30, 30, 58, 0.85); /* 回退透明度提高到85% */
+    border-radius: 10px;
+    padding: 1.5rem;
+    border: 1px solid rgba(0, 247, 255, 0.1);
+    transition: all 0.3s ease, backdrop-filter 0.5s ease;
+    opacity: 0;
+}
+
+/* 模糊效果支持检测 */
+@supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+    .card {
+        background: rgba(var(--card-bg-rgb), 0.7); /* 支持时透明度70% */
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+    }
+    .project-card {
+        background: rgba(30, 30, 58, 0.75); /* 支持时透明度75% */
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+    }
+}
+
+/* Firefox特殊处理 */
+.no-backdrop-filter .card,
+.no-backdrop-filter .project-card {
+    background: rgba(var(--card-bg-rgb), 0.9) !important; /* Firefox下完全不透明 */
+}
         
         .card.visible {
             animation: fadeInUp 0.5s forwards;
@@ -613,7 +644,7 @@
             <h2 class="job-title">ROBOTICS & AUTOMATION ENGINEER</h2>
         </div>
         
-        <img src="https://cdn.jsdelivr.net/gh/Shenyu1111111/yushen.github.io/industrial-robot.png" alt="Robot" class="robot-image">
+        <img src="https://raw.githubusercontent.com/Shenyu1111111/yushen.github.io/main/industrial-robot.png" alt="Robot">
         
         <a href="#about" class="btn">EXPLORE MY WORK</a>
         <div class="scroll-down" onclick="document.querySelector('#about').scrollIntoView({ behavior: 'smooth' })">
