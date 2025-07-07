@@ -1,28 +1,558 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
-    <title>Yushen's Portfolio</title>
+    <!-- 基本元数据 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yushen | 自动化与机器人作品集</title>
+    
+    <!-- 引入Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body { 
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-            background-color: #f4f4f9;
+        /* 定义CSS变量方便统一管理颜色 */
+        :root {
+            --primary-color: #2c3e50;      /* 主色调 - 深蓝色 */
+            --secondary-color: #3498db;     /* 次要色调 - 亮蓝色 */
+            --accent-color: #e74c3c;        /* 强调色 - 红色 */
+            --light-color: #f4f4f9;         /* 浅色背景 */
+            --dark-color: #2c3e50;          /* 深色背景 */
+            --text-color: #333;             /* 主要文字颜色 */
+            --text-light: #777;             /* 浅色文字 */
         }
+        
+        /* 全局重置样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;         /* 盒模型设置为border-box */
+        }
+        
+        /* 主体样式 */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;              /* 行高1.6倍 */
+            color: var(--text-color);       /* 使用CSS变量定义文字颜色 */
+            background-color: var(--light-color); /* 浅色背景 */
+        }
+        
+        /* 页眉/英雄区域样式 */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color)); /* 渐变背景 */
+            color: white;                   /* 白色文字 */
+            padding: 2rem 0;                /* 上下内边距2rem */
+            text-align: center;             /* 文字居中 */
+            position: relative;             /* 相对定位 */
+            overflow: hidden;               /* 隐藏溢出内容 */
+        }
+        
+        /* 个人资料容器 */
+        .profile-container {
+            max-width: 1200px;             /* 最大宽度1200px */
+            margin: 0 auto;                 /* 水平居中 */
+            padding: 0 2rem;                /* 左右内边距 */
+        }
+        
+        /* 个人头像样式 */
+        .profile-img {
+            width: 180px;                   /* 宽度180px */
+            height: 180px;                  /* 高度180px */
+            border-radius: 50%;             /* 圆形头像 */
+            border: 5px solid white;        /* 白色边框 */
+            object-fit: cover;              /* 图片填充方式 */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* 阴影效果 */
+            margin-bottom: 1.5rem;          /* 底部外边距 */
+        }
+        
+        /* 主标题样式 */
         h1 {
-            color: #2c3e50;
+            font-size: 2.5rem;              /* 字体大小2.5rem */
+            margin-bottom: 0.5rem;          /* 底部外边距 */
         }
-        img {
-            border-radius: 50%;
-            width: 150px;
+        
+        /* 副标题样式 */
+        .tagline {
+            font-size: 1.2rem;              /* 字体大小1.2rem */
+            margin-bottom: 1.5rem;          /* 底部外边距 */
+            color: rgba(255, 255, 255, 0.9); /* 半透明白色 */
+        }
+        
+        /* 社交链接样式 */
+        .social-links {
+            margin: 1.5rem 0;               /* 上下外边距 */
+        }
+        
+        /* 社交链接图标样式 */
+        .social-links a {
+            color: white;                   /* 白色图标 */
+            margin: 0 10px;                 /* 左右外边距 */
+            font-size: 1.5rem;              /* 图标大小 */
+            transition: all 0.3s ease;      /* 过渡动画 */
+        }
+        
+        /* 社交链接悬停效果 */
+        .social-links a:hover {
+            color: var(--secondary-color);   /* 悬停时变为次要色调 */
+            transform: translateY(-3px);     /* 上移3px */
+        }
+        
+        /* 按钮基础样式 */
+        .btn {
+            display: inline-block;          /* 行内块元素 */
+            background: var(--secondary-color); /* 背景色 */
+            color: white;                   /* 文字颜色 */
+            padding: 0.8rem 1.5rem;         /* 内边距 */
+            border: none;                   /* 无边框 */
+            border-radius: 50px;             /* 圆角 */
+            text-decoration: none;           /* 无下划线 */
+            font-weight: bold;               /* 粗体 */
+            margin: 0.5rem;                  /* 外边距 */
+            transition: all 0.3s ease;       /* 过渡动画 */
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); /* 阴影 */
+        }
+        
+        /* 按钮悬停效果 */
+        .btn:hover {
+            background: #2980b9;             /* 深色背景 */
+            transform: translateY(-2px);     /* 上移2px */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* 更大阴影 */
+        }
+        
+        /* 轮廓按钮样式 */
+        .btn-outline {
+            background: transparent;         /* 透明背景 */
+            border: 2px solid white;        /* 白色边框 */
+        }
+        
+        /* 轮廓按钮悬停效果 */
+        .btn-outline:hover {
+            background: white;               /* 白色背景 */
+            color: var(--primary-color);     /* 主色调文字 */
+        }
+        
+        /* 各内容区块样式 */
+        section {
+            padding: 4rem 0;                /* 上下内边距 */
+            max-width: 1200px;               /* 最大宽度 */
+            margin: 0 auto;                  /* 水平居中 */
+        }
+        
+        /* 区块标题样式 */
+        .section-title {
+            text-align: center;             /* 文字居中 */
+            margin-bottom: 3rem;             /* 底部外边距 */
+            color: var(--primary-color);     /* 主色调文字 */
+            position: relative;              /* 相对定位 */
+        }
+        
+        /* 区块标题下划线 */
+        .section-title:after {
+            content: '';                    /* 伪元素内容 */
+            display: block;                 /* 块级元素 */
+            width: 80px;                    /* 宽度 */
+            height: 4px;                    /* 高度 */
+            background: var(--secondary-color); /* 背景色 */
+            margin: 0.5rem auto;            /* 外边距 */
+        }
+        
+        /* 关于区域内容布局 */
+        .about-content {
+            display: flex;                  /* 弹性布局 */
+            flex-wrap: wrap;                /* 允许换行 */
+            align-items: center;             /* 垂直居中 */
+            justify-content: space-between;  /* 两端对齐 */
+        }
+        
+        /* 关于文字区域 */
+        .about-text {
+            flex: 1;                        /* 弹性扩展 */
+            min-width: 300px;               /* 最小宽度 */
+            padding: 0 2rem;                /* 左右内边距 */
+        }
+        
+        /* 技能标签容器 */
+        .skills {
+            display: flex;                  /* 弹性布局 */
+            flex-wrap: wrap;                /* 允许换行 */
+            justify-content: center;         /* 水平居中 */
+            gap: 1rem;                      /* 元素间距 */
+            margin-top: 2rem;               /* 顶部外边距 */
+        }
+        
+        /* 单个技能标签 */
+        .skill {
+            background: white;               /* 白色背景 */
+            padding: 0.8rem 1.5rem;         /* 内边距 */
+            border-radius: 50px;            /* 圆角 */
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); /* 阴影 */
+            font-weight: 600;                /* 字体粗细 */
+            color: var(--primary-color);     /* 文字颜色 */
+        }
+        
+        /* 项目网格布局 */
+        .projects-grid {
+            display: grid;                  /* 网格布局 */
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* 自动填充列 */
+            gap: 2rem;                      /* 网格间距 */
+            margin-top: 2rem;               /* 顶部外边距 */
+        }
+        
+        /* 项目卡片样式 */
+        .project-card {
+            background: white;               /* 白色背景 */
+            border-radius: 10px;             /* 圆角 */
+            overflow: hidden;                /* 隐藏溢出 */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* 阴影 */
+            transition: all 0.3s ease;       /* 过渡动画 */
+        }
+        
+        /* 项目卡片悬停效果 */
+        .project-card:hover {
+            transform: translateY(-10px);    /* 上移10px */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* 更大阴影 */
+        }
+        
+        /* 项目图片样式 */
+        .project-img {
+            width: 100%;                    /* 100%宽度 */
+            height: 200px;                  /* 固定高度 */
+            object-fit: cover;               /* 图片填充方式 */
+        }
+        
+        /* 项目信息区域 */
+        .project-info {
+            padding: 1.5rem;                /* 内边距 */
+        }
+        
+        /* 项目标题 */
+        .project-title {
+            font-size: 1.3rem;              /* 字体大小 */
+            margin-bottom: 0.5rem;          /* 底部外边距 */
+            color: var(--primary-color);     /* 文字颜色 */
+        }
+        
+        /* 项目描述 */
+        .project-description {
+            color: var(--text-light);       /* 浅色文字 */
+            margin-bottom: 1rem;             /* 底部外边距 */
+        }
+        
+        /* 项目链接 */
+        .project-links a {
+            color: var(--secondary-color);   /* 链接颜色 */
+            margin-right: 1rem;              /* 右外边距 */
+            font-weight: 600;                /* 字体粗细 */
+            text-decoration: none;           /* 无下划线 */
+        }
+        
+        /* 项目链接悬停效果 */
+        .project-links a:hover {
+            text-decoration: underline;      /* 下划线 */
+        }
+        
+        /* 经验条目样式 */
+        .experience-item {
+            background: white;               /* 白色背景 */
+            padding: 2rem;                  /* 内边距 */
+            border-radius: 10px;             /* 圆角 */
+            margin-bottom: 1.5rem;           /* 底部外边距 */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* 阴影 */
+        }
+        
+        /* 经验条目头部布局 */
+        .experience-header {
+            display: flex;                  /* 弹性布局 */
+            justify-content: space-between;  /* 两端对齐 */
+            margin-bottom: 1rem;             /* 底部外边距 */
+        }
+        
+        /* 经验标题 */
+        .experience-title {
+            font-size: 1.2rem;              /* 字体大小 */
+            color: var(--primary-color);     /* 文字颜色 */
+        }
+        
+        /* 经验日期 */
+        .experience-date {
+            color: var(--text-light);       /* 浅色文字 */
+            font-style: italic;              /* 斜体 */
+        }
+        
+        /* 公司名称 */
+        .experience-company {
+            font-weight: 600;                /* 字体粗细 */
+            color: var(--secondary-color);   /* 文字颜色 */
+            margin-bottom: 0.5rem;           /* 底部外边距 */
+        }
+        
+        /* 经验描述 */
+        .experience-description {
+            color: var(--text-light);       /* 浅色文字 */
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: var(--dark-color);   /* 深色背景 */
+            color: white;                   /* 白色文字 */
+            text-align: center;             /* 文字居中 */
+            padding: 2rem 0;                /* 内边距 */
+            margin-top: 2rem;               /* 顶部外边距 */
+        }
+        
+        /* 联系表单样式 */
+        .contact-form {
+            max-width: 600px;               /* 最大宽度 */
+            margin: 0 auto;                 /* 水平居中 */
+            background: white;               /* 白色背景 */
+            padding: 2rem;                  /* 内边距 */
+            border-radius: 10px;             /* 圆角 */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* 阴影 */
+        }
+        
+        /* 表单组样式 */
+        .form-group {
+            margin-bottom: 1.5rem;          /* 底部外边距 */
+        }
+        
+        /* 表单标签样式 */
+        label {
+            display: block;                 /* 块级元素 */
+            margin-bottom: 0.5rem;           /* 底部外边距 */
+            font-weight: 600;                /* 字体粗细 */
+        }
+        
+        /* 输入框和文本域通用样式 */
+        input, textarea {
+            width: 100%;                    /* 100%宽度 */
+            padding: 0.8rem;                /* 内边距 */
+            border: 1px solid #ddd;         /* 边框 */
+            border-radius: 5px;              /* 圆角 */
+            font-family: inherit;            /* 继承字体 */
+        }
+        
+        /* 文本域特定样式 */
+        textarea {
+            min-height: 150px;              /* 最小高度 */
+        }
+        
+        /* 响应式设计 - 平板及以下设备 */
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;      /* 垂直排列 */
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr; /* 单列布局 */
+            }
+            
+            section {
+                padding: 2rem 1rem;         /* 调整内边距 */
+            }
         }
     </style>
 </head>
 <body>
-    <img src="https://via.placeholder.com/150" alt="Your Photo">
-    <h1>Hello, I'm Yushen!</h1>
-    <p>Automation Student | Project Portfolio</p>
-    <a href="https://www.linkedin.com/in/yu-shen-7337b32ab/">LinkedIn</a> |
-    <a href="https://github.com/Shenyu1111111">GitHub</a>
+    <!-- 页眉/英雄区域 -->
+    <header>
+        <div class="profile-container">
+            <!-- 个人头像 - 替换为你的实际照片 -->
+            <img src="https://via.placeholder.com/300" alt="Yushen的个人照片" class="profile-img">
+            
+            <!-- 主标题 -->
+            <h1>Yushen</h1>
+            
+            <!-- 副标题 -->
+            <p class="tagline">自动化与机器人专家 | 工业控制工程师</p>
+            
+            <!-- 社交链接 -->
+            <div class="social-links">
+                <!-- LinkedIn链接 -->
+                <a href="https://www.linkedin.com/in/yu-shen-7337b32ab/" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                
+                <!-- GitHub链接 -->
+                <a href="https://github.com/Shenyu1111111" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                
+                <!-- 邮箱链接 -->
+                <a href="mailto:your.email@example.com" aria-label="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            
+            <!-- 行动按钮 -->
+            <a href="#contact" class="btn btn-outline">联系我</a>
+            <a href="#projects" class="btn">查看我的作品</a>
+        </div>
+    </header>
+
+    <!-- 关于我区域 -->
+    <section id="about">
+        <div class="profile-container">
+            <h2 class="section-title">关于我</h2>
+            
+            <div class="about-content">
+                <!-- 关于文字内容 -->
+                <div class="about-text">
+                    <p>我是一名专注于工业自动化和机器人技术的工程师，拥有丰富的机器人系统集成经验，包括ABB、Fanuc、Kuka和Motoman等品牌。</p>
+                    
+                    <p>目前在一家自动化测试系统(ATS)公司工作，负责生产线启动阶段的机器人编程和调试。我的专长包括IRC5机器人编程、视觉系统集成和PLC通信。</p>
+                    
+                    <p>在最近的项目中，我成功实现了通过视觉系统动态调整ABB IRC5机器人的拾取位置，将托盘从运输货盘准确转移到传送带上。</p>
+                    
+                    <!-- 技能标签 -->
+                    <div class="skills">
+                        <span class="skill">ABB IRC5</span>
+                        <span class="skill">Fanuc</span>
+                        <span class="skill">Kuka</span>
+                        <span class="skill">Motoman</span>
+                        <span class="skill">机器人视觉</span>
+                        <span class="skill">PLC编程</span>
+                        <span class="skill">CompactLogix</span>
+                        <span class="skill">工业自动化</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目展示区域 -->
+    <section id="projects">
+        <div class="profile-container">
+            <h2 class="section-title">我的项目</h2>
+            
+            <div class="projects-grid">
+                <!-- 项目1 -->
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x400" alt="视觉引导机器人项目" class="project-img">
+                    <div class="project-info">
+                        <h3 class="project-title">视觉引导机器人拾取系统</h3>
+                        <p class="project-description">
+                            开发了一个基于Cognex视觉系统的ABB IRC5机器人拾取解决方案，实现了动态坐标补偿，准确率提升至99.8%。
+                        </p>
+                        <div class="project-links">
+                            <a href="#" target="_blank">查看详情</a>
+                            <a href="#" target="_blank">视频演示</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 项目2 -->
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x400" alt="自动化生产线项目" class="project-img">
+                    <div class="project-info">
+                        <h3 class="project-title">自动化生产线集成</h3>
+                        <p class="project-description">
+                            设计并实现了一条完整的自动化生产线，整合了ABB机器人和Rockwell PLC控制系统，产能提升40%。
+                        </p>
+                        <div class="project-links">
+                            <a href="#" target="_blank">查看详情</a>
+                            <a href="#" target="_blank">案例研究</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 项目3 -->
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x400" alt="机器人编程项目" class="project-img">
+                    <div class="project-info">
+                        <h3 class="project-title">机器人路径优化算法</h3>
+                        <p class="project-description">
+                            开发了一种新型路径规划算法，减少了机器人循环时间15%，显著提高了生产效率。
+                        </p>
+                        <div class="project-links">
+                            <a href="#" target="_blank">技术文档</a>
+                            <a href="#" target="_blank">GitHub代码</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作经验区域 -->
+    <section id="experience">
+        <div class="profile-container">
+            <h2 class="section-title">工作经验</h2>
+            
+            <!-- 工作经历1 -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3 class="experience-title">自动化工程师</h3>
+                    <span class="experience-date">2021 - 至今</span>
+                </div>
+                <h4 class="experience-company">某自动化测试系统公司</h4>
+                <p class="experience-description">
+                    - 负责ABB IRC5机器人的编程和调试，实现视觉引导的拾取放置操作<br>
+                    - 集成Cognex视觉系统与CompactLogix PLC，实现动态坐标补偿<br>
+                    - 优化生产线机器人路径，将循环时间减少15%<br>
+                    - 参与新生产线的启动和调试工作
+                </p>
+            </div>
+            
+            <!-- 工作经历2 -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3 class="experience-title">机器人技术员</h3>
+                    <span class="experience-date">2018 - 2021</span>
+                </div>
+                <h4 class="experience-company">某工业机器人集成商</h4>
+                <p class="experience-description">
+                    - 参与多个Fanuc和Kuka机器人集成项目<br>
+                    - 负责机器人编程、调试和维护工作<br>
+                    - 协助开发标准化机器人操作程序<br>
+                    - 培训客户操作人员使用机器人系统
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我区域 -->
+    <section id="contact">
+        <div class="profile-container">
+            <h2 class="section-title">联系我</h2>
+            
+            <div class="contact-form">
+                <form action="#" method="POST">
+                    <!-- 姓名输入 -->
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <!-- 邮箱输入 -->
+                    <div class="form-group">
+                        <label for="email">电子邮箱</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <!-- 主题输入 -->
+                    <div class="form-group">
+                        <label for="subject">主题</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    
+                    <!-- 消息文本域 -->
+                    <div class="form-group">
+                        <label for="message">消息</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <!-- 提交按钮 -->
+                    <button type="submit" class="btn">发送消息</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="profile-container">
+            <p>&copy; 2023 Yushen. 保留所有权利。</p>
+            <p>使用HTML, CSS和JavaScript构建</p>
+        </div>
+    </footer>
 </body>
 </html>
