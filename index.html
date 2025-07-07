@@ -752,23 +752,37 @@
             const progressPercent = document.querySelector('.progress-percent');
             
             let progress = 0;
-            const interval = setInterval(() => {
-                progress += Math.random() * 10;
-                if (progress > 100) progress = 100;
-                
+            const duration = 2000; // 2 seconds total
+            const startTime = performance.now();
+    
+            function animateLoad(currentTime) {
+                const elapsed = currentTime - startTime;
+                progress = Math.min(elapsed / duration * 100, 100);
+        
                 progressFill.style.width = `${progress}%`;
                 progressPercent.textContent = `${Math.floor(progress)}%`;
-                
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        loadingScreen.classList.add('hidden');
-                        // Initialize everything else after loading is complete
-                        initPortfolio();
-                    }, 500);
-                }
-            }, 100);
-        });
+        
+                if (progress < 100) {
+            requestAnimationFrame(animateLoad);
+        } else {
+            loadingScreen.classList.add('hidden');
+            // Initialize everything else after loading is complete
+            initPortfolio();
+        }
+    }
+    
+    requestAnimationFrame(animateLoad);
+    
+    // Preload critical resources
+    const preloadImages = [
+        'https://cdn.jsdelivr.net/gh/Shenyu1111111/yushen.github.io/industrial-robot.png'
+    ];
+    
+    preloadImages.forEach(img => {
+        const image = new Image();
+        image.src = img;
+    });
+});
         
         function initPortfolio() {
             // Initialize particle background
