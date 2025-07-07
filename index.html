@@ -52,7 +52,7 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.3s ease-out;
+            transition: opacity 0.5s ease-out;
         }
         
         .loading-screen.hidden {
@@ -84,7 +84,7 @@
             height: 100%;
             width: 0%;
             background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
-            transition: width 0.2s ease;
+            transition: width 0.3s ease;
         }
         
         .progress-percent {
@@ -95,7 +95,6 @@
         
         /* Navigation Bar */
         .navbar {
-            height: 90px; 
             position: fixed;
             top: 0;
             left: 0;
@@ -130,7 +129,7 @@
             letter-spacing: 1px;
             position: relative;
             padding: 0.5rem 0;
-            transition: color 0.2s ease;
+            transition: color 0.3s ease;
         }
         
         .nav-link:hover {
@@ -145,7 +144,7 @@
             width: 0;
             height: 2px;
             background-color: var(--secondary-color);
-            transition: width 0.2s ease;
+            transition: width 0.3s ease;
         }
         
         .nav-link:hover::after {
@@ -188,7 +187,7 @@
             text-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeInUp 1s 0.2s forwards;
+            animation: fadeInUp 1s 0.3s forwards;
         }
         
         .job-title {
@@ -202,24 +201,24 @@
             margin-bottom: 2rem;
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeInUp 1s 0.3s forwards;
+            animation: fadeInUp 1s 0.5s forwards;
         }
         
         .robot-image {
-            width: 200px;
+            width: 300px;
             height: auto;
             margin-bottom: 2rem;
             filter: drop-shadow(0 0 15px rgba(0, 247, 255, 0.6));
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 1s 0.7s forwards;
-            transition: all 0.3s ease;
+            transition: all 0.5s ease;
         }
 
         .robot-image:hover {
             transform: translateY(-10px) rotate(5deg);
             filter: drop-shadow(0 0 20px rgba(0, 247, 255, 0.8));
-            animation: float 2.5s ease-in-out infinite;
+            animation: float 3s ease-in-out infinite;
         }
 
         @keyframes float {
@@ -267,7 +266,7 @@
             top: 5px;
             left: 50%;
             transform: translateX(-50%);
-            animation: scrollDown 1.5s infinite;
+            animation: scrollDown 2s infinite;
         }
 
         .scroll-down span {
@@ -296,14 +295,14 @@
             margin: 2rem auto;
             max-width: 900px;
             border: 1px solid rgba(0, 247, 255, 0.2);
-            transition: all 0.3s ease;
+            transition: all 0.5s ease;
             transform: translateY(50px);
             opacity: 0;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         .card.visible {
-            animation: fadeInUp 0.5s forwards;
+            animation: fadeInUp 0.8s forwards;
         }
         
         .card:hover {
@@ -378,7 +377,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(0, 247, 255, 0.4), transparent);
-            transition: all 0.3s ease;
+            transition: all 0.5s ease;
         }
         
         .btn:hover::before {
@@ -399,7 +398,7 @@
             border-radius: 20px;
             border: 1px solid var(--secondary-color);
             font-size: 0.9rem;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             opacity: 0;
         }
         
@@ -464,7 +463,7 @@
             border-radius: 10px;
             padding: 1.5rem;
             border: 1px solid rgba(0, 247, 255, 0.1);
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             opacity: 0;
         }
         
@@ -478,11 +477,12 @@
         .contact-icons a {
             display: inline-block;
             position: relative;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
         }
 
         .contact-icons a i {
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .contact-icons a:hover {
@@ -496,19 +496,19 @@
 
         /* Specific icon animations */
         .contact-icons a:hover .fa-envelope {
-            animation: shake 0.3s ease;
+            animation: shake 0.5s ease;
         }
 
         .contact-icons a:hover .fa-linkedin {
-            animation: pulse 0.3s ease;
+            animation: pulse 0.5s ease;
         }
 
         .contact-icons a:hover .fa-github {
-            animation: spin 0.3s ease;
+            animation: spin 0.5s ease;
         }
 
         .contact-icons a:hover .fa-phone {
-            animation: ring 0.3s ease;
+            animation: ring 0.5s ease;
         }
 
         @keyframes shake {
@@ -532,7 +532,24 @@
             25% { transform: rotate(15deg); }
             75% { transform: rotate(-15deg); }
         }
- 
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes flipInX {
+            from { 
+                transform: perspective(400px) rotateX(90deg);
+                opacity: 0;
+            }
+            to { 
+                transform: perspective(400px) rotateX(0);
+                opacity: 1;
+            }
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .name-title {
@@ -762,24 +779,55 @@
         function initPortfolio() {
             // Initialize particle background
             particlesJS('particles-js', {
-    "particles": {
-        "number": { "value": 40 }, // Reduced from 80
-        "line_linked": { 
-            "enable": true,
-            "distance": 200, // Increased distance
-            "opacity": 0.2 // Reduced opacity
-        },
-        "move": { 
-            "speed": 2 // Reduced speed
-        }
-    },
-    "interactivity": {
-        "events": {
-            "onhover": { "enable": false }, // Disable hover effects
-            "onclick": { "enable": false } // Disable click effects
-        }
-    }
-});
+                "particles": {
+                    "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                    "color": { "value": "#00f7ff" },
+                    "shape": { "type": "circle" },
+                    "opacity": { "value": 0.5, "random": true },
+                    "size": { "value": 3, "random": true },
+                    "line_linked": { "enable": true, "distance": 150, "color": "#00f7ff", "opacity": 0.4, "width": 1 },
+                    "move": { 
+                        "enable": true, 
+                        "speed": 3, 
+                        "direction": "none", 
+                        "random": true, 
+                        "straight": false, 
+                        "out_mode": "out",
+                        "bounce": true,
+                        "attract": {
+                            "enable": true,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": { 
+                            "enable": true, 
+                            "mode": "bubble" 
+                        },
+                        "onclick": { 
+                            "enable": true, 
+                            "mode": "repulse" 
+                        }
+                    },
+                    "modes": {
+                        "bubble": {
+                            "distance": 200,
+                            "size": 6,
+                            "duration": 2,
+                            "opacity": 0.8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 100,
+                            "duration": 0.4
+                        }
+                    }
+                }
+            });
             
             // Enhanced Scroll Animations
             const animateOnScroll = () => {
@@ -793,10 +841,10 @@
                     if(elementPosition < windowHeight - 100) {
                         // Add different animations based on element type
                         if(el.classList.contains('skill')) {
-                            el.style.opacity = '1';
+                            el.style.animation = `bounceIn 0.6s ${animationDelay}s forwards`;
                         } 
                         else if(el.classList.contains('project-card')) {
-                            el.style.animation = `fadeInUp 0.8s ${animationDelay}s forwards`;
+                            el.style.animation = `flipInX 0.8s ${animationDelay}s forwards`;
                         }
                         else if(el.classList.contains('timeline-item')) {
                             el.style.animation = `fadeInRight 0.8s ${animationDelay}s forwards`;
@@ -817,20 +865,13 @@
             
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-               anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    setTimeout(() => {
-        const target = document.querySelector(this.getAttribute('href'));
-        const navbarHeight = document.querySelector('.navbar').offsetHeight;
-        const targetPosition = target.offsetTop - navbarHeight;
-        
-        window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-        });
-    }, 100);
-});
-});
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
 
             // Add animation for timeline items
             const timelineItems = document.querySelectorAll('.timeline-item');
