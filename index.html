@@ -21,7 +21,7 @@
             --neon-glow: 0 0 10px rgba(0, 247, 255, 0.8);
         }
         html {
-          scroll-padding-top: 80px; /* Matches navbar height */
+          scroll-padding-top: 90px; /* Matches navbar height */
           scroll-behavior: smooth; /* Optional: enables smooth scrolling */
         }
         
@@ -213,17 +213,6 @@
             transform: translateY(20px);
             animation: fadeInUp 1s 0.7s forwards;
             transition: all 0.5s ease;
-        }
-
-        .robot-image:hover {
-            transform: translateY(-10px) rotate(5deg);
-            filter: drop-shadow(0 0 20px rgba(0, 247, 255, 0.8));
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(-10px) rotate(5deg); }
-            50% { transform: translateY(-20px) rotate(0deg); }
         }
         
         @keyframes fadeInUp {
