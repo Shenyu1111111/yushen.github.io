@@ -33,6 +33,7 @@
             color: var(--text-color);
             overflow-x: hidden;
             min-height: 100vh;
+            scroll-behavior: auto !important;
         }
         
         /* Animated Particle Background */
@@ -434,6 +435,40 @@
             }
         }
         
+        /* New Space-like sections for Education and Experience */
+        .space-section {
+            background: transparent;
+            padding: 2.5rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            position: relative;
+            transform: translateY(50px);
+            opacity: 0;
+        }
+        
+        .space-section.visible {
+            animation: fadeInUp 0.8s forwards;
+        }
+        
+        .space-section h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .space-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .name-title {
@@ -471,7 +506,7 @@
         <img src="https://cdn.jsdelivr.net/gh/Shenyu1111111/yushen.github.io/industrial-robot.png" alt="Robot" class="robot-image">
         
         <a href="#about" class="btn">EXPLORE MY WORK</a>
-        <div class="scroll-down" onclick="document.querySelector('#about').scrollIntoView({ behavior: 'smooth' })">
+        <div class="scroll-down" onclick="document.querySelector('#about').scrollIntoView({ behavior: 'auto' })">
             <div class="mouse">
                 <div class="scroller"></div>
             </div>
@@ -508,7 +543,7 @@
             </div>
         </section>
         
-        <section class="card">
+        <section class="space-section" id="experience">
             <h2>Professional Experience</h2>
             <div class="timeline">
                 <div class="timeline-item">
@@ -550,7 +585,7 @@
             </div>
         </section>
         
-        <section class="card">
+        <section class="space-section" id="education">
             <h2>Education</h2>
             <div class="timeline">
                 <div class="timeline-item">
@@ -646,7 +681,7 @@
             
             // Enhanced Scroll Animations
             const animateOnScroll = () => {
-                const elements = document.querySelectorAll('.card, .skill, .project-card, .timeline-item');
+                const elements = document.querySelectorAll('.card, .skill, .project-card, .timeline-item, .space-section');
                 const windowHeight = window.innerHeight;
                 
                 elements.forEach((el, index) => {
@@ -683,7 +718,7 @@
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
                     document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
+                        behavior: 'auto'
                     });
                 });
             });
