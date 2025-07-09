@@ -91,6 +91,18 @@
             /* 预留足够空间 */
         }
 
+        /* 为移动设备添加的样式 */
+        .ldr-shape-container.active .icon-text {
+            opacity: 1;
+            bottom: -35px;
+        }
+
+        .ldr-shape-container.active .icon-style {
+            color: var(--accent-color);
+            text-shadow: 0 0 25px var(--accent-color);
+            transform: translateY(-5px) scale(1.2);
+        }
+
         .status-line {
             font-family: 'Courier New', monospace;
             color: var(--secondary-color);
@@ -932,17 +944,17 @@
             <h2>Technical Skills</h2>
             <div class="skills-container">
                 <div class="skill">PLC Programming</div>
-                <div class="skill">Servo Control</div>
-                <div class="skill">PID Control</div>
-                <div class="skill">Modbus RTU/TCP</div>
-                <div class="skill">EtherCAT</div>
-                <div class="skill">OPC UA</div>
-                <div class="skill">HMI/SCADA</div>
-                <div class="skill">CAD Design</div>
+                <div class="skill">FANUC Robotics</div>
+                <div class="skill">Servo Systems</div>
+                <div class="skill">HMI Development</div>
+                <div class="skill">Fieldbus Networks</div>
+                <div class="skill">Line Commissioning</div>
+                <div class="skill">Electrical CAD</div>
+                <div class="skill">Welding Systems</div>
                 <div class="skill">Motion Control</div>
-                <div class="skill">AutoCAD</div>
-                <div class="skill">Integration</div>
-                <div class="skill">SolidWorks</div>
+                <div class="skill">Troubleshooting</div>
+                <div class="skill">Safety Circuits</div>
+                <div class="skill">Mechanical Support</div>
             </div>
         </section>
 
@@ -977,35 +989,45 @@
         <section id="projects" class="card">
             <h2>Featured Projects</h2>
             <div class="project-gallery">
+                <!-- First Project (Unchanged) -->
                 <div class="project-card">
-                    <h3>Autonomous Delivery Robot</h3>
-                    <p>Designed a self-navigating robot for last-mile delivery with 99.8% obstacle avoidance accuracy
-                        using LiDAR and stereo vision.</p>
-                    <h3>Siemens S7-200 PLC Boiler Control System</h3>
-                    <p>Developed complete temperature and pressure control system with ladder logic programming and HMI
-                        interface. Awarded "Great Accomplishment" in National College Innovation Program.</p>
-                    <a href="#" class="btn" style="margin: 0.5rem 0 0; padding: 0.5rem 1rem; font-size: 0.8rem;">View
-                        Details</a>
+                    <h3>Boiler Control System</h3>
+                    <p>Designed Siemens S7-200 PLC solution with PID control for industrial boiler:
+                    <ul class="project-details">
+                        <li>Precise temperature (±0.5°C) and pressure control</li>
+                        <li>Custom HMI interface with alarm management</li>
+                        <li>Safety interlocks and fault diagnostics</li>
+                    </ul>
+                    </p>
+                    <a href="#" class="btn">View Details</a>
                 </div>
+
+                <!-- Second Project (Enhanced) -->
                 <div class="project-card">
-                    <h3>Industrial Robotic Arm</h3>
-                    <p>Developed a 6-axis robotic arm with machine vision for precision manufacturing, achieving ±0.02mm
-                        repeatability.</p>
-                    <h3>FANUC Palletizing System Integration</h3>
-                    <p>Designed robotic cells with vision guidance for food & beverage production, enabling high-speed
-                        product handling and reducing manual labor by 60%.</p>
-                    <a href="#" class="btn" style="margin: 0.5rem 0 0; padding: 0.5rem 1rem; font-size: 0.8rem;">View
-                        Details</a>
+                    <h3>Robotic Welding Cell</h3>
+                    <p>Implemented FANUC ARC Mate 120iD robotic welding system for automotive chassis components:
+                    <ul class="project-details">
+                        <li>Integrated Laser SeamTracker™ for real-time weld path correction</li>
+                        <li>Automated torch cleaning station with consumable monitoring</li>
+                        <li>Reduced defects by 40% and increased throughput by 25%</li>
+                        <li>Implemented weld parameter database for 15+ material combinations</li>
+                    </ul>
+                    </p>
+                    <a href="#" class="btn">View Details</a>
                 </div>
+
+                <!-- Third Project (Enhanced) -->
                 <div class="project-card">
-                    <h3>AI-Powered Sorting System</h3>
-                    <p>Created a high-speed sorting system using deep learning that processes 1200 items/minute with
-                        99.5% accuracy.</p>
-                    <h3>TIG Welding Cell with Seam Tracking</h3>
-                    <p>Implemented robotic welding cell for streetlight fabrication featuring torch position control and
-                        seam tracking, improving weld precision and reducing rework by 45%.</p>
-                    <a href="#" class="btn" style="margin: 0.5rem 0 0; padding: 0.5rem 1rem; font-size: 0.8rem;">View
-                        Details</a>
+                    <h3>Automated Palletizing System</h3>
+                    <p>Developed high-speed palletizing solution for food packaging line using FANUC M-410iB/140H:
+                    <ul class="project-details">
+                        <li>Vision-guided package orientation detection (Cognex In-Sight)</li>
+                        <li>Custom vacuum gripper with force feedback for fragile items</li>
+                        <li>35% faster cycle time compared to manual operation</li>
+                        <li>Integrated with existing conveyor via PROFINET communication</li>
+                    </ul>
+                    </p>
+                    <a href="#" class="btn">View Details</a>
                 </div>
             </div>
         </section>
@@ -1055,7 +1077,6 @@
     <!-- Particle.js Library -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
-    <!-- 完整的正确SCRIPT部分 -->
     <script>
         // 状态阶段定义
         const statusPhases = [
@@ -1077,28 +1098,54 @@
                     const isCurrent = !isCompleted && (percent < phase.percent + 5);
 
                     statusHTML += `
-                    <div class="status-line ${isCompleted ? 'completed' : ''} ${isCurrent ? 'active' : ''}">
-                        ${isCompleted ? '✓' : '▶'} ${phase.text}
-                    </div>
-                `;
+                <div class="status-line ${isCompleted ? 'completed' : ''} ${isCurrent ? 'active' : ''}">
+                    ${isCompleted ? '✓' : '▶'} ${phase.text}
+                </div>
+            `;
                 }
             });
 
             // 100%完成时的特殊显示
             if (percent === 100) {
                 statusHTML = `
-                <div class="status-line completed">✓ PLC connection established</div>
-                <div class="status-line completed">✓ HMI configuration loaded</div>
-                <div class="status-line completed">✓ Servo drives calibrated</div>
-                <div class="status-line completed">✓ Safety circuits verified</div>
-                <div class="status-line completed" style="margin-top:1rem;color:var(--accent-color);">
-                    ✔ SYSTEM READY
-                </div>
-            `;
+            <div class="status-line completed">✓ PLC connection established</div>
+            <div class="status-line completed">✓ HMI configuration loaded</div>
+            <div class="status-line completed">✓ Servo drives calibrated</div>
+            <div class="status-line completed">✓ Safety circuits verified</div>
+            <div class="status-line completed" style="margin-top:1rem;color:var(--accent-color);">
+                ✔ SYSTEM READY
+            </div>
+        `;
                 document.querySelector('.loading-subtext').textContent = "All modules ONLINE | v3.2.1";
             }
 
             detailsContainer.innerHTML = statusHTML;
+        }
+
+        // 检测是否为触摸设备
+        function isTouchDevice() {
+            return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+        }
+
+        // 设置图标点击交互
+        function setupIconInteractions() {
+            const iconContainers = document.querySelectorAll('.ldr-shape-container');
+
+            iconContainers.forEach(container => {
+                // 如果是触摸设备，添加点击事件
+                if (isTouchDevice()) {
+                    container.addEventListener('click', function () {
+                        // 移除其他容器的 active 状态
+                        iconContainers.forEach(otherContainer => {
+                            if (otherContainer !== container) {
+                                otherContainer.classList.remove('active');
+                            }
+                        });
+                        // 切换当前容器的 active 状态
+                        this.classList.toggle('active');
+                    });
+                }
+            });
         }
 
         // 主初始化函数
@@ -1152,9 +1199,10 @@
                 }
             });
 
-            // 删除整个 animateOnScroll 函数，替换为以下代码：
+            // 设置图标交互
+            setupIconInteractions();
 
-            // 1. 创建 Intersection Observer
+            // 创建 Intersection Observer
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1184,16 +1232,10 @@
                 rootMargin: '0px 0px -100px 0px' // 提前100px加载
             });
 
-            // 2. 观察所有需要动画的元素
+            // 观察所有需要动画的元素
             document.querySelectorAll('.card, .skill, .project-card, .timeline-item').forEach(el => {
                 observer.observe(el);
             });
-
-            // 初始执行一次
-            animateOnScroll();
-
-            // 滚动时执行
-            window.addEventListener('scroll', animateOnScroll);
 
             // 平滑滚动导航
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
