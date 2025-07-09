@@ -9,6 +9,7 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="mechanical-arm.png" type="image/png">
+
     <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap"
@@ -181,7 +182,7 @@
         }
 
         .title-container {
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .name-title {
@@ -210,6 +211,63 @@
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 1s 0.3s forwards;
+        }
+
+        .ldr-shapes {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+
+        .ldr-shape-container {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .icon-text {
+            position: absolute;
+            bottom: -25px;
+            /* Changed from top to bottom */
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Orbitron', sans-serif;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            opacity: 0;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px var(--secondary-color);
+            pointer-events: none;
+        }
+
+        .icon-style {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            text-shadow: 0 0 15px var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        /* Hover effects */
+        .ldr-shape-container:hover .icon-text {
+            opacity: 1;
+            bottom: -35px;
+            /* Changed from top to bottom */
+        }
+
+        .ldr-shape-container:hover .icon-style {
+            color: var(--accent-color);
+            text-shadow: 0 0 25px var(--accent-color);
+            transform: translateY(-5px) scale(1.2);
+            /* Reduced translateY for better balance */
         }
 
 
@@ -599,7 +657,6 @@
             }
 
 
-
             .card {
                 padding: 1.5rem;
             }
@@ -619,7 +676,10 @@
             .nav-link {
                 font-size: 0.8rem;
             }
+
+
         }
+
 
         @media (max-width: 480px) {
             .nav-links {
@@ -630,6 +690,7 @@
             .nav-logo {
                 font-size: 1.2rem;
             }
+
         }
     </style>
 </head>
@@ -666,8 +727,20 @@
             <h2 class="job-title">AUTOMATION & ROBOTICS STUDENT</h2>
         </div>
 
-
-
+        <div class="ldr-shapes">
+            <div class="ldr-shape-container">
+                <div class="icon-text">Programming</div>
+                <i class="fas fa-laptop-code icon-style"></i>
+            </div>
+            <div class="ldr-shape-container">
+                <div class="icon-text">Robotics</div>
+                <i class="fas fa-robot icon-style"></i>
+            </div>
+            <div class="ldr-shape-container">
+                <div class="icon-text">Automation</div>
+                <i class="fas fa-cogs icon-style"></i>
+            </div>
+        </div>
         <a href="#about" class="btn">EXPLORE MY WORK</a>
         <div class="scroll-down" onclick="document.querySelector('#about').scrollIntoView({ behavior: 'smooth' })">
             <div class="mouse">
