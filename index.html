@@ -437,29 +437,47 @@
         .card {
             background: var(--card-bg);
             background: rgba(var(--card-bg-rgb), 0.5);
-            /* 0.8 = 80% opacity */
             backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 2.5rem;
             margin: 2rem auto;
             max-width: 900px;
             border: 1px solid rgba(0, 247, 255, 0.2);
-            transition: all 0.3s ease;
-            transform: translateY(50px);
+
+            /* 修改点1：修正transition语法，合并动画属性 */
+            transition:
+                opacity 0.4s ease-out,
+                transform 0.4s ease-out,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+
+            /* 修改点2：添加初始transform状态 */
+            transform: translateY(20px);
             opacity: 0;
+
+            /* 修改点3：添加GPU加速优化 */
+            will-change: transform, opacity;
+            transform-style: preserve-3d;
+
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
+        /* 修改点4：简化visible动画，改用transition驱动 */
         .card.visible {
-            animation: fadeInUp 0.5s forwards;
+            opacity: 1;
+            transform: translateY(0);
+            /* 移除原来的animation */
         }
 
+        /* 修改点5：优化悬停动画性能 */
         .card:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-5px) scale(1.02);
+            /* 减小移动幅度 */
             box-shadow: 0 15px 30px rgba(0, 247, 255, 0.2);
             border-color: var(--secondary-color);
         }
 
+        /* 修改点6：为标题添加will-change优化 */
         h2 {
             font-family: 'Orbitron', sans-serif;
             color: var(--secondary-color);
@@ -467,6 +485,8 @@
             font-size: 2rem;
             position: relative;
             display: inline-block;
+            will-change: transform;
+            /* 新增 */
         }
 
         h2::after {
@@ -714,6 +734,32 @@
 
             75% {
                 transform: rotate(-15deg);
+            }
+        }
+
+        /* ===== 新增GPU加速 ===== */
+        .card,
+        .project-card,
+        .timeline-item,
+        .skill {
+            will-change: transform, opacity;
+            /* 预声明变化的属性 */
+            transform: translateZ(0);
+            /* 强制GPU加速 */
+        }
+
+        /* ===== 新增简化动画 ===== */
+        @keyframes optimizedFadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes optimizedFadeInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
             }
         }
 
@@ -1106,33 +1152,42 @@
                 }
             });
 
-            // 滚动动画
-            const animateOnScroll = () => {
-                const elements = document.querySelectorAll('.card, .skill, .project-card, .timeline-item');
-                const windowHeight = window.innerHeight;
+            // 删除整个 animateOnScroll 函数，替换为以下代码：
 
-                elements.forEach((el, index) => {
-                    const elementPosition = el.getBoundingClientRect().top;
-                    const animationDelay = index * 0.1;
+            // 1. 创建 Intersection Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
 
-                    if (elementPosition < windowHeight - 100) {
+                        // 根据元素类型应用不同动画
                         if (el.classList.contains('skill')) {
                             el.style.opacity = '1';
                             el.style.transform = 'translateY(0)';
                         }
                         else if (el.classList.contains('project-card')) {
-                            el.style.animation = `fadeInUp 0.8s ${animationDelay}s forwards`;
+                            el.style.animation = 'fadeInUp 0.6s forwards';
                         }
                         else if (el.classList.contains('timeline-item')) {
-                            el.style.animation = `fadeInRight 0.8s ${animationDelay}s forwards`;
+                            el.style.animation = 'fadeInRight 0.6s forwards';
                         }
                         else {
-                            el.style.animation = `fadeInUp 0.8s ${animationDelay}s forwards`;
+                            el.style.animation = 'fadeInUp 0.6s forwards';
                         }
+
                         el.classList.add('visible');
+                        observer.unobserve(el); // 动画触发后停止观察
                     }
                 });
-            };
+            }, {
+                threshold: 0.1, // 元素可见10%时触发
+                rootMargin: '0px 0px -100px 0px' // 提前100px加载
+            });
+
+            // 2. 观察所有需要动画的元素
+            document.querySelectorAll('.card, .skill, .project-card, .timeline-item').forEach(el => {
+                observer.observe(el);
+            });
 
             // 初始执行一次
             animateOnScroll();
