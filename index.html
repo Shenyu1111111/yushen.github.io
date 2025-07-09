@@ -748,11 +748,45 @@
                 font-size: 0.8rem;
             }
 
+            .ldr-shape-container {
+                width: 70px;
+                /* 减小容器宽度 */
+                height: 70px;
+                /* 减小容器高度 */
+            }
+
+            .icon-style {
+                font-size: 2.5rem;
+                /* 减小图标大小 */
+            }
+
+            .icon-text {
+                font-size: 0.8rem;
+                /* 减小文字大小 */
+                bottom: -22px;
+                /* 调整文字位置 */
+            }
 
         }
 
 
         @media (max-width: 480px) {
+            .ldr-shape-container {
+                width: 50px;
+                height: 50px;
+                gap: 1.5rem;
+                /* 减小图标间距 */
+            }
+
+            .icon-style {
+                font-size: 1.8rem;
+            }
+
+            .icon-text {
+                font-size: 0.6rem;
+                bottom: -15px;
+            }
+
             .nav-links {
                 display: none;
                 /* Hide nav links on very small screens */
@@ -828,13 +862,23 @@
     <main style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
         <section id="about" class="card">
             <h2>About Me</h2>
-            <p>Skilled Electromechanical Technician specializing in HMI and PLC programming (Allen-Bradley/Siemens),
-                Robotics (FANUC-certified), with 2 years in system integration, troubleshooting, and on-site support.
+            <p><strong>Hi, I'm Yu Shen —</strong><br>
+                A <strong>B.E. in Automation</strong> graduate with <strong>2+ years</strong> of hands-on experience in
+                <strong>PLC/HMI programming (Allen-Bradley/Siemens) & FANUC robotics</strong>. Passionate about
+                <strong>industrial automation, system integration, and troubleshooting</strong> to optimize
+                manufacturing processes.
             </p>
-            <p>Seeking roles in Controls Engineer, PLC/HMI Programmer, Robotics Technician, and Systems Integrator.</p>
+
+            <p>Looking for <strong>Controls Engineer, Robotics Technician, or Automation Specialist</strong> roles where
+                I can apply my technical skills to real-world challenges.</p>
+
             <div style="margin-top: 1.5rem;">
-                <a href="#" class="btn"><i class="fas fa-download"></i> Download CV</a>
-                <a href="#contact" class="btn"><i class="fas fa-paper-plane"></i> Contact Me</a>
+                <a href="resume.pdf" class="btn" download="YuShen_Automation_Engineer_CV.pdf" target="_blank">
+                    <i class="fas fa-download"></i> Download CV
+                </a>
+                <a href="#contact" class="btn">
+                    <i class="fas fa-paper-plane"></i> Contact Me
+                </a>
             </div>
         </section>
 
