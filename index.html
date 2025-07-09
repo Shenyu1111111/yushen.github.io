@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +10,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="mechanical-arm.png" type="image/png">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --card-bg-rgb: 30, 30, 58; 
+            --card-bg-rgb: 30, 30, 58;
             --primary-color: #0a0a1a;
             --secondary-color: #00f7ff;
             --accent-color: #ff00aa;
@@ -20,9 +23,12 @@
             --card-bg: #1e1e3a;
             --neon-glow: 0 0 10px rgba(0, 247, 255, 0.8);
         }
+
         html {
-          scroll-padding-top: 90px; /* Matches navbar height */
-          scroll-behavior: smooth; /* Optional: enables smooth scrolling */
+            scroll-padding-top: 90px;
+            /* Matches navbar height */
+            scroll-behavior: smooth;
+            /* Optional: enables smooth scrolling */
         }
 
         * {
@@ -95,7 +101,7 @@
 
         /* Navigation Bar */
         .navbar {
-            height: 90px; 
+            height: 90px;
             position: fixed;
             top: 0;
             left: 0;
@@ -206,37 +212,19 @@
             animation: fadeInUp 1s 0.3s forwards;
         }
 
-        .robot-image {
-            width: 200px;
-            height: auto;
-            margin-bottom: 2rem;
-            filter: drop-shadow(0 0 15px rgba(0, 247, 255, 0.6));
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s 0.7s forwards;
-            transition: all 0.3s ease;
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
-        .robot-image:hover {
-            transform: translateY(-10px) rotate(5deg);
-            filter: drop-shadow(0 0 20px rgba(0, 247, 255, 0.8));
-            animation: float 2.5s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(-10px) rotate(5deg); }
-            50% { transform: translateY(-20px) rotate(0deg); }
-        }
-@keyframes fadeInRight {
-    from {
-        opacity: 0;
-        transform: translateX(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
         @keyframes fadeInUp {
             to {
                 opacity: 1;
@@ -288,20 +276,39 @@
         }
 
         @keyframes scrollDown {
-            0% { top: 5px; opacity: 1; }
-            50% { top: 15px; opacity: 0.5; }
-            100% { top: 5px; opacity: 1; }
+            0% {
+                top: 5px;
+                opacity: 1;
+            }
+
+            50% {
+                top: 15px;
+                opacity: 0.5;
+            }
+
+            100% {
+                top: 5px;
+                opacity: 1;
+            }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px) translateX(-50%); }
-            to { opacity: 1; transform: translateY(0) translateX(-50%); }
+            from {
+                opacity: 0;
+                transform: translateY(20px) translateX(-50%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) translateX(-50%);
+            }
         }
 
         /* Animated Cards */
         .card {
             background: var(--card-bg);
-            background: rgba(var(--card-bg-rgb), 0.5); /* 0.8 = 80% opacity */
+            background: rgba(var(--card-bg-rgb), 0.5);
+            /* 0.8 = 80% opacity */
             backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 2.5rem;
@@ -439,13 +446,15 @@
         }
 
         .timeline-item {
-    position: relative;
-    padding-bottom: 2rem;
-    padding-left: 1.5rem;
-    opacity: 0;
-    transform: translateX(20px); /* 添加这一行 */
-    transition: all 0.8s ease; /* 添加这一行 */
-}
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 1.5rem;
+            opacity: 0;
+            transform: translateX(20px);
+            /* 添加这一行 */
+            transition: all 0.8s ease;
+            /* 添加这一行 */
+        }
 
         .timeline-item::before {
             content: '';
@@ -526,25 +535,57 @@
         }
 
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-3px); }
-            75% { transform: translateX(3px); }
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-3px);
+            }
+
+            75% {
+                transform: translateX(3px);
+            }
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         @keyframes ring {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(15deg); }
-            75% { transform: rotate(-15deg); }
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(15deg);
+            }
+
+            75% {
+                transform: rotate(-15deg);
+            }
         }
 
         /* Responsive Design */
@@ -557,9 +598,7 @@
                 font-size: 1.4rem;
             }
 
-            .robot-image {
-                width: 200px;
-            }
+
 
             .card {
                 padding: 1.5rem;
@@ -584,7 +623,8 @@
 
         @media (max-width: 480px) {
             .nav-links {
-                display: none; /* Hide nav links on very small screens */
+                display: none;
+                /* Hide nav links on very small screens */
             }
 
             .nav-logo {
@@ -593,6 +633,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Loading Screen -->
     <div class="loading-screen">
@@ -625,7 +666,7 @@
             <h2 class="job-title">AUTOMATION & ROBOTICS STUDENT</h2>
         </div>
 
-        <img src="https://cdn.jsdelivr.net/gh/Shenyu1111111/yushen.github.io/industrial-robot.png" alt="Robot" class="robot-image">
+
 
         <a href="#about" class="btn">EXPLORE MY WORK</a>
         <div class="scroll-down" onclick="document.querySelector('#about').scrollIntoView({ behavior: 'smooth' })">
@@ -639,7 +680,9 @@
     <main style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
         <section id="about" class="card">
             <h2>About Me</h2>
-            <p>Skilled Electromechanical Technician specializing in HMI and PLC programming (Allen-Bradley/Siemens), Robotics (FANUC-certified), with 2 years in system integration, troubleshooting, and on-site support.</p>
+            <p>Skilled Electromechanical Technician specializing in HMI and PLC programming (Allen-Bradley/Siemens),
+                Robotics (FANUC-certified), with 2 years in system integration, troubleshooting, and on-site support.
+            </p>
             <p>Seeking roles in Controls Engineer, PLC/HMI Programmer, Robotics Technician, and Systems Integrator.</p>
             <div style="margin-top: 1.5rem;">
                 <a href="#" class="btn"><i class="fas fa-download"></i> Download CV</a>
@@ -666,76 +709,97 @@
         </section>
 
         <section id="experience" class="card">
-    <h2>Professional Experience</h2>
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="timeline-date">05/2025 - Present</div>
-            <h3>Robotics Weld Technician | Martinrea International Inc.</h3>
-            <p>Operate FANUC robotic welding systems (spot/stud/MIG/TIG) for automotive production, performing parameter adjustments and path refinements. Troubleshoot robotic cells and PLC systems to resolve production issues. Collaborate with engineers on calibration tasks while maintaining strict safety standards.</p>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-date">09/2024 - 12/2024</div>
-            <h3>Engineering Co-op | The EPCM Group Global</h3>
-            <p>Developed SolidWorks designs for laser scanner enclosures and optimized P&ID diagrams in AutoCAD. Assisted in PLC programming (Studio 5000) and HMI development (FactoryTalk View) for mineral processing systems. Performed robotic cell assembly and control panel wiring improvements.</p>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-date">06/2020 - 06/2022</div>
-            <h3>Control Systems Engineer | Shanghai Junli Automation</h3>
-            <p>Implemented automation projects with PLC programming (Rockwell/Siemens) and control panel design. Integrated FANUC robotic systems including palletizing and welding cells with vision guidance. Developed modular control systems and provided technical training to clients.</p>
-        </div>
-    </div>
-</section>
+            <h2>Work Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">05/2025 - Present</div>
+                    <h3>Robotics Weld Technician | Martinrea International Inc.</h3>
+                    <p>Operate FANUC robotic welding systems (spot/stud/MIG/TIG) for automotive production, performing
+                        parameter adjustments and path refinements. Troubleshoot robotic cells and PLC systems to
+                        resolve production issues. Collaborate with engineers on calibration tasks while maintaining
+                        strict safety standards.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">09/2024 - 12/2024</div>
+                    <h3>Engineering Co-op | The EPCM Group Global</h3>
+                    <p>Developed SolidWorks designs for laser scanner enclosures and optimized P&ID diagrams in AutoCAD.
+                        Assisted in PLC programming (Studio 5000) and HMI development (FactoryTalk View) for mineral
+                        processing systems. Performed robotic cell assembly and control panel wiring improvements.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">06/2020 - 06/2022</div>
+                    <h3>Control Systems Engineer | Shanghai Junli Automation</h3>
+                    <p>Implemented automation projects with PLC programming (Rockwell/Siemens) and control panel design.
+                        Integrated FANUC robotic systems including palletizing and welding cells with vision guidance.
+                        Developed modular control systems and provided technical training to clients.</p>
+                </div>
+            </div>
+        </section>
 
         <section id="projects" class="card">
             <h2>Featured Projects</h2>
             <div class="project-gallery">
                 <div class="project-card">
                     <h3>Autonomous Delivery Robot</h3>
-                    <p>Designed a self-navigating robot for last-mile delivery with 99.8% obstacle avoidance accuracy using LiDAR and stereo vision.</p>
+                    <p>Designed a self-navigating robot for last-mile delivery with 99.8% obstacle avoidance accuracy
+                        using LiDAR and stereo vision.</p>
                     <h3>Siemens S7-200 PLC Boiler Control System</h3>
-                    <p>Developed complete temperature and pressure control system with ladder logic programming and HMI interface. Awarded "Great Accomplishment" in National College Innovation Program.</p>
-                    <a href="#" class="btn" style="margin: 0.5rem 0 0; padding: 0.5rem 1rem; font-size: 0.8rem;">View Details</a>
+                    <p>Developed complete temperature and pressure control system with ladder logic programming and HMI
+                        interface. Awarded "Great Accomplishment" in National College Innovation Program.</p>
+                    <a href="#" class="btn" style="margin: 0.5rem 0 0; padding: 0.5rem 1rem; font-size: 0.8rem;">View
+                        Details</a>
                 </div>
                 <div class="project-card">
                     <h3>Industrial Robotic Arm</h3>
-                    <p>Developed a 6-axis robotic arm with machine vision for precision manufacturing, achieving ±0.02mm repeatability.</p>
+                    <p>Developed a 6-axis robotic arm with machine vision for precision manufacturing, achieving ±0.02mm
+                        repeatability.</p>
                     <h3>FANUC Palletizing System Integration</h3>
-                    <p>Designed robotic cells with vision guidance for food & beverage production, enabling high-speed product handling and reducing manual labor by 60%.</p>
-                    <a href="#" class="btn" style="margin: 0.5rem 0 0; padding: 0.5rem 1rem; font-size: 0.8rem;">View Details</a>
+                    <p>Designed robotic cells with vision guidance for food & beverage production, enabling high-speed
+                        product handling and reducing manual labor by 60%.</p>
+                    <a href="#" class="btn" style="margin: 0.5rem 0 0; padding: 0.5rem 1rem; font-size: 0.8rem;">View
+                        Details</a>
                 </div>
                 <div class="project-card">
                     <h3>AI-Powered Sorting System</h3>
-                    <p>Created a high-speed sorting system using deep learning that processes 1200 items/minute with 99.5% accuracy.</p>
+                    <p>Created a high-speed sorting system using deep learning that processes 1200 items/minute with
+                        99.5% accuracy.</p>
                     <h3>TIG Welding Cell with Seam Tracking</h3>
-                    <p>Implemented robotic welding cell for streetlight fabrication featuring torch position control and seam tracking, improving weld precision and reducing rework by 45%.</p>
-                    <a href="#" class="btn" style="margin: 0.5rem 0 0; padding: 0.5rem 1rem; font-size: 0.8rem;">View Details</a>
+                    <p>Implemented robotic welding cell for streetlight fabrication featuring torch position control and
+                        seam tracking, improving weld precision and reducing rework by 45%.</p>
+                    <a href="#" class="btn" style="margin: 0.5rem 0 0; padding: 0.5rem 1rem; font-size: 0.8rem;">View
+                        Details</a>
                 </div>
             </div>
         </section>
 
-       <section id="education" class="card">
-    <h2>Education</h2>
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="timeline-date">09/2023 - 09/2025</div>
-            <h3>Electromechanical Engineering Technician | Fanshawe College, London ON</h3>
-            <p>Specialized in PLC & Automation (A+), CNC Machining, and Electrical Systems. Key coursework included Practical Electronics, Wiring for Automation, and Project Management.</p>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-date">09/2016 - 06/2020</div>
-            <h3>B.E. in Automation | Shanghai Polytechnic University, China</h3>
-            <p>Focused on Industrial Robotics, Control Systems Engineering, and Automated Manufacturing. Core studies included PLC/Industrial Automation, Motion Control Systems, and Embedded Systems Design.</p>
-        </div>
-    </div>
-</section>
+        <section id="education" class="card">
+            <h2>Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">09/2023 - 09/2025</div>
+                    <h3>Electromechanical Engineering Technician | Fanshawe College, London ON</h3>
+                    <p>Specialized in PLC & Automation (A+), CNC Machining, and Electrical Systems. Key coursework
+                        included Practical Electronics, Wiring for Automation, and Project Management.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">09/2016 - 06/2020</div>
+                    <h3>B.E. in Automation | Shanghai Polytechnic University, China</h3>
+                    <p>Focused on Industrial Robotics, Control Systems Engineering, and Automated Manufacturing. Core
+                        studies included PLC/Industrial Automation, Motion Control Systems, and Embedded Systems Design.
+                    </p>
+                </div>
+            </div>
+        </section>
 
         <section id="contact" class="card">
             <h2>Get In Touch</h2>
             <p>Interested in collaborating or learning more about my work? Feel free to reach out!</p>
             <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;" class="contact-icons">
                 <a href="mailto:shenyu121212@gmail.com" class="btn"><i class="fas fa-envelope"></i> Email</a>
-                <a href="https://www.linkedin.com/in/yu-shen-7337b32ab/" target="_blank" class="btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/Shenyu1111111" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://www.linkedin.com/in/yu-shen-7337b32ab/" target="_blank" class="btn"><i
+                        class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/Shenyu1111111" target="_blank" class="btn"><i class="fab fa-github"></i>
+                    GitHub</a>
                 <a href="tel:+12269989889" class="btn"><i class="fas fa-phone"></i> Phone</a>
             </div>
         </section>
@@ -755,7 +819,7 @@
 
     <script>
         // Loading Animation
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const loadingScreen = document.querySelector('.loading-screen');
             const progressFill = document.querySelector('.progress-fill');
             const progressPercent = document.querySelector('.progress-percent');
@@ -789,12 +853,12 @@
                     "opacity": { "value": 0.5, "random": true },
                     "size": { "value": 3, "random": true },
                     "line_linked": { "enable": true, "distance": 150, "color": "#00f7ff", "opacity": 0.4, "width": 1 },
-                    "move": { 
-                        "enable": true, 
-                        "speed": 3, 
-                        "direction": "none", 
-                        "random": true, 
-                        "straight": false, 
+                    "move": {
+                        "enable": true,
+                        "speed": 3,
+                        "direction": "none",
+                        "random": true,
+                        "straight": false,
                         "out_mode": "out",
                         "bounce": true,
                         "attract": {
@@ -807,13 +871,13 @@
                 "interactivity": {
                     "detect_on": "canvas",
                     "events": {
-                        "onhover": { 
-                            "enable": true, 
-                            "mode": "bubble" 
+                        "onhover": {
+                            "enable": true,
+                            "mode": "bubble"
                         },
-                        "onclick": { 
-                            "enable": true, 
-                            "mode": "repulse" 
+                        "onclick": {
+                            "enable": true,
+                            "mode": "repulse"
                         }
                     },
                     "modes": {
@@ -833,31 +897,31 @@
             });
 
             const animateOnScroll = () => {
-    const elements = document.querySelectorAll('.card, .skill, .project-card, .timeline-item');
-    const windowHeight = window.innerHeight;
+                const elements = document.querySelectorAll('.card, .skill, .project-card, .timeline-item');
+                const windowHeight = window.innerHeight;
 
-    elements.forEach((el, index) => {
-        const elementPosition = el.getBoundingClientRect().top;
-        const animationDelay = index * 0.1;
+                elements.forEach((el, index) => {
+                    const elementPosition = el.getBoundingClientRect().top;
+                    const animationDelay = index * 0.1;
 
-        if(elementPosition < windowHeight - 100) {
-            if(el.classList.contains('skill')) {
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0)';
-            } 
-            else if(el.classList.contains('project-card')) {
-                el.style.animation = `fadeInUp 0.8s ${animationDelay}s forwards`;
-            }
-            else if(el.classList.contains('timeline-item')) {
-                el.style.animation = `fadeInRight 0.8s ${animationDelay}s forwards`;
-            }
-            else {
-                el.style.animation = `fadeInUp 0.8s ${animationDelay}s forwards`;
-            }
-            el.classList.add('visible');
-        }
-    });
-};
+                    if (elementPosition < windowHeight - 100) {
+                        if (el.classList.contains('skill')) {
+                            el.style.opacity = '1';
+                            el.style.transform = 'translateY(0)';
+                        }
+                        else if (el.classList.contains('project-card')) {
+                            el.style.animation = `fadeInUp 0.8s ${animationDelay}s forwards`;
+                        }
+                        else if (el.classList.contains('timeline-item')) {
+                            el.style.animation = `fadeInRight 0.8s ${animationDelay}s forwards`;
+                        }
+                        else {
+                            el.style.animation = `fadeInUp 0.8s ${animationDelay}s forwards`;
+                        }
+                        el.classList.add('visible');
+                    }
+                });
+            };
             // Run once on load
             animateOnScroll();
 
@@ -866,20 +930,20 @@
 
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-               anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    setTimeout(() => {
-        const target = document.querySelector(this.getAttribute('href'));
-        const navbarHeight = document.querySelector('.navbar').offsetHeight;
-        const targetPosition = target.offsetTop - navbarHeight;
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    setTimeout(() => {
+                        const target = document.querySelector(this.getAttribute('href'));
+                        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                        const targetPosition = target.offsetTop - navbarHeight;
 
-        window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-        });
-    }, 100);
-});
-  });
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }, 100);
+                });
+            });
 
             // Add animation for timeline items
             const timelineItems = document.querySelectorAll('.timeline-item');
@@ -888,7 +952,7 @@
             });
 
             // Navbar background change on scroll
-            window.addEventListener('scroll', function() {
+            window.addEventListener('scroll', function () {
                 const navbar = document.querySelector('.navbar');
                 if (window.scrollY > 50) {
                     navbar.style.backgroundColor = 'rgba(10, 10, 26, 0.95)';
