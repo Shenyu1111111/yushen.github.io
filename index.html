@@ -46,6 +46,76 @@
             min-height: 100vh;
         }
 
+        /* 状态消息动画 */
+        .status-line {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.5s ease, max-height 0.6s ease;
+            margin: 0.2rem 0;
+        }
+
+        .status-line.active,
+        .status-line.completed {
+            max-height: 50px;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .status-line.completed {
+            color: #00ffaa;
+        }
+
+        /* 系统就绪特效 */
+        .status-line[style*="SYSTEM READY"] {
+            font-weight: bold;
+            text-shadow: 0 0 8px var(--accent-color);
+            animation: pulse 1s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                opacity: 0.8;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* 新增CSS */
+        .loading-details {
+            margin-top: 1rem;
+            min-height: 60px;
+            /* 预留足够空间 */
+        }
+
+        .status-line {
+            font-family: 'Courier New', monospace;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.5s ease;
+        }
+
+        .status-line.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .status-line.completed {
+            color: #00ffaa;
+        }
+
+        .status-line::before {
+            content: ">";
+            margin-right: 8px;
+            color: var(--accent-color);
+        }
+
         /* Loading Screen */
         .loading-screen {
             position: fixed;
@@ -697,13 +767,17 @@
 </head>
 
 <body>
-    <!-- Loading Screen -->
     <div class="loading-screen">
-        <div class="loading-text">INITIALIZING PORTFOLIO SYSTEM</div>
+        <div class="loading-text">SYSTEM BOOTING...</div>
+        <div class="loading-subtext">PLC Firmware v3.2.1 | HMI Interface Initializing</div>
         <div class="progress-bar">
             <div class="progress-fill"></div>
         </div>
         <div class="progress-percent">0%</div>
+        <div class="loading-details">
+            <!-- 这里会动态显示不同阶段的信息 -->
+            <div class="status-line">▶ Establishing PLC connection...</div>
+        </div>
     </div>
 
     <!-- Navigation Bar -->
@@ -891,34 +965,55 @@
     <!-- Particle.js Library -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
+    <!-- 完整的正确SCRIPT部分 -->
     <script>
-        // Loading Animation
-        document.addEventListener('DOMContentLoaded', function () {
-            const loadingScreen = document.querySelector('.loading-screen');
-            const progressFill = document.querySelector('.progress-fill');
-            const progressPercent = document.querySelector('.progress-percent');
+        // 状态阶段定义
+        const statusPhases = [
+            { text: "Establishing PLC connection...", percent: 0 },
+            { text: "Loading HMI configuration...", percent: 30 },
+            { text: "Calibrating servo drives...", percent: 60 },
+            { text: "Verifying safety circuits...", percent: 85 }
+        ];
 
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += Math.random() * 10;
-                if (progress > 100) progress = 100;
+        // 状态更新函数
+        function updateLoadingStatus(percent) {
+            const detailsContainer = document.querySelector('.loading-details');
+            let statusHTML = '';
 
-                progressFill.style.width = `${progress}%`;
-                progressPercent.textContent = `${Math.floor(progress)}%`;
+            // 构建阶段状态信息
+            statusPhases.forEach(phase => {
+                if (percent >= phase.percent) {
+                    const isCompleted = percent >= phase.percent + 5;
+                    const isCurrent = !isCompleted && (percent < phase.percent + 5);
 
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        loadingScreen.classList.add('hidden');
-                        // Initialize everything else after loading is complete
-                        initPortfolio();
-                    }, 500);
+                    statusHTML += `
+                    <div class="status-line ${isCompleted ? 'completed' : ''} ${isCurrent ? 'active' : ''}">
+                        ${isCompleted ? '✓' : '▶'} ${phase.text}
+                    </div>
+                `;
                 }
-            }, 100);
-        });
+            });
 
+            // 100%完成时的特殊显示
+            if (percent === 100) {
+                statusHTML = `
+                <div class="status-line completed">✓ PLC connection established</div>
+                <div class="status-line completed">✓ HMI configuration loaded</div>
+                <div class="status-line completed">✓ Servo drives calibrated</div>
+                <div class="status-line completed">✓ Safety circuits verified</div>
+                <div class="status-line completed" style="margin-top:1rem;color:var(--accent-color);">
+                    ✔ SYSTEM READY
+                </div>
+            `;
+                document.querySelector('.loading-subtext').textContent = "All modules ONLINE | v3.2.1";
+            }
+
+            detailsContainer.innerHTML = statusHTML;
+        }
+
+        // 主初始化函数
         function initPortfolio() {
-            // Initialize particle background
+            // 粒子背景初始化
             particlesJS('particles-js', {
                 "particles": {
                     "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
@@ -926,7 +1021,13 @@
                     "shape": { "type": "circle" },
                     "opacity": { "value": 0.5, "random": true },
                     "size": { "value": 3, "random": true },
-                    "line_linked": { "enable": true, "distance": 150, "color": "#00f7ff", "opacity": 0.4, "width": 1 },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#00f7ff",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
                     "move": {
                         "enable": true,
                         "speed": 3,
@@ -945,14 +1046,8 @@
                 "interactivity": {
                     "detect_on": "canvas",
                     "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "bubble"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "repulse"
-                        }
+                        "onhover": { "enable": true, "mode": "bubble" },
+                        "onclick": { "enable": true, "mode": "repulse" }
                     },
                     "modes": {
                         "bubble": {
@@ -962,14 +1057,12 @@
                             "opacity": 0.8,
                             "speed": 3
                         },
-                        "repulse": {
-                            "distance": 100,
-                            "duration": 0.4
-                        }
+                        "repulse": { "distance": 100, "duration": 0.4 }
                     }
                 }
             });
 
+            // 滚动动画
             const animateOnScroll = () => {
                 const elements = document.querySelectorAll('.card, .skill, .project-card, .timeline-item');
                 const windowHeight = window.innerHeight;
@@ -996,13 +1089,14 @@
                     }
                 });
             };
-            // Run once on load
+
+            // 初始执行一次
             animateOnScroll();
 
-            // Then on scroll
+            // 滚动时执行
             window.addEventListener('scroll', animateOnScroll);
 
-            // Smooth scrolling for anchor links
+            // 平滑滚动导航
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -1019,13 +1113,13 @@
                 });
             });
 
-            // Add animation for timeline items
+            // 时间轴动画延迟
             const timelineItems = document.querySelectorAll('.timeline-item');
             timelineItems.forEach((item, index) => {
                 item.style.animationDelay = `${index * 0.2}s`;
             });
 
-            // Navbar background change on scroll
+            // 导航栏滚动效果
             window.addEventListener('scroll', function () {
                 const navbar = document.querySelector('.navbar');
                 if (window.scrollY > 50) {
@@ -1037,4 +1131,36 @@
                 }
             });
         }
+
+        // 页面加载事件
+        document.addEventListener('DOMContentLoaded', function () {
+            const loadingScreen = document.querySelector('.loading-screen');
+            const progressFill = document.querySelector('.progress-fill');
+            const progressPercent = document.querySelector('.progress-percent');
+
+            let progress = 0;
+            const interval = setInterval(() => {
+                // 基础增量+随机增量 (2-10)
+                progress += 2 + Math.random() * 8;
+                if (progress > 100) progress = 100;
+
+                progressFill.style.width = `${progress}%`;
+                progressPercent.textContent = `${Math.floor(progress)}%`;
+                updateLoadingStatus(Math.floor(progress));
+
+                // 关键节点减速
+                if ([30, 60, 85].includes(Math.floor(progress))) {
+                    progress += 0.5;
+                }
+
+                // 完成时处理
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loadingScreen.classList.add('hidden');
+                        initPortfolio();
+                    }, 1500); // 保持完成状态1.5秒
+                }
+            }, 120); // 每120ms更新一次
+        });
     </script>
