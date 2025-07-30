@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yu Shen | Automation & Robotics Student</title>
+
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="mechanical-arm.png" type="image/png">
+
+
+</head>
+
+<body>
+    <div class="loading-screen">
+        <div class="loading-text">SYSTEM BOOTING...</div>
+        <div class="loading-subtext">PLC Firmware v3.2.1 | HMI Interface Initializing</div>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        <div class="progress-percent">0%</div>
+        <div class="loading-details">
+            <!-- 这里会动态显示不同阶段的信息 -->
+            <div class="status-line">▶ Establishing PLC connection...</div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="#" class="nav-logo">YU SHEN</a>
+        <div class="nav-links">
+            <a href="#about" class="nav-link">ABOUT</a>
+            <a href="#skills" class="nav-link">SKILLS</a>
+            <a href="#experience" class="nav-link">EXPERIENCE</a>
+            <a href="#projects" class="nav-link">PROJECTS</a>
+            <a href="#education" class="nav-link">EDUCATION</a>
+            <a href="#contact" class="nav-link">CONTACT</a>
+        </div>
+    </nav>
+
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <header>
+        <div class="title-container">
+            <h1 class="name-title">YU SHEN</h1>
+            <h2 class="job-title">AUTOMATION & ROBOTICS STUDENT</h2>
+        </div>
+
+        <div class="ldr-shapes">
+            <div class="ldr-shape-container">
+                <div class="icon-text">PLC / HMI</div>
+                <i class="fas fa-laptop-code icon-style"></i>
+            </div>
+            <div class="ldr-shape-container">
+                <div class="icon-text">Robotics</div>
+                <i class="fas fa-robot icon-style"></i>
+            </div>
+            <div class="ldr-shape-container">
+                <div class="icon-text">Troubleshooting</div>
+                <i class="fas fa-cogs icon-style"></i>
+            </div>
+        </div>
+        <a href="#about" class="btn">EXPLORE MY WORK</a>
+        <div class="scroll-down" onclick="document.querySelector('#about').scrollIntoView({ behavior: 'smooth' })">
+            <div class="mouse">
+                <div class="scroller"></div>
+            </div>
+            <span>Scroll Down</span>
+        </div>
+    </header>
+
+    <main style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
+        <section id="about" class="card">
+            <h2>About Me</h2>
+            <p><strong>Hi, I'm Yu Shen —</strong><br>
+                A <strong>B.E. in Automation</strong> graduate with <strong>2+ years</strong> of hands-on experience in
+                <strong>PLC/HMI programming (Allen-Bradley/Siemens) & FANUC robotics</strong>. Passionate about
+                <strong>industrial automation, system integration, and troubleshooting</strong> to optimize
+                manufacturing processes.
+            </p>
+
+            <p>Looking for <strong>Controls Engineer, Robotics Technician, or Automation Specialist</strong> roles where
+                I can apply my technical skills to real-world challenges.</p>
+
+            <div style="margin-top: 1.5rem;">
+                <a href="resume.pdf" class="btn" download="YuShen_Automation_Engineer_CV.pdf" target="_blank">
+                    <i class="fas fa-download"></i> Download CV
+                </a>
+                <a href="#contact" class="btn">
+                    <i class="fas fa-paper-plane"></i> Contact Me
+                </a>
+            </div>
+        </section>
+
+        <section id="skills" class="card">
+            <h2>Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill">PLC Programming</div>
+                <div class="skill">FANUC Robotics</div>
+                <div class="skill">Servo Systems</div>
+                <div class="skill">HMI Development</div>
+                <div class="skill">Fieldbus Networks</div>
+                <div class="skill">Line Commissioning</div>
+                <div class="skill">Electrical CAD</div>
+                <div class="skill">Welding Systems</div>
+                <div class="skill">Motion Control</div>
+                <div class="skill">Troubleshooting</div>
+                <div class="skill">Safety Circuits</div>
+                <div class="skill">Mechanical Support</div>
+            </div>
+        </section>
+
+        <section id="experience" class="card">
+            <h2>Work Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">05/2025 - Present</div>
+                    <h3>Robotics Weld Technician | Martinrea International Inc.</h3>
+                    <p>Operate FANUC robotic welding systems (spot/stud/MIG/TIG) for automotive production, performing
+                        parameter adjustments and path refinements. Troubleshoot robotic cells and PLC systems to
+                        resolve production issues. Collaborate with engineers on calibration tasks while maintaining
+                        strict safety standards.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">09/2024 - 12/2024</div>
+                    <h3>Engineering Co-op | The EPCM Group Global</h3>
+                    <p>Developed SolidWorks designs for laser scanner enclosures and optimized P&ID diagrams in AutoCAD.
+                        Assisted in PLC programming (Studio 5000) and HMI development (FactoryTalk View) for mineral
+                        processing systems. Performed robotic cell assembly and control panel wiring improvements.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">06/2020 - 06/2022</div>
+                    <h3>Control Systems Engineer | Shanghai Junli Automation</h3>
+                    <p>Implemented automation projects with PLC programming (Rockwell/Siemens) and control panel design.
+                        Integrated FANUC robotic systems including palletizing and welding cells with vision guidance.
+                        Developed modular control systems and provided technical training to clients.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="card">
+            <h2>Featured Projects</h2>
+            <div class="project-gallery">
+                <!-- First Project (Unchanged) -->
+                <div class="project-card">
+                    <h3>Boiler Control System</h3>
+                    <p>Designed Siemens S7-200 PLC solution with PID control for industrial boiler:
+                    <ul class="project-details">
+                        <li>Precise temperature (±0.5°C) and pressure control</li>
+                        <li>Custom HMI interface with alarm management</li>
+                        <li>Safety interlocks and fault diagnostics</li>
+                    </ul>
+                    </p>
+                    <a href="#" class="btn">View Details</a>
+                </div>
+
+                <!-- Second Project (Enhanced) -->
+                <div class="project-card">
+                    <h3>Robotic Welding Cell</h3>
+                    <p>Implemented FANUC ARC Mate 120iD robotic welding system for automotive chassis components:
+                    <ul class="project-details">
+                        <li>Integrated Laser SeamTracker™ for real-time weld path correction</li>
+                        <li>Automated torch cleaning station with consumable monitoring</li>
+                        <li>Reduced defects by 40% and increased throughput by 25%</li>
+                        <li>Implemented weld parameter database for 15+ material combinations</li>
+                    </ul>
+                    </p>
+                    <a href="#" class="btn">View Details</a>
+                </div>
+
+                <!-- Third Project (Enhanced) -->
+                <div class="project-card">
+                    <h3>Automated Palletizing System</h3>
+                    <p>Developed high-speed palletizing solution for food packaging line using FANUC M-410iB/140H:
+                    <ul class="project-details">
+                        <li>Vision-guided package orientation detection (Cognex In-Sight)</li>
+                        <li>Custom vacuum gripper with force feedback for fragile items</li>
+                        <li>35% faster cycle time compared to manual operation</li>
+                        <li>Integrated with existing conveyor via PROFINET communication</li>
+                    </ul>
+                    </p>
+                    <a href="#" class="btn">View Details</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="card">
+            <h2>Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">09/2023 - 09/2025</div>
+                    <h3>Electromechanical Engineering Technician | Fanshawe College, London ON</h3>
+                    <p>Specialized in PLC & Automation (A+), CNC Machining, and Electrical Systems. Key coursework
+                        included Practical Electronics, Wiring for Automation, and Project Management.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">09/2016 - 06/2020</div>
+                    <h3>B.E. in Automation | Shanghai Polytechnic University, China</h3>
+                    <p>Focused on Industrial Robotics, Control Systems Engineering, and Automated Manufacturing. Core
+                        studies included PLC/Industrial Automation, Motion Control Systems, and Embedded Systems Design.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="card">
+            <h2>Get In Touch</h2>
+            <p>Interested in collaborating or learning more about my work? Feel free to reach out!</p>
+            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;" class="contact-icons">
+                <a href="mailto:shenyu121212@gmail.com" class="btn"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://www.linkedin.com/in/yu-shen-7337b32ab/" target="_blank" class="btn"><i
+                        class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/Shenyu1111111" target="_blank" class="btn"><i class="fab fa-github"></i>
+                    GitHub</a>
+                <a href="tel:+12269989889" class="btn"><i class="fas fa-phone"></i> Phone</a>
+            </div>
+        </section>
+    </main>
+
+    <footer style="text-align: center; padding: 3rem 2rem; margin-top: 2rem;">
+        <p>© 2025 Yu Shen. All rights reserved.</p>
+        <div style="margin-top: 1rem;">
+            <a href="#" style="color: var(--secondary-color); margin: 0 0.5rem;"><i class="fab fa-twitter"></i></a>
+            <a href="#" style="color: var(--secondary-color); margin: 0 0.5rem;"><i class="fab fa-youtube"></i></a>
+            <a href="#" style="color: var(--secondary-color); margin: 0 0.5rem;"><i class="fas fa-blog"></i></a>
+        </div>
+    </footer>
+
+    <!-- 脚本引用 -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="./js/main.js"></script>
+
+
+
+
+
+</body>
+
+</html>
