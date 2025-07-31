@@ -71,7 +71,32 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--primary-color);
+    background:
+
+        radial-gradient(ellipse at center,
+            /* 椭圆渐变，中心发散 */
+            #000000 0%,
+            /* 中心：深紫黑色（接近太空暗部）*/
+            #0e135b 50%,
+            /* 中间过渡：宝石蓝色（模拟宇宙光晕）*/
+            #043043 100%
+            /* 边缘：深海蓝绿色（深邃太空感）*/
+        ),
+        /* 主太空背景.效果：从中心向外扩散的椭圆渐变，中心最暗，向外渐变成带有蓝绿色调的宇宙空间效果。*/
+
+
+        
+        radial-gradient(circle at 80% 70%,
+            /* 圆形渐变，定位在右下方80% 70%位置 */
+            rgba(152, 65, 195, 0.3) 0%,
+            /* 半透明紫罗兰色 */
+            rgba(129, 20, 114, 0.208) 40%
+            /* 过渡到半透明深紫色 */
+        );
+        /* 紫色星云.效果：在右下方添加一团紫红色星云，与左上的蓝色星云形成色彩对比。*/
+
+
+    background-blend-mode: screen;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -107,7 +132,7 @@ body {
 .infinity-path {
     fill: none;
     stroke: var(--secondary-color);
-    stroke-width: 1.8;
+    stroke-width: 3;
     stroke-linecap: round;
     stroke-dasharray: 250;
     stroke-dashoffset: 250;
@@ -134,9 +159,8 @@ body {
 }
 
 .loading-percent {
-    position: absolute;
-    top: -30px;
-    /* Position above the ring */
+    margin-top: 1px;
+    /* Space below the loader */
     left: 0;
     width: 100%;
     text-align: center;
@@ -155,13 +179,9 @@ body {
     color: var(--secondary-color);
     font-family: 'Michroma', sans-serif;
     font-size: 0.9rem;
-    
     text-align: center;
     max-width: 300px;
-
-    text-shadow: 
-        0.3px 0.3px 0 var(--secondary-color),
-        -0.3px -0.3px 0 var(--secondary-color);
+    text-shadow: 0 0 8px var(--secondary-color);
 }
 
 
