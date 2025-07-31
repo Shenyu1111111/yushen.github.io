@@ -4,245 +4,1144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yu Shen | Automation & Robotics Student</title>
+    <title>Disco Noir Dreaming</title>
+    <style>
+        /* ===== DISCO ELYSIUM INSPIRED THEME ===== */
+        :root {
+            --primary: #ff00aa;
+            /* Pink-red */
+            --secondary: #00f7ff;
+            /* Cyan */
+            --accent: #d1f7ff;
+            /* Ice blue */
+            --bg-dark: #0d0221;
+            /* Deep purple */
+            --bg-light: #1a1b52;
+            /* Midnight blue */
+            --text-glow: 0 0 10px var(--secondary);
+            --font-main: 'Georgia', serif;
+            --font-accent: 'Courier New', monospace;
+            --loading-color-1: #fff700;
+            --loading-color-2: #0004ec;
+        }
+
+        /* ===== BASE STYLE ===== */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-main);
+            background: var(--bg-dark);
+            color: var(--accent);
+            overflow: hidden;
+            height: 100vh;
+            cursor: crosshair;
+        }
+
+        /* ===== LOADING SCREEN ===== */
+        /* ===== LOADING SCREEN ===== */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg,
+                    var(--loading-color-1) 0%,
+                    /* Yellow start */
+                    #fffc4d 40%,
+                    /* Darker yellow midpoint */
+                    #3a36ff 60%,
+                    /* Blue-purple midpoint */
+                    var(--loading-color-2) 100%);
+            /* Blue end */
+            filter: saturate(1.2);
+            background-size: 400% 400%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: gradientFlow 3s ease infinite;
+        }
+
+        .loading-text {
+            color: var(--accent);
+            font-family: 'Lucida Console', Monaco, monospace;
+            /* More retro */
+            font-size: 1.0rem;
+            margin-bottom: 15px;
+            text-shadow: var(--text-glow);
+        }
+
+        .loading-bar {
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            height: 60px;
+            margin-bottom: 10px;
+        }
+
+        .loading-stick {
+            width: 6px;
+            background: var(--secondary);
+            border-radius: 3px;
+            animation: stickGrow 1.6s infinite ease-in-out;
+        }
+
+        .loading-stick:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .loading-stick:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loading-stick:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .loading-stick:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .loading-stick:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .loading-stick:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .loading-stick:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        .loading-stick:nth-child(8) {
+            animation-delay: 0.8s;
+        }
+
+        .loading-stick:nth-child(9) {
+            animation-delay: 0.9s;
+        }
+
+        .loading-stick:nth-child(10) {
+            animation-delay: 1.0s;
+        }
+
+        .loading-percentage {
+            color: var(--accent);
+            font-family: var(--font-accent);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes stickGrow {
+
+            0%,
+            100% {
+                height: 10px;
+            }
+
+            50% {
+                height: 40px;
+            }
+        }
 
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="icon" href="mechanical-arm.png" type="image/png">
 
 
+
+
+
+
+
+
+
+
+
+
+        .cursor {
+            animation: blink 1s infinite;
+        }
+
+
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+
+
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes scan {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes flicker {
+
+            0%,
+            19%,
+            21%,
+            23%,
+            25%,
+            100% {
+                opacity: 1;
+            }
+
+            20%,
+            22%,
+            24% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes discoGlow {
+            0% {
+                box-shadow: 0 0 10px var(--primary);
+            }
+
+            33% {
+                box-shadow: 0 0 20px var(--secondary);
+            }
+
+            66% {
+                box-shadow: 0 0 15px var(--accent);
+            }
+
+            100% {
+                box-shadow: 0 0 10px var(--primary);
+            }
+        }
+
+        #main-content {
+            display: block;
+            height: 100vh;
+            position: relative;
+            background:
+                /* Base Stars (more, brighter) */
+                radial-gradient(1.5px 1.5px at 10% 20%, rgba(255, 255, 255, 0.9) 50%, transparent 50%),
+                radial-gradient(1px 1px at 90% 80%, rgba(255, 255, 255, 0.9) 50%, transparent 50%),
+                radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 0.9) 50%, transparent 50%),
+                radial-gradient(2px 2px at 30% 70%, rgba(255, 255, 255, 0.9) 50%, transparent 50%),
+                radial-gradient(1px 1px at 70% 30%, rgba(255, 255, 255, 0.9) 50%, transparent 50%),
+                radial-gradient(1.5px 1.5px at 20% 40%, rgba(255, 255, 255, 0.9) 50%, transparent 50%),
+                radial-gradient(1px 1px at 80% 60%, rgba(255, 255, 255, 0.9) 50%, transparent 50%),
+
+                /* Nebula Core (Bright & Detailed) */
+                radial-gradient(400px 400px at 20% 30%,
+                    rgba(138, 43, 226, 0.7),
+                    /* Purple */
+                    rgba(75, 0, 130, 0.5),
+                    /* Indigo */
+                    transparent 70%),
+
+                /* Secondary Nebula (Complementary Colors) */
+                radial-gradient(500px 500px at 70% 60%,
+                    rgba(65, 105, 225, 0.6),
+                    /* Royal Blue */
+                    rgba(0, 191, 255, 0.4),
+                    /* Deep Sky Blue */
+                    transparent 70%),
+
+                /* Faint Nebula Streaks (For Depth) */
+                radial-gradient(300px 800px at 50% 80%,
+                    rgba(147, 112, 219, 0.3),
+                    /* Medium Purple */
+                    transparent 80%),
+
+                /* Base Space Color */
+                linear-gradient(to bottom, #090A0F, #0F0A1A);
+
+            overflow: hidden;
+            transition: all 2s ease;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        #main-content::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(600px 600px at 40% 50%,
+                    rgba(138, 43, 226, 0.4),
+                    transparent 70%);
+            animation: nebulaDrift 20s infinite alternate ease-in-out;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        @keyframes nebulaDrift {
+            0% {
+                transform: translate(0, 0);
+                opacity: 0.7;
+            }
+
+            50% {
+                transform: translate(-50px, 20px);
+                opacity: 0.9;
+            }
+
+            100% {
+                transform: translate(50px, -20px);
+                opacity: 0.6;
+            }
+        }
+
+        .glitch-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            /* Ensures text-align works */
+            text-align: center;
+            /* Centers text horizontally */
+            font-size: clamp(2rem, 8vw, 5rem);
+            /* Min: 2rem, Dynamic scaling, Max: 5rem */
+            color: var(--primary);
+            text-shadow:
+                0 0 10px var(--secondary),
+                0 0 20px var(--primary);
+            animation: flicker 3s infinite, float 6s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .glitch-text:hover {
+            color: var(--secondary);
+            text-shadow:
+                0 0 15px var(--primary),
+                0 0 30px var(--secondary);
+            animation: flicker 1s infinite, pulse 2s ease-in-out infinite;
+        }
+
+        /* Interactive Elements */
+        .disco-ball {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle at 30% 30%,
+                    white 0%,
+                    rgba(255, 255, 255, 0.3) 50%,
+                    transparent 70%);
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            animation: discoGlow 4s infinite, float 5s ease-in-out infinite;
+            opacity: 0;
+            transition: opacity 1s ease;
+            pointer-events: none;
+        }
+
+        .thought-bubble {
+            position: absolute;
+            background: rgba(13, 2, 33, 0.8);
+            border: 1px solid var(--secondary);
+            border-radius: 20px;
+            padding: 15px;
+            max-width: 200px;
+            font-family: var(--font-accent);
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.5s ease;
+            box-shadow: 0 0 15px rgba(5, 217, 232, 0.3);
+            pointer-events: none;
+
+
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+
+
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particleMove 800ms ease-out forwards;
+            opacity: 0.8;
+        }
+
+        @keyframes particleMove {
+            to {
+                transform: translate(var(--x), var(--y));
+                opacity: 0;
+            }
+        }
+
+        .particle-explosion {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: explosionGrow 500ms ease-out forwards;
+            opacity: 0.6;
+            transform: scale(0);
+        }
+
+        @keyframes explosionGrow {
+            to {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+
+        .ripple-effect {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: ripple 800ms ease-out forwards;
+            opacity: 0.8;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(5);
+                opacity: 0;
+            }
+        }
+
+        .neon-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+            box-shadow: 0 0 5px var(--secondary);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .hidden-object {
+            position: absolute;
+            width: 60px;
+            /* Increased size for better planet appearance */
+            height: 60px;
+            background: radial-gradient(circle at 30% 30%,
+                    var(--primary) 0%,
+                    #d100d1 50%,
+                    #790079 100%);
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow:
+                0 0 10px var(--primary),
+                inset 5px -5px 10px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+
+            /* Planetary rings */
+            &::before {
+                content: '';
+                position: absolute;
+                top: -15px;
+                left: -15px;
+                right: -15px;
+                bottom: -15px;
+                border: 2px solid transparent;
+                border-top-color: rgba(0, 247, 255, 0.6);
+                border-bottom-color: rgba(255, 0, 170, 0.4);
+                border-radius: 50%;
+                transform: rotate(45deg);
+                pointer-events: none;
+                animation: ringRotate 15s linear infinite;
+            }
+        }
+
+        .hidden-object:hover {
+            transform: scale(1.2) rotate(10deg);
+            background: radial-gradient(circle at 30% 30%,
+                    var(--secondary) 0%,
+                    #00c3c3 50%,
+                    #007777 100%);
+            box-shadow:
+                0 0 20px var(--secondary),
+                inset 5px -5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes ringRotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .revealed-text {
+            position: absolute;
+            font-family: var(--font-accent);
+            color: var(--accent);
+            opacity: 0;
+            transition: opacity 1s ease;
+            text-shadow: var(--text-glow);
+            pointer-events: none;
+        }
+
+        /* ===== LIGHT WORLD STYLES ===== */
+        .light-world {
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --accent: #ffe66d;
+            --bg-dark: #f7fff7;
+            --bg-light: #ffefd3;
+            background: radial-gradient(circle at center, var(--bg-light), var(--bg-dark)) !important;
+        }
+
+        .tape-player {
+            position: absolute;
+            width: 200px;
+            height: 120px;
+            background: linear-gradient(135deg, #555, #333);
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 20;
+            transform-style: preserve-3d;
+        }
+
+        .tape-deck {
+            position: absolute;
+            width: 180px;
+            height: 100px;
+            background: #222;
+            border-radius: 5px;
+            top: 10px;
+            left: 10px;
+            overflow: hidden;
+        }
+
+        .tape {
+            position: absolute;
+            width: 80px;
+            height: 60px;
+            background: linear-gradient(135deg, #4ecdc4, #2a9d8f);
+            border-radius: 5px;
+            top: 20px;
+            left: 50px;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .tape:hover {
+            transform: translateY(-5px) rotate(5deg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .tape-label {
+            position: absolute;
+            width: 60px;
+            height: 30px;
+            background: white;
+            top: 15px;
+            left: 10px;
+            font-family: var(--font-accent);
+            font-size: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #333;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .control-btn {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: var(--secondary);
+            transform: scale(1.1);
+        }
+
+        .memory-fragments {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .memory-text {
+            position: absolute;
+            font-family: var(--font-accent);
+            color: #333;
+            opacity: 0;
+            transition: all 1s ease;
+            max-width: 300px;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.4;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .sun {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--accent), transparent 70%);
+            border-radius: 50%;
+            box-shadow: 0 0 50px var(--accent);
+            opacity: 0;
+            transition: opacity 2s ease;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .loading-text {
+                font-size: 0.8rem;
+            }
+
+            .loading-bar {
+                height: 40px;
+                gap: 3px;
+            }
+
+            .loading-stick {
+                width: 4px;
+            }
+
+            .cursor {
+                font-size: 0.8rem;
+                /* Matches text size */
+            }
+
+            .glitch-text {
+                font-size: 2.5rem !important;
+                /* Smaller on mobile */
+                white-space: nowrap;
+            }
+        }
+    </style>
 </head>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <body>
-    <div class="loading-screen">
-        <div class="loading-text">SYSTEM BOOTING...</div>
-        <div class="loading-subtext">PLC Firmware v3.2.1 | HMI Interface Initializing</div>
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
+
+    <!-- Loading Screen -->
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-text">LOADING</div>
+        <div class="loading-bar">
+            <div class="loading-stick"></div>
+            <div class="loading-stick"></div>
+            <div class="loading-stick"></div>
+            <div class="loading-stick"></div>
+            <div class="loading-stick"></div>
+            <div class="loading-stick"></div>
+            <div class="loading-stick"></div>
+            <div class="loading-stick"></div>
+            <div class="loading-stick"></div>
+            <div class="loading-stick"></div>
         </div>
-        <div class="progress-percent">0%</div>
-        <div class="loading-details">
-            <!-- 这里会动态显示不同阶段的信息 -->
-            <div class="status-line">▶ Establishing PLC connection...</div>
-        </div>
+        <div class="loading-percentage">0%</div>
     </div>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <a href="#" class="nav-logo">YU SHEN</a>
-        <div class="nav-links">
-            <a href="#about" class="nav-link">ABOUT</a>
-            <a href="#skills" class="nav-link">SKILLS</a>
-            <a href="#experience" class="nav-link">EXPERIENCE</a>
-            <a href="#projects" class="nav-link">PROJECTS</a>
-            <a href="#education" class="nav-link">EDUCATION</a>
-            <a href="#contact" class="nav-link">CONTACT</a>
+
+
+
+
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <div class="glitch-text" id="disco-mode">DISCO MODE</div>
+
+        <!-- Dynamic elements that will appear on interaction -->
+        <div class="disco-ball" id="disco-ball"></div>
+        <div class="thought-bubble" id="thought-bubble"></div>
+        <div class="neon-line" id="neon-line-h"></div>
+        <div class="neon-line" id="neon-line-v"></div>
+
+        <!-- Hidden interactive objects -->
+        <div class="hidden-object" style="top: 30%; left: 20%;" data-message="Memory fragment accessed"></div>
+        <div class="hidden-object" style="top: 70%; left: 80%;" data-message="Disco rhythm detected"></div>
+        <div class="hidden-object" style="top: 20%; left: 70%;" data-message="Neural pathway activated"></div>
+        <div class="hidden-object" style="top: 80%; left: 30%;" data-message="Retrospective analysis complete"></div>
+
+        <!-- Revealed text elements -->
+        <div class="revealed-text" id="secret-message"
+            style="top: 10%; left: 10%; width: 80%; text-align: center; font-size: 1.2rem;">
+            The dance of consciousness continues in the dark...
         </div>
-    </nav>
 
-    <!-- Particle Background -->
-    <div id="particles-js"></div>
+        <!-- Light World Elements -->
+        <div class="sun" id="sun"></div>
 
-    <header>
-        <div class="title-container">
-            <h1 class="name-title">YU SHEN</h1>
-            <h2 class="job-title">AUTOMATION & ROBOTICS STUDENT</h2>
+        <div class="tape-player" id="tape-player">
+            <div class="tape-deck">
+                <div class="tape" id="tape">
+                    <div class="tape-label">MEMORY #042</div>
+                </div>
+            </div>
+            <div class="controls">
+                <div class="control-btn" id="play-btn">▶</div>
+                <div class="control-btn" id="stop-btn">■</div>
+                <div class="control-btn" id="rewind-btn">◀◀</div>
+            </div>
         </div>
 
-        <div class="ldr-shapes">
-            <div class="ldr-shape-container">
-                <div class="icon-text">PLC / HMI</div>
-                <i class="fas fa-laptop-code icon-style"></i>
-            </div>
-            <div class="ldr-shape-container">
-                <div class="icon-text">Robotics</div>
-                <i class="fas fa-robot icon-style"></i>
-            </div>
-            <div class="ldr-shape-container">
-                <div class="icon-text">Troubleshooting</div>
-                <i class="fas fa-cogs icon-style"></i>
-            </div>
-        </div>
-        <a href="#about" class="btn">EXPLORE MY WORK</a>
-        <div class="scroll-down" onclick="document.querySelector('#about').scrollIntoView({ behavior: 'smooth' })">
-            <div class="mouse">
-                <div class="scroller"></div>
-            </div>
-            <span>Scroll Down</span>
-        </div>
-    </header>
-
-    <main style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
-        <section id="about" class="card">
-            <h2>About Me</h2>
-            <p><strong>Hi, I'm Yu Shen —</strong><br>
-                A <strong>B.E. in Automation</strong> graduate with <strong>2+ years</strong> of hands-on experience in
-                <strong>PLC/HMI programming (Allen-Bradley/Siemens) & FANUC robotics</strong>. Passionate about
-                <strong>industrial automation, system integration, and troubleshooting</strong> to optimize
-                manufacturing processes.
-            </p>
-
-            <p>Looking for <strong>Controls Engineer, Robotics Technician, or Automation Specialist</strong> roles where
-                I can apply my technical skills to real-world challenges.</p>
-
-            <div style="margin-top: 1.5rem;">
-                <a href="resume.pdf" class="btn" download="YuShen_Automation_Engineer_CV.pdf" target="_blank">
-                    <i class="fas fa-download"></i> Download CV
-                </a>
-                <a href="#contact" class="btn">
-                    <i class="fas fa-paper-plane"></i> Contact Me
-                </a>
-            </div>
-        </section>
-
-        <section id="skills" class="card">
-            <h2>Technical Skills</h2>
-            <div class="skills-container">
-                <div class="skill">PLC Programming</div>
-                <div class="skill">FANUC Robotics</div>
-                <div class="skill">Servo Systems</div>
-                <div class="skill">HMI Development</div>
-                <div class="skill">Fieldbus Networks</div>
-                <div class="skill">Line Commissioning</div>
-                <div class="skill">Electrical CAD</div>
-                <div class="skill">Welding Systems</div>
-                <div class="skill">Motion Control</div>
-                <div class="skill">Troubleshooting</div>
-                <div class="skill">Safety Circuits</div>
-                <div class="skill">Mechanical Support</div>
-            </div>
-        </section>
-
-        <section id="experience" class="card">
-            <h2>Work Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">05/2025 - Present</div>
-                    <h3>Robotics Weld Technician | Martinrea International Inc.</h3>
-                    <p>Operate FANUC robotic welding systems (spot/stud/MIG/TIG) for automotive production, performing
-                        parameter adjustments and path refinements. Troubleshoot robotic cells and PLC systems to
-                        resolve production issues. Collaborate with engineers on calibration tasks while maintaining
-                        strict safety standards.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">09/2024 - 12/2024</div>
-                    <h3>Engineering Co-op | The EPCM Group Global</h3>
-                    <p>Developed SolidWorks designs for laser scanner enclosures and optimized P&ID diagrams in AutoCAD.
-                        Assisted in PLC programming (Studio 5000) and HMI development (FactoryTalk View) for mineral
-                        processing systems. Performed robotic cell assembly and control panel wiring improvements.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">06/2020 - 06/2022</div>
-                    <h3>Control Systems Engineer | Shanghai Junli Automation</h3>
-                    <p>Implemented automation projects with PLC programming (Rockwell/Siemens) and control panel design.
-                        Integrated FANUC robotic systems including palletizing and welding cells with vision guidance.
-                        Developed modular control systems and provided technical training to clients.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="card">
-            <h2>Featured Projects</h2>
-            <div class="project-gallery">
-                <!-- First Project (Unchanged) -->
-                <div class="project-card">
-                    <h3>Boiler Control System</h3>
-                    <p>Designed Siemens S7-200 PLC solution with PID control for industrial boiler:
-                    <ul class="project-details">
-                        <li>Precise temperature (±0.5°C) and pressure control</li>
-                        <li>Custom HMI interface with alarm management</li>
-                        <li>Safety interlocks and fault diagnostics</li>
-                    </ul>
-                    </p>
-                    <a href="#" class="btn">View Details</a>
-                </div>
-
-                <!-- Second Project (Enhanced) -->
-                <div class="project-card">
-                    <h3>Robotic Welding Cell</h3>
-                    <p>Implemented FANUC ARC Mate 120iD robotic welding system for automotive chassis components:
-                    <ul class="project-details">
-                        <li>Integrated Laser SeamTracker™ for real-time weld path correction</li>
-                        <li>Automated torch cleaning station with consumable monitoring</li>
-                        <li>Reduced defects by 40% and increased throughput by 25%</li>
-                        <li>Implemented weld parameter database for 15+ material combinations</li>
-                    </ul>
-                    </p>
-                    <a href="#" class="btn">View Details</a>
-                </div>
-
-                <!-- Third Project (Enhanced) -->
-                <div class="project-card">
-                    <h3>Automated Palletizing System</h3>
-                    <p>Developed high-speed palletizing solution for food packaging line using FANUC M-410iB/140H:
-                    <ul class="project-details">
-                        <li>Vision-guided package orientation detection (Cognex In-Sight)</li>
-                        <li>Custom vacuum gripper with force feedback for fragile items</li>
-                        <li>35% faster cycle time compared to manual operation</li>
-                        <li>Integrated with existing conveyor via PROFINET communication</li>
-                    </ul>
-                    </p>
-                    <a href="#" class="btn">View Details</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="education" class="card">
-            <h2>Education</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">09/2023 - 09/2025</div>
-                    <h3>Electromechanical Engineering Technician | Fanshawe College, London ON</h3>
-                    <p>Specialized in PLC & Automation (A+), CNC Machining, and Electrical Systems. Key coursework
-                        included Practical Electronics, Wiring for Automation, and Project Management.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">09/2016 - 06/2020</div>
-                    <h3>B.E. in Automation | Shanghai Polytechnic University, China</h3>
-                    <p>Focused on Industrial Robotics, Control Systems Engineering, and Automated Manufacturing. Core
-                        studies included PLC/Industrial Automation, Motion Control Systems, and Embedded Systems Design.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="card">
-            <h2>Get In Touch</h2>
-            <p>Interested in collaborating or learning more about my work? Feel free to reach out!</p>
-            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;" class="contact-icons">
-                <a href="mailto:shenyu121212@gmail.com" class="btn"><i class="fas fa-envelope"></i> Email</a>
-                <a href="https://www.linkedin.com/in/yu-shen-7337b32ab/" target="_blank" class="btn"><i
-                        class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/Shenyu1111111" target="_blank" class="btn"><i class="fab fa-github"></i>
-                    GitHub</a>
-                <a href="tel:+12269989889" class="btn"><i class="fas fa-phone"></i> Phone</a>
-            </div>
-        </section>
-    </main>
-
-    <footer style="text-align: center; padding: 3rem 2rem; margin-top: 2rem;">
-        <p>© 2025 Yu Shen. All rights reserved.</p>
-        <div style="margin-top: 1rem;">
-            <a href="#" style="color: var(--secondary-color); margin: 0 0.5rem;"><i class="fab fa-twitter"></i></a>
-            <a href="#" style="color: var(--secondary-color); margin: 0 0.5rem;"><i class="fab fa-youtube"></i></a>
-            <a href="#" style="color: var(--secondary-color); margin: 0 0.5rem;"><i class="fas fa-blog"></i></a>
-        </div>
-    </footer>
-
-    <!-- 脚本引用 -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
-    <script src="./js/main.js"></script>
+        <div class="memory-fragments" id="memory-fragments"></div>
+    </div>
 
 
 
 
 
+
+
+
+
+    <script>
+
+
+
+
+
+
+
+
+
+        // Loading screen animation
+        const loadingScreen = document.getElementById('loading-screen');
+        const loadingPercentage = document.querySelector('.loading-percentage');
+        const loadingSticks = document.querySelectorAll('.loading-stick'); // Fixed variable name
+        let progress = 0;
+
+        // Animate the loading sticks
+        loadingSticks.forEach((stick, index) => {
+            stick.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        const loadingInterval = setInterval(() => {
+            // Smoother progress increment
+            progress += Math.random() * 5 + 1; // Between 1-6% each step
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(loadingInterval);
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    document.getElementById('main-content').style.display = 'block';
+                    initInteractiveElements();
+                }, 500);
+            }
+            loadingPercentage.textContent = `${Math.min(100, Math.floor(progress))}%`;
+
+            // Make sticks grow as progress increases
+            loadingSticks.forEach(stick => {
+                stick.style.height = `${10 + (progress * 0.4)}px`;
+            });
+        }, 150); // Slightly faster interva
+
+
+        // Initialize interactive elements after loading
+
+
+
+
+
+        // document.getElementById('main-content').style.display = 'block';
+        // initInteractiveElements();
+
+
+
+
+
+
+        // Initialize interactive elements after loading
+        function initInteractiveElements() {
+            const discoMode = document.getElementById('disco-mode');
+            const discoBall = document.getElementById('disco-ball');
+            const thoughtBubble = document.getElementById('thought-bubble');
+            const neonLineH = document.getElementById('neon-line-h');
+            const neonLineV = document.getElementById('neon-line-v');
+            const hiddenObjects = document.querySelectorAll('.hidden-object');
+            const secretMessage = document.getElementById('secret-message');
+
+            // Light world elements
+            const tapePlayer = document.getElementById('tape-player');
+            const tape = document.getElementById('tape');
+            const playBtn = document.getElementById('play-btn');
+            const stopBtn = document.getElementById('stop-btn');
+            const rewindBtn = document.getElementById('rewind-btn');
+            const memoryFragments = document.getElementById('memory-fragments');
+            const sun = document.getElementById('sun');
+
+            // Track clicked objects
+            let clickedObjects = 0;
+            let lightWorldActivated = false;
+            const memoryTexts = [
+                "The last summer before everything changed...",
+                "Her laughter was like wind chimes in July",
+                "We thought the cassette would last forever",
+                "Play it again. Maybe this time it'll be different",
+                "The machine remembers what the mind forgets",
+                "Click. Rewind. Repeat. The ritual continues",
+                "Analog ghosts in a digital age"
+            ];
+
+            // Make disco ball appear on click
+            discoMode.addEventListener('click', function (e) {
+                // Position disco ball at click location
+                discoBall.style.left = `${e.clientX - 50}px`;
+                discoBall.style.top = `${e.clientY - 50}px`;
+                discoBall.style.opacity = '1';
+
+                // Show thought bubble with random message
+                const messages = [
+                    "Disco is truth.",
+                    "The mirrorballs are watching.",
+                    "Neon runs in my veins.",
+                    "Dance or die trying.",
+                    "The night never ends."
+                ];
+                thoughtBubble.textContent = messages[Math.floor(Math.random() * messages.length)];
+                thoughtBubble.style.left = `${e.clientX + 30}px`;
+                thoughtBubble.style.top = `${e.clientY - 30}px`;
+                thoughtBubble.style.opacity = '1';
+                thoughtBubble.style.transform = 'scale(1)';
+
+                // Hide after delay
+                setTimeout(() => {
+                    thoughtBubble.style.opacity = '0';
+                    thoughtBubble.style.transform = 'scale(0)';
+                }, 3000);
+
+                // Create mirror effect with neon lines
+                neonLineH.style.width = `${window.innerWidth}px`;
+                neonLineH.style.left = '0';
+                neonLineH.style.top = `${e.clientY}px`;
+                neonLineH.style.opacity = '0.7';
+
+                neonLineV.style.height = `${window.innerHeight}px`;
+                neonLineV.style.left = `${e.clientX}px`;
+                neonLineV.style.top = '0';
+                neonLineV.style.opacity = '0.7';
+
+                // Fade out lines
+                setTimeout(() => {
+                    neonLineH.style.opacity = '0';
+                    neonLineV.style.opacity = '0';
+                }, 1000);
+
+                // Random chance to show secret message
+                if (Math.random() > 0.7) {
+                    secretMessage.style.opacity = '1';
+                    setTimeout(() => {
+                        secretMessage.style.opacity = '0';
+                    }, 5000);
+                }
+            });
+
+            // Replace the existing hidden object click event handler with this enhanced version
+            hiddenObjects.forEach(obj => {
+                // Make planet objects appear
+                setTimeout(() => {
+                    obj.style.opacity = '0.9';
+                    obj.style.transform = 'scale(1)';
+                }, Math.random() * 5000);
+
+                obj.addEventListener('click', function (e) {
+                    // Planet explosion effect
+                    this.style.transform = 'scale(3)';
+                    this.style.opacity = '0';
+                    this.style.boxShadow = `0 0 50px ${this.style.background.includes('var(--primary)') ? 'var(--primary)' : 'var(--secondary)'}`;
+
+                    // Create star particles
+                    createParticles(e.clientX, e.clientY,
+                        this.style.background.includes('var(--primary)') ? 'var(--primary)' : 'var(--secondary)');
+
+
+                        // Show message in thought bubble with enhanced style
+                    thoughtBubble.textContent = this.dataset.message;
+                    thoughtBubble.style.left = `${this.offsetLeft + 40}px`;
+                    thoughtBubble.style.top = `${this.offsetTop - 60}px`;
+                    thoughtBubble.style.opacity = '1';
+                    thoughtBubble.style.transform = 'scale(1)';
+                    thoughtBubble.style.fontSize = '1.1rem';
+                    thoughtBubble.style.padding = '20px';
+                    thoughtBubble.style.border = `2px solid ${this.style.background}`;
+
+                    // Create explosion effect
+                    const explosion = document.createElement('div');
+                    explosion.className = 'particle-explosion';
+                    explosion.style.left = `${this.offsetLeft + 15}px`;
+                    explosion.style.top = `${this.offsetTop + 15}px`;
+                    explosion.style.backgroundColor = this.style.background;
+                    document.getElementById('main-content').appendChild(explosion);
+
+                    // Create ripple effect
+                    const ripple = document.createElement('div');
+                    ripple.className = 'ripple-effect';
+                    ripple.style.left = `${this.offsetLeft}px`;
+                    ripple.style.top = `${this.offsetTop}px`;
+                    ripple.style.borderColor = this.style.background;
+                    document.getElementById('main-content').appendChild(ripple);
+
+                    // Animate the object with more dramatic effects
+                    this.style.transform = 'scale(3)';
+                    this.style.opacity = '0';
+                    this.style.boxShadow = `0 0 30px ${this.style.background}`;
+
+                    // Create particles
+                    createParticles(this.offsetLeft + 15, this.offsetTop + 15, this.style.background);
+
+                    // Sound effect (uncomment if you add audio)
+                    // new Audio('pop.mp3').play().catch(e => console.log('Audio error:', e));
+
+                    // Track clicks and check for world transition
+                    clickedObjects++;
+                    checkWorldTransition();
+
+                    // Clean up after animations
+                    setTimeout(() => {
+                        this.style.display = 'none';
+                        thoughtBubble.style.opacity = '0';
+                        thoughtBubble.style.transform = 'scale(0)';
+                        explosion.remove();
+                        ripple.remove();
+                    }, 1000);
+                });
+            });
+
+            // Add these new functions to create additional effects
+            function createParticles(x, y, color) {
+                const particleCount = 20;
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = `${x}px`;
+                    particle.style.top = `${y}px`;
+                    particle.style.backgroundColor = color;
+
+                    // Random direction and speed
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = 2 + Math.random() * 3;
+                    const lifetime = 800 + Math.random() * 400;
+
+                    particle.style.setProperty('--x', `${Math.cos(angle) * speed}px`);
+                    particle.style.setProperty('--y', `${Math.sin(angle) * speed}px`);
+
+                    document.getElementById('main-content').appendChild(particle);
+
+                    // Remove particle after animation
+                    setTimeout(() => {
+                        particle.remove();
+                    }, lifetime);
+                }
+            }
+
+
+            // Check if should transition to light world
+            function checkWorldTransition() {
+                if (clickedObjects >= 4 && !lightWorldActivated) {
+                    transitionToLightWorld();
+                }
+            }
+
+            // Transition to the light world
+            function transitionToLightWorld() {
+                lightWorldActivated = true;
+                const mainContent = document.getElementById('main-content');
+
+                // Switch to light color scheme
+                mainContent.classList.add('light-world');
+
+                // Fade in sun
+                sun.style.opacity = '0.6';
+                sun.style.left = `${window.innerWidth - 200}px`;
+                sun.style.top = '100px';
+
+                // Show tape player
+                tapePlayer.style.display = 'block';
+                tapePlayer.style.left = `${window.innerWidth / 2 - 100}px`;
+                tapePlayer.style.top = `${window.innerHeight / 2 - 60}px`;
+
+                // Change main text
+                discoMode.textContent = "RECALL MODE";
+                discoMode.style.color = "#333";
+                discoMode.style.textShadow = "2px 2px 4px rgba(0,0,0,0.2)";
+
+                // Background animation
+                let hue = 0;
+                const bgInterval = setInterval(() => {
+                    hue = (hue + 0.5) % 360;
+                    mainContent.style.background = `
+                        radial-gradient(circle at center, 
+                        hsl(${hue}, 80%, 90%), 
+                        hsl(${(hue + 120) % 360}, 60%, 95%)`;
+                }, 100);
+            }
+
+            // Tape player interactions
+            function playMemoryFragment() {
+                if (!lightWorldActivated) return;
+
+                const memory = document.createElement('div');
+                memory.className = 'memory-text';
+                memory.textContent = memoryTexts[Math.floor(Math.random() * memoryTexts.length)];
+
+                memory.style.left = `${Math.random() * (window.innerWidth - 300) + 50}px`;
+                memory.style.top = `${Math.random() * (window.innerHeight - 100) + 50}px`;
+                memory.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
+
+                memoryFragments.appendChild(memory);
+
+                setTimeout(() => {
+                    memory.style.opacity = '1';
+                }, 100);
+
+                setTimeout(() => {
+                    memory.style.opacity = '0';
+                    setTimeout(() => {
+                        memory.remove();
+                    }, 1000);
+                }, 5000);
+            }
+
+            function stopMemoryPlayback() {
+                document.querySelectorAll('.memory-text').forEach(text => {
+                    text.style.opacity = '0';
+                    setTimeout(() => {
+                        text.remove();
+                    }, 1000);
+                });
+            }
+
+            function rewindMemory() {
+                stopMemoryPlayback();
+                setTimeout(() => {
+                    for (let i = 0; i < 3; i++) {
+                        setTimeout(playMemoryFragment, i * 800);
+                    }
+                }, 500);
+            }
+
+            // Set up tape player controls
+            tape.addEventListener('click', playMemoryFragment);
+            playBtn.addEventListener('click', playMemoryFragment);
+            stopBtn.addEventListener('click', stopMemoryPlayback);
+            rewindBtn.addEventListener('click', rewindMemory);
+
+            // Random disco ball appearance
+            setInterval(() => {
+                if (Math.random() > 0.8 && !lightWorldActivated) {
+                    discoBall.style.left = `${Math.random() * (window.innerWidth - 100)}px`;
+                    discoBall.style.top = `${Math.random() * (window.innerHeight - 100)}px`;
+                    discoBall.style.opacity = '1';
+                    setTimeout(() => {
+                        discoBall.style.opacity = '0';
+                    }, 2000);
+                }
+            }, 5000);
+
+            // Mouse move effect - subtle glow follows cursor
+            document.addEventListener('mousemove', (e) => {
+                const glow = document.createElement('div');
+                glow.className = 'disco-ball';
+                glow.style.width = '20px';
+                glow.style.height = '20px';
+                glow.style.left = `${e.clientX - 10}px`;
+                glow.style.top = `${e.clientY - 10}px`;
+                glow.style.opacity = '0.3';
+                document.getElementById('main-content').appendChild(glow);
+
+                setTimeout(() => {
+                    glow.style.opacity = '0';
+                    setTimeout(() => {
+                        glow.remove();
+                    }, 1000);
+                }, 100);
+            });
+        }
+    </script>
 </body>
 
 </html>
