@@ -1,4 +1,5 @@
 
+// LOADING PAGE LOGIC
 document.addEventListener('DOMContentLoaded', function() {
             const loadingScreen = document.querySelector('.loading-screen');
             const percentDisplay = document.querySelector('.loading-percent');
@@ -69,8 +70,14 @@ function setupIconInteractions() {
     });
 }
 
+
+
+
 // 主初始化函数
 function initPortfolio() {
+
+
+
     // 粒子背景初始化
     particlesJS('particles-js', {
         "particles": {
@@ -119,6 +126,10 @@ function initPortfolio() {
             }
         }
     });
+
+
+
+    
 
     // 设置图标交互
     setupIconInteractions();
@@ -198,10 +209,4 @@ function initPortfolio() {
 
 
 
-
-
-
-
-
-// 页面加载事件
 
