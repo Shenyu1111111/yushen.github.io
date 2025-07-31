@@ -4,33 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yu Shen | Automation & Robotics Student</title>
+    <title>Yu Shen | Automation & Robotics</title>
 
 
-    <!-- CSS -->
+    <!-- CSS 引用-->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap"
         rel="stylesheet">
     <link rel="icon" href="mechanical-arm.png" type="image/png">
-
-
 </head>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <body>
-    <div class="loading-screen">
-        <div class="loading-text">SYSTEM BOOTING...</div>
-        <div class="loading-subtext">PLC Firmware v3.2.1 | HMI Interface Initializing</div>
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
+
+
+
+    <!-- LOADING -->
+
+    <div class="minimal-loading">
+        <div class="loading-frame">
+            <div class="loading-bar" id="loadingBar"></div>
         </div>
-        <div class="progress-percent">0%</div>
-        <div class="loading-details">
-            <!-- 这里会动态显示不同阶段的信息 -->
-            <div class="status-line">▶ Establishing PLC connection...</div>
-        </div>
+        <div class="loading-percent" id="loadingPercent">0%</div>
     </div>
+
+
+
+
 
     <!-- Navigation Bar -->
     <nav class="navbar">
