@@ -64,7 +64,6 @@ body {
 
 
 
-
 .loading-screen {
     position: fixed;
     top: 0;
@@ -88,9 +87,9 @@ body {
         
         radial-gradient(circle at 80% 70%,
             /* 圆形渐变，定位在右下方80% 70%位置 */
-            rgba(152, 65, 195, 0.3) 0%,
+            rgba(152, 65, 195, 0.048) 0%,
             /* 半透明紫罗兰色 */
-            rgba(129, 20, 114, 0.208) 40%
+            rgba(129, 20, 114, 0.057) 40%
             /* 过渡到半透明深紫色 */
         );
         /* 紫色星云.效果：在右下方添加一团紫红色星云，与左上的蓝色星云形成色彩对比。*/
@@ -193,6 +192,9 @@ body {
 
 
 
+
+
+
 /* Navigation Bar */
 .navbar {
     height: 90px;
@@ -225,8 +227,9 @@ body {
 .nav-link {
     color: var(--text-color);
     text-decoration: none;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Michroma', sans-serif;
     font-size: 0.9rem;
+    font-weight: 600;
     letter-spacing: 1px;
     position: relative;
     padding: 0.5rem 0;
