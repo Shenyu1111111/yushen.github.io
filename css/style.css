@@ -111,6 +111,14 @@ body {
     margin: 0 auto;
 }
 
+
+
+
+
+
+
+
+
 .mobius-ring {
     width: 100%;
     height: 100%;
@@ -157,9 +165,9 @@ body {
     }
 }
 
+/* 修改.loading-percent添加过渡 */
 .loading-percent {
     margin-top: 1px;
-    /* Space below the loader */
     left: 0;
     width: 100%;
     text-align: center;
@@ -168,20 +176,149 @@ body {
     font-size: 1rem;
     text-shadow: 0 0 8px var(--secondary-color);
     z-index: 1;
-    /* Ensure it's above other elements */
+    transition: opacity 0.5s ease-out;
 }
 
 
+/* 修改.loading-status添加过渡 */
 .loading-status {
     margin-top: 30px;
-    /* Space below the loader */
     color: var(--secondary-color);
     font-family: 'Michroma', sans-serif;
     font-size: 0.9rem;
     text-align: center;
     max-width: 300px;
     text-shadow: 0 0 8px var(--secondary-color);
+    transition: all 0.5s ease-out;
 }
+
+
+
+
+
+
+
+
+.binary-matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 999;
+    /* 添加这行确保成为定位上下文 */
+    transform: none !important;
+}
+
+.binary-particle {
+    position: absolute;
+    /* 改为视口单位确保准确定位 */
+    left: 50vw;
+    top: 50vh;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #00f7ff;
+    text-shadow: 0 0 8px currentColor, 0 0 16px currentColor;
+    opacity: 0;
+    animation: binary-fall linear forwards;
+    will-change: transform;
+    z-index: 10;
+    background: rgba(0,0,0,0.3);
+    padding: 2px 5px;
+    border-radius: 3px;
+    /* 初始状态 */
+    transform: translate(-50%, -50%) scale(0.5);
+}
+
+@keyframes binary-fall {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        /* 关键修改：保留中心偏移计算 */
+        transform: 
+            translate(
+                calc(-50% + var(--tx)), 
+                calc(-50% + var(--ty))
+            ) 
+            scale(1.2);
+    }
+}
+
+/* 过渡蒙版 */
+.transition-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at center, 
+        transparent 0%, 
+        var(--primary-color) 120%
+    );
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    animation: mask-fade 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes mask-fade {
+    0% { 
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% { 
+        opacity: 0.9;
+        transform: scale(1.8);
+    }
+    100% { 
+        opacity: 0;
+        transform: scale(3);
+    }
+}
+
+/* 修改.infinity-loader添加爆发状态 */
+.infinity-loader {
+    width: 200px;
+    height: 100px;
+    position: relative;
+    perspective: 1000px;
+    margin: 0 auto;
+    transition: all 0.5s ease-out;
+    overflow: visible; /* 允许内容溢出 */
+}
+
+/* 新增爆发动画 */
+@keyframes ring-burst {
+    0% { 
+        transform: rotateX(0deg) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: rotateX(180deg) scale(1.5);
+        opacity: 0.7;
+    }
+    100% { 
+        transform: rotateX(360deg) scale(3);
+        opacity: 0;
+    }
+}
+
+
+
+
+
+
+
 
 
 
