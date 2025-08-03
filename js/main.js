@@ -1,43 +1,138 @@
 
 // LOADING PAGE LOGIC
-document.addEventListener('DOMContentLoaded', function() {
-            const loadingScreen = document.querySelector('.loading-screen');
-            const percentDisplay = document.querySelector('.loading-percent');
-            const statusDisplay = document.querySelector('.loading-status');
-            
-            const statusPhases = [
-                { text: "Booting cybernetic core...", percent: 0 },
-                { text: "Synchronizing quantum nodes...", percent: 30 },
-                { text: "Calibrating visual cortex...", percent: 60 },
-                { text: "Establishing uplink...", percent: 85 }
-            ];
+document.addEventListener('DOMContentLoaded', function () {
+    const loadingScreen = document.querySelector('.loading-screen');
+    const percentDisplay = document.querySelector('.loading-percent');
+    const statusDisplay = document.querySelector('.loading-status');
 
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += 1 + Math.random() * 3;
-                if (progress > 100) progress = 100;
+    const statusPhases = [
+        { text: "Booting cybernetic core...", percent: 0 },
+        { text: "Synchronizing quantum nodes...", percent: 30 },
+        { text: "Calibrating visual cortex...", percent: 60 },
+        { text: "Establishing uplink...", percent: 85 }
+    ];
 
-                percentDisplay.textContent = `${Math.floor(progress)}%`;
-                
-                const currentPhase = statusPhases.reduce((acc, phase) => 
-                    progress >= phase.percent ? phase : acc, statusPhases[0]);
-                statusDisplay.textContent = currentPhase.text;
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += 1 + Math.random() * 3;
+        if (progress > 100) progress = 100;
 
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        loadingScreen.style.opacity = '0';
-                        setTimeout(() => {
-                            loadingScreen.style.display = 'none';
-                            initPortfolio();
-                        }, 1000);
-                    }, 800);
-                }
-            }, 120);
-        });
+        percentDisplay.textContent = `${Math.floor(progress)}%`;
+
+        const currentPhase = statusPhases.reduce((acc, phase) =>
+            progress >= phase.percent ? phase : acc, statusPhases[0]);
+        statusDisplay.textContent = currentPhase.text;
+
+        if (progress >= 100) {
+            clearInterval(interval);
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    initPortfolio();
+                    initEarth(); // 初始化地球
+                }, 1000);
+            }, 800);
+        }
+    }, 120);
+});
 
 
 
+
+
+function initEarth() {
+    // 容器设置（保持不变）
+    const container = document.createElement('div');
+    container.id = 'earth-container';
+    container.style.cssText = `
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: -1 !important;
+    opacity: 0.7 !important;
+  `;
+    document.body.prepend(container);
+
+    // 1. 初始化场景
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({
+        alpha: true,
+        antialias: true
+    });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    container.appendChild(renderer.domElement);
+
+    // 2. 创建赛博朋克风格线框地球
+    const geometry = new THREE.SphereGeometry(3, 32, 32); // 优化网格密度
+    const material = new THREE.MeshBasicMaterial({
+        wireframe: true,
+        color: 0x00f7ff, // 荧光蓝
+        transparent: true,
+        opacity: 0.9,
+        wireframeLinewidth: 2 // 加粗线框（可能需要启用特殊渲染模式）
+    });
+
+    const earth = new THREE.Mesh(geometry, material);
+    earth.position.set(-3, -1, 0);
+    scene.add(earth);
+
+    // 3. 添加发光外环
+    const ringGeometry = new THREE.RingGeometry(2.2, 2.3, 32);
+    const ringMaterial = new THREE.MeshBasicMaterial({
+        color: 0xff00aa, // 粉红霓虹
+        side: THREE.DoubleSide,
+        transparent: true,
+        opacity: 0.6
+    });
+    const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+    ring.rotation.x = Math.PI / 2; // 水平旋转
+    scene.add(ring);
+
+    // 4. 添加动态脉冲光点
+    const starsGeometry = new THREE.BufferGeometry();
+    const starPositions = [];
+    for (let i = 0; i < 200; i++) {
+        starPositions.push(
+            (Math.random() - 0.5) * 10,
+            (Math.random() - 0.5) * 10,
+            (Math.random() - 0.5) * 10
+        );
+    }
+    starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starPositions, 3));
+    const starsMaterial = new THREE.PointsMaterial({
+        color: 0x00f7ff,
+        size: 0.1,
+        transparent: true,
+        opacity: 0.8,
+        sizeAttenuation: true
+    });
+    const stars = new THREE.Points(starsGeometry, starsMaterial);
+    scene.add(stars);
+
+    // 5. 相机位置
+    camera.position.z = 5;
+
+    // 6. 动画循环
+    function animate() {
+        requestAnimationFrame(animate);
+
+        earth.rotation.y += 0.001;
+        ring.rotation.z += 0.001;
+        stars.rotation.y -= 0.0005;
+
+        // 动态脉冲效果
+        const pulse = Math.sin(Date.now() * 0.002) * 0.1 + 0.9;
+        material.opacity = pulse * 0.8;
+        ringMaterial.opacity = pulse * 0.5;
+
+        renderer.render(scene, camera);
+    }
+    animate();
+}
 
 
 
@@ -129,7 +224,7 @@ function initPortfolio() {
 
 
 
-    
+
 
     // 设置图标交互
     setupIconInteractions();
