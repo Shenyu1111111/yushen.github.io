@@ -1,9 +1,13 @@
-
-// LOADING PAGE LOGIC
 document.addEventListener('DOMContentLoaded', function () {
     const loadingScreen = document.querySelector('.loading-screen');
     const percentDisplay = document.querySelector('.loading-percent');
     const statusDisplay = document.querySelector('.loading-status');
+    const infinityLoader = document.querySelector('.infinity-loader');
+
+    // 创建二进制矩阵容器
+    const binaryMatrix = document.createElement('div');
+    binaryMatrix.className = 'binary-matrix';
+    infinityLoader.appendChild(binaryMatrix);
 
     const statusPhases = [
         { text: "Booting cybernetic core...", percent: 0 },
@@ -25,19 +29,76 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (progress >= 100) {
             clearInterval(interval);
-            setTimeout(() => {
-                loadingScreen.style.opacity = '0';
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                    initPortfolio();
-                    initEarth(); // 初始化地球
-                }, 1000);
-            }, 800);
+            startBinaryTransition();
         }
     }, 120);
+
+    function startBinaryTransition() {
+    const binaryMatrix = document.querySelector('.binary-matrix');
+    binaryMatrix.innerHTML = '';
+    
+    // 获取视口中心坐标（更精确的计算）
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    
+        
+        // 2. 加速莫比乌斯环旋转并准备爆发
+        const mobiusRing = document.querySelector('.mobius-ring');
+        mobiusRing.style.animation = 'rotate-horizontal 0.2s linear infinite';
+        
+        // 2. 生成400个二进制粒子（增加数量）
+    for (let i = 0; i < 400; i++) {
+        const bit = document.createElement('div');
+        bit.className = 'binary-particle';
+        bit.textContent = Math.random() > 0.5 ? '1' : '0';
+        
+        // 设置起始位置为屏幕中心附近
+        bit.style.left = '50vw';
+        bit.style.top = '50vh';
+        bit.style.transform = 'translate(-50%, -50%)';
+
+        
+        // 增大运动距离（使用vw/vh单位确保全屏覆盖）
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 50 + Math.random() * 50; // 使用更大的值
+        bit.style.setProperty('--tx', `${(Math.cos(angle) * distance).toFixed(2)}vw`);
+        bit.style.setProperty('--ty', `${(Math.sin(angle) * distance).toFixed(2)}vh`);
+            
+        // 强制设置初始位置（像素级精确）
+        bit.style.left = `${centerX}px`;
+        bit.style.top = `${centerY}px`;
+
+        
+        
+        // 随机动画参数
+            bit.style.animationDuration = `${0.8 + Math.random() * 0.5}s`;
+            bit.style.animationDelay = `${Math.random() * 0.2}s`;
+            bit.style.color = i % 4 === 0 ? 'var(--accent-color)' : 'var(--secondary-color)';
+            bit.style.fontSize = `${12 + Math.random() * 8}px`; // 随机大小
+            
+            binaryMatrix.appendChild(bit);
+        }
+        
+        // 4. 创建过渡蒙版
+        const transitionMask = document.createElement('div');
+        transitionMask.className = 'transition-mask';
+        loadingScreen.appendChild(transitionMask);
+        
+        // 5. 更新状态文本
+        statusDisplay.textContent = 'Matrix synchronization complete';
+        
+        // 6. 淡出加载界面
+        setTimeout(() => {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                initPortfolio();
+                initEarth();
+            }, 2000);
+        }, 3000);
+    }
 });
-
-
 
 
 
