@@ -16,6 +16,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Audiowide&family=Michroma&family=Wallpoet&display=swap"
         rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">   
     <link rel="icon" href="mechanical-arm.png" type="image/png">
 
 
@@ -70,7 +71,7 @@ C 132 73               149 73    150 50" />
 
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <a href="#" class="nav-logo">YU SHEN</a>
+        <a href="#" class="nav-logo">⟁ YU SHEN</a>
         <div class="nav-links">
             <a href="#about" class="nav-link">ABOUT</a>
             <a href="#skills" class="nav-link">SKILLS</a>
@@ -81,18 +82,14 @@ C 132 73               149 73    150 50" />
         </div>
     </nav>
 
-
+ <!-- 在地球容器 -->
+<div id="earth-container"></div>
     
 
     <!-- Particle Background -->
     <div id="particles-js"></div>
 
     <header>
-        <div class="title-container">
-            <h1 class="name-title">YU SHEN</h1>
-            <h2 class="job-title">AUTOMATION & ROBOTICS STUDENT</h2>
-        </div>
-
         <div class="ldr-shapes">
             <div class="ldr-shape-container">
                 <div class="icon-text">PLC / HMI</div>
@@ -107,7 +104,13 @@ C 132 73               149 73    150 50" />
                 <i class="fas fa-cogs icon-style"></i>
             </div>
         </div>
-        <a href="#about" class="btn">EXPLORE MY WORK</a>
+        <div class="title-container">
+            <h1 class="name-title">YU SHEN</h1>
+            <h2 class="job-title">AUTOMATION & ROBOTICS ENGINEER</h2>
+        </div>
+
+        
+        <a href="#about" class="btn explore-btn">EXPLORE MY WORK</a>
         <div class="scroll-down" onclick="document.querySelector('#about').scrollIntoView({ behavior: 'smooth' })">
             <div class="mouse">
                 <div class="scroller"></div>
@@ -115,6 +118,9 @@ C 132 73               149 73    150 50" />
             <span>Scroll Down</span>
         </div>
     </header>
+
+      <!-- 添加这个空白间距 div -->
+    <div style="height: 200px;"></div>
 
     <main style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
         <section id="about" class="card">
