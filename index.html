@@ -27,9 +27,14 @@
     <!-- loading page -->
 
     <div class="loading-screen">
+
+        
+
+
         <div class="infinity-loader">
             
-            
+            <!-- 新增二进制矩阵容器（放在svg同级） -->
+            <div class="binary-matrix" id="binary-matrix"></div>
             
             <svg viewBox="0 0 200 100" class="mobius-ring">
                
@@ -60,6 +65,11 @@ C 132 73               149 73    150 50" />
 
             <div class="loading-percent">0%</div> <!-- Keep this inside -->
         </div>
+
+        <!-- 新增过渡蒙版 -->
+        <div class="transition-mask"></div>
+
+
         <div class="loading-status">Initializing neural matrix...</div>
     </div>
 
