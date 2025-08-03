@@ -198,7 +198,6 @@ body {
 
 
 
-
 .binary-matrix {
     position: fixed;
     top: 0;
@@ -763,14 +762,16 @@ p {
     overflow: hidden;
 }
 
-/* 单独定位的探索按钮 */
+/* 探索按钮 - 靠右对齐 */
 .explore-btn {
-  position: absolute; /* 绝对定位 */
-  bottom: 28%;       /* 距离底部15% */
-  right: 2%;        /* 距离右侧10% */
+  display: inline-block;
+  margin-top: 300px; /* 与job-title的间距 */
+  position: relative;
   z-index: 100;
-  margin: 0 !important; /* 移除所有外边距 */
-  animation: float 3s ease-in-out infinite; /* 悬浮动画 */
+  animation: float 3s ease-in-out infinite;
+  margin-left: auto; /* 关键：自动左外边距实现右对齐 */
+  display: block; /* 需要设置为block才能用margin-left: auto */
+  width: fit-content; /* 宽度根据内容自适应 */
 }
 
 .btn:hover {
