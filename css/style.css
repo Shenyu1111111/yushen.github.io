@@ -1,7 +1,7 @@
 :root {
     --card-bg-rgb: 20, 10, 40;
     /* 暗紫蓝底，RGB 可用于透明叠加 */
-    --primary-color: #0a001f;
+    --primary-color: #000000;
     /* 夜空般深蓝紫，朋克底色 */
     --secondary-color: #00f7ff;
     /* 赛博荧光蓝 */
@@ -78,7 +78,7 @@ body {
             /* 中心：深紫黑色（接近太空暗部）*/
             #020314 50%,
             /* 中间过渡：宝石蓝色（模拟宇宙光晕）*/
-            #043043 100%
+            #021e2b 100%
             /* 边缘：深海蓝绿色（深邃太空感）*/
         ),
         /* 主太空背景.效果：从中心向外扩散的椭圆渐变，中心最暗，向外渐变成带有蓝绿色调的宇宙空间效果。*/
@@ -193,17 +193,42 @@ body {
 
 
 
+#earth-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* 与粒子同层级 */
+  pointer-events: none;
+  opacity: 0; /* 初始隐藏 */
+  transition: opacity 1s ease;
+}
+
+/* 移除粒子背景的z-index */
+#particles-js {
+  /* 删除或注释掉原z-index: -1 */
+  background-color: transparent !important;
+}
+
+/* 加载完成后显示地球 */
+body.earth-ready #earth-container {
+  opacity: 0.7;
+}
+
+
 
 
 /* Navigation Bar */
 .navbar {
-    height: 90px;
+    height: 40px;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(10, 10, 26, 0.9);
+    background-color: rgba(10, 10, 26, 0.728);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Safari 兼容 */
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
@@ -217,27 +242,30 @@ body {
     font-size: 1.5rem;
     color: var(--secondary-color);
     text-decoration: none;
+    background: transparent !important;
 }
 
 .nav-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.2rem;
+    background: transparent !important;
 }
 
 .nav-link {
     color: var(--text-color);
     text-decoration: none;
     font-family: 'Michroma', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 1px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
     position: relative;
-    padding: 0.5rem 0;
+    padding: 0.4rem 0;
     transition: color 0.2s ease;
 }
 
 .nav-link:hover {
     color: var(--secondary-color);
+    text-shadow: 0 0 8px rgba(0, 247, 255, 0.3);
 }
 
 .nav-link::after {
@@ -278,23 +306,56 @@ header {
 }
 
 .title-container {
-    margin-bottom: 2rem;
-    margin-top: 3rem;
+  position: absolute;  /* 脱离文档流 */
+  top: 250px;          /* 距离顶部距离 */
+  right: 20px;        /* 固定到右侧 */
+  text-align: right;  /* 文字右对齐 */
+  z-index: 100;      /* 确保在导航栏上方 */
 }
 
+
+
+
 .name-title {
-    font-size: 3.5rem;
-    margin-bottom: 0.5rem;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
-    color: var(--text-color);
+    font-size: 6rem;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    color: #fff; /* 纯白更刺眼 */
     text-transform: uppercase;
     letter-spacing: 3px;
-    text-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 1s 0.2s forwards;
+    text-shadow: 
+        0 0 3px #0ff; /* 仅保留最基础光晕 */
+    animation: 
+        fadeInUp 1s 0.2s forwards,
+        hard-glitch 0.4s steps(2, end) infinite;
 }
+
+/* 机械式三连击故障 */
+@keyframes hard-glitch {
+    0%, 70% { /* 70%时间正常 */
+        transform: translateX(0);
+        text-shadow: 0 0 3px #0ff;
+    }
+    71%, 73% { /* 第1次跳动 */
+        transform: translateX(-5px);
+        color: cyan;
+        text-shadow: 3px 0 red;
+    }
+    74%, 76% { /* 第2次跳动 */
+        transform: translateX(5px);
+        color: red;
+        text-shadow: -3px 0 cyan;
+    }
+    77%, 79% { /* 第3次跳动 */
+        transform: translateX(0);
+        color: #fff;
+        text-shadow: 0 0 10px #0ff;
+    }
+}
+
+
+
+
 
 .job-title {
     font-size: 1.8rem;
@@ -310,13 +371,21 @@ header {
     animation: fadeInUp 1s 0.3s forwards;
 }
 
+
+
+
+
+
 .ldr-shapes {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-    margin: 4rem 0;
+  /* 移除原有 margin 和 flex 居中 */
+  position: absolute;  /* 改为绝对定位 */
+  top: 60px;          /* 距离顶部 20px */
+  left: 50%;          /* 水平居中 */
+  transform: translateX(-50%); /* 精确居中 */
+  display: flex;
+  gap: 3rem;          /* 保持图标间距 */
+  z-index: 100;      /* 确保悬浮在其他元素上 */
+  margin: 0 !important; /* 移除原有 margin */
 }
 
 .ldr-shape-container {
@@ -555,6 +624,16 @@ p {
     font-family: 'Orbitron', sans-serif;
     position: relative;
     overflow: hidden;
+}
+
+/* 单独定位的探索按钮 */
+.explore-btn {
+  position: absolute; /* 绝对定位 */
+  bottom: 28%;       /* 距离底部15% */
+  right: 2%;        /* 距离右侧10% */
+  z-index: 100;
+  margin: 0 !important; /* 移除所有外边距 */
+  animation: float 3s ease-in-out infinite; /* 悬浮动画 */
 }
 
 .btn:hover {
@@ -813,11 +892,11 @@ p {
     }
 
     .nav-links {
-        gap: 1rem;
+        gap: 0.9rem;
     }
 
     .nav-link {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
 
     .ldr-shape-container {
